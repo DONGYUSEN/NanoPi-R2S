@@ -2,6 +2,7 @@
 1:test1,2:Clash Binaries,3: libcap
 4: go: cannot find main module -----》export GO111MODULE="on"
 5: go env -w "GO111MODULE="
+and  runs-on: ubuntu-18.04
 
 ## 20210303
 * 日常更新
