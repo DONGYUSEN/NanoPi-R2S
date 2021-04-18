@@ -1,5 +1,6 @@
 ## 20210218
 1:test1,2:Clash Binaries,3: libcap
+4: go: cannot find main module -----》export GO111MODULE="on"
 
 ## 20210303
 * 日常更新
