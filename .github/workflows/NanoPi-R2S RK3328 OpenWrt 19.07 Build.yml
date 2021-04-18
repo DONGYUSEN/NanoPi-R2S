@@ -180,7 +180,8 @@ jobs:
           cd code
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           # go: cannot find main module
-          export GO111MODULE="on"
+          # export GO111MODULE="on"
+          go env -w "GO111MODULE="
           ./build.sh nanopi_r2s.mk
 
       - name: Fix Rootfs Owner and Group
