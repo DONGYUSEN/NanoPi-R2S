@@ -5,7 +5,8 @@
 and  runs-on: ubuntu-18.04
 6:disable docker
 7: rm -rf /home/runner/work/NanoPi-R2S/NanoPi-R2S/code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/runc-1.0.0-rc10/
-8: disalbe docker in config file
+8: disalbe docker in config file. 
+
 ## 20210303
 * 日常更新
 * 修复 trogan-go 无法运行的问题
