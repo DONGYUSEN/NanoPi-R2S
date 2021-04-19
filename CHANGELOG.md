@@ -2,6 +2,7 @@
 rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
 rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
 
+---2
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
