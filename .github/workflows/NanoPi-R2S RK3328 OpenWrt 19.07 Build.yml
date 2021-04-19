@@ -90,10 +90,10 @@ jobs:
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
           
-          # svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
+          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
           
-          #git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
-          #git clone https://github.com/NateLol/luci-app-oled
+          $git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
+          git clone https://github.com/NateLol/luci-app-oled
         
       - name: Install Clash Binaries
         run: |
@@ -125,7 +125,10 @@ jobs:
 
           rm -rf feeds/packages/libs/libcap
           # svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
-          svn co https://github.com/openwrt/packages/branches/openwrt-19.07/libs/libcap   feeds/packages/libs/libcap
+          svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
+          
+          rm -rf feeds/packages/lang/golang
+          svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           
           rm -rf package/feeds/packages/netdata
           svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
@@ -154,15 +157,15 @@ jobs:
           
           sed -i '/done/imkfs.ext4 /dev/mmcblk0p2 && mkdir /mnt/mmcblk0p2 && mount /dev/mmcblk0p2 /mnt/mmcblk0p2 && mkdir /mnt/mmcblk0p2/docker\n' package/base-files/files/root/setup.sh
           sed -i "/done/iblock detect | sed \"s/enabled\\\t'0'/enabled\\\t'1'/\" > /etc/config/fstab\n" package/base-files/files/root/setup.sh
-          # sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
+          sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
 
-          # sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/luci-app-dockerman/root/etc/config/dockerman
+          sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/luci-app-dockerman/root/etc/config/dockerman
           sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/luci-app-r2sflasher/root/usr/bin/rom_flash
 
       - name: Patch Kernel
         run: |
           cd code/kernel/
-          #git apply ../../patches/001-add-full_cone_nat.patch
+          git apply ../../patches/001-add-full_cone_nat.patch
 
       - name: Custom Configure Files
         run: |
