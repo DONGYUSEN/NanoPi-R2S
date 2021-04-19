@@ -181,7 +181,7 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           # go: cannot find main module
           # export GO111MODULE="on"
-          go env -w "GO111MODULE="
+          rm -rf friendlywrt/build_dir/target-aarch64_cortex-a53_musl/runc-1.0.0-rc10/
           ./build.sh nanopi_r2s.mk
 
       - name: Fix Rootfs Owner and Group
