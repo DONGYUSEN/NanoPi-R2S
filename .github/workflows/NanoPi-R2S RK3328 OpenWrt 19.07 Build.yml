@@ -51,7 +51,9 @@ jobs:
         run: |
           cd code
           git clone https://github.com/coolsnowwolf/lede
+          
           cd friendlywrt
+          ## svn checkout https://github.com/openwrt/packages/trunk/utils/runc packages/utils/runc  ## where is runc?
           cp -r ../lede/package/lean package/
           cp -r ../lede/package/libs/pcre package/libs/
           sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
