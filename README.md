@@ -1,7 +1,7 @@
 # 使用 Github Actions 在线编译 NanoPi-R2S 固件
 
-* NanoPi R2S CNC 官方金属壳版 购买链接: [https://s.click.taobao.com/ZPSFRyu](https://s.click.taobao.com/ZPSFRyu) 
-* 推荐朗科 32G TF 卡 ￥17.90 购买链接: [https://u.jd.com/wDywo8y](https://u.jd.com/wDywo8y)
+
+
 
 ## 说明
 * 管理 IP: 192.168.2.1
@@ -38,3 +38,4 @@ Fork 到自己的账号下，将 `.github/workflows` 下 `.yml` 文件中的 `ru
 * [maxming2333/NanoPi-R2S](https://github.com/maxming2333/NanoPi-R2S)
 * [songchenwen/nanopi-r2s](https://github.com/songchenwen/nanopi-r2s)
 * [fanck0605/nanopi_r2s](https://github.com/fanck0605/nanopi_r2s)
+* [soffchen/NanoPi-R2S](https://github.com/soffchen/NanoPi-R2S)
