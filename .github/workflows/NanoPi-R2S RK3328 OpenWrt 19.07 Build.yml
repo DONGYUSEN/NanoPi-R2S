@@ -165,7 +165,7 @@ jobs:
       - name: Patch Kernel
         run: |
           cd code/kernel/
-          git apply ../../patches/001-add-full_cone_nat.patch
+          # git apply ../../patches/001-add-full_cone_nat.patch
 
       - name: Custom Configure Files
         run: |
