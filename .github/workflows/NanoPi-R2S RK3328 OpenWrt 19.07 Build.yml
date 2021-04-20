@@ -65,7 +65,6 @@ jobs:
           cd code/friendlywrt/package
 
           git clone https://github.com/rufengsuixing/luci-app-adguardhome
-
           git clone https://github.com/jerrykuku/lua-maxminddb.git
           git clone https://github.com/jerrykuku/luci-app-vssr.git
 
@@ -94,7 +93,8 @@ jobs:
           
           # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
           git clone https://github.com/NateLol/luci-app-oled
-        
+          git clone https://github.com/xiaozhuai/luci-app-filebrowser
+
       - name: Install Clash Binaries
         run: |
           cd code/friendlywrt/package/base-files/files
