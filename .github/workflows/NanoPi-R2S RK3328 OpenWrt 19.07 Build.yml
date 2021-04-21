@@ -55,6 +55,8 @@ jobs:
           cd friendlywrt
           cp -r ../lede/package/lean package/
           cp -r ../lede/package/libs/pcre package/libs/
+          rm -rf ../lede
+          
           sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
           sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default
           echo 'src-git node https://github.com/nxhack/openwrt-node-packages.git' >> feeds.conf.default
@@ -204,8 +206,13 @@ jobs:
         run: |
           cd code
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-
-          ./build.sh nanopi_r2s.mk
+          echo -e "$(nproc) thread compile"
+          # ./build.sh nanopi_r2s.mk
+          make defconfig
+          make download -j$(nproc)
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          make -j$(nproc) V=s
 
       - name: Fix Rootfs Owner and Group
         run: |
