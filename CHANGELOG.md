@@ -4,7 +4,7 @@ rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/pac
 
 ---2,3,4,5, copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
 ---6， timeout-minutes: 720 
----7,delete some packages
+---7,delete some packages； 8
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
