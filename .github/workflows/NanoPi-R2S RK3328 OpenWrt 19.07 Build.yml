@@ -207,12 +207,7 @@ jobs:
           cd code
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
-          # ./build.sh nanopi_r2s.mk
-          make defconfig
-          make download -j$(nproc)
-          find dl -size -1024c -exec ls -l {} \;
-          find dl -size -1024c -exec rm -f {} \;
-          make -j$(nproc) V=s
+          ./build.sh nanopi_r2s.mk
 
       - name: Fix Rootfs Owner and Group
         run: |
