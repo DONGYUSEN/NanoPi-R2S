@@ -209,7 +209,14 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/-j$(nproc)/-j3/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
-          ./build.sh nanopi_r2s.mk
+          # ./build.sh nanopi_r2s.mk
+          
+          cd friendlywrt
+          make defconfig
+          make download -j8
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          make -j$(nproc) || make -j1 || make -j1 V=s
  
 
       - name: Fix Rootfs Owner and Group
