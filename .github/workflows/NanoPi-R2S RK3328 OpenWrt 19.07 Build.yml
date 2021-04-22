@@ -90,7 +90,6 @@ jobs:
           git clone https://github.com/jerrykuku/lua-maxminddb.git
           git clone https://github.com/jerrykuku/luci-app-vssr.git
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
@@ -101,46 +100,38 @@ jobs:
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
-          # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
           git clone https://github.com/NateLol/luci-app-oled
           git clone https://github.com/xiaozhuai/luci-app-filebrowser
-          rm -rf v2ray/ && mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
-          rm -rf v2ray-plugin/ && mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
-
-      - name: Install Clash Binaries
-        run: |
-          cd code/friendlywrt/package/base-files/files
-          mkdir -p etc/openclash/core
-          # for updates, go to: https://github.com/Dreamacro/clash/releases
-          wget -qO-  https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
-          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2021.04.08.gz | gunzip -c > etc/openclash/core/clash_tun
-          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv8.tar.gz | tar xOvz > etc/openclash/core/clash_game
-          chmod +x etc/openclash/core/clash*
 
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
 
-      - name: Update Feeds		
-        run: |		
-          cd code/friendlywrt		
-          # ./scripts/feeds clean
-          ./scripts/feeds update -a		
-          ./scripts/feeds install -a
+      #- name: Update Feeds		
+      #  run: |		
+      #    cd code/friendlywrt		
+      #    ./scripts/feeds update -a		
+      #    ./scripts/feeds install -a
 
       - name: Install Mods
         run: |
           cd code/friendlywrt
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
+          rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
+          
+          # fix golang
+          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          
+          ## netdata
+          rm -rf package/feeds/packages/netdata && svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
+          sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
           # fix docker build with golang 
           rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
@@ -148,20 +139,10 @@ jobs:
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
           
-          rm -rf package/feeds/packages/netdata
-          svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
-
-          rm -rf feeds/packages/libs/libnatpmp
-          svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-          
-          rm -rf feeds/packages/lang/luasec
-          svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-
+          # some setting!
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
-          #sed -i '/upx/d' package/lean/frp/Makefile
-          #sed -i '/upx/d' package/lean/UnblockNeteaseMusicGo/Makefile
           sed -i '/upx/d' package/trojan-go/Makefile
           
           wget -O package/kernel/kmod-sched-cake/Makefile https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/kernel/kmod-sched-cake-oot/Makefile
@@ -170,7 +151,6 @@ jobs:
           sed -i "/redirect_https/d" package/network/services/uhttpd/files/uhttpd.config
           sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
           sed -i 's/pcdata(boardinfo.system or "?")/"ARMv8"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          #sed -i 's/services/vpn/g' package/feeds/luci/luci-app-openvpn/luasrc/controller/openvpn.lua
           sed -i 's/resolv.conf.d\/resolv.conf.auto/resolv.conf.auto/g' package/lean/luci-app-flowoffload/root/etc/init.d/flowoffload
           
           sed -i '/done/imkfs.ext4 /dev/mmcblk0p2 && mkdir /mnt/mmcblk0p2 && mount /dev/mmcblk0p2 /mnt/mmcblk0p2 && mkdir /mnt/mmcblk0p2/docker\n' package/base-files/files/root/setup.sh
@@ -197,8 +177,8 @@ jobs:
            
       - name: Install UPX
         run: |
-          ln -s /usr/bin/upx-ucl code/friendlywrt/staging_dir/host/bin/upx
-
+          wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
+          
       - name: Build OpenWrt
         run: |
           cd code
