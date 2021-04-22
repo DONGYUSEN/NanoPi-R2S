@@ -6,6 +6,7 @@ rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/pac
 ---6， timeout-minutes: 720 
 ---7,delete some packages； 8； 9; 10; 11
 -- 12, a bad dream for actions 369m
+-- 13, disable V=s
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
