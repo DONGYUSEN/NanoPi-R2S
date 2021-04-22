@@ -85,6 +85,13 @@ jobs:
           rm -rf lean/uugamebooster
           rm -rf lean/luci-app-jd-dailybonus
           rm -rf lean/luci-theme-argon    
+          
+          # for passwall next!
+          rm -rf lean/openwrt-chinadns-ng
+          rm -rf lean/luci-app-kodexplorer
+          rm -rf lean/luci-app-pppoe-relay
+          rm -rf lean/luci-app-pptp-server
+          rm -rf lean/luci-app-v2ray-server
 
           cd lean
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
@@ -156,11 +163,20 @@ jobs:
 
           sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/luci-app-dockerman/root/etc/config/dockerman
           sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/luci-app-r2sflasher/root/usr/bin/rom_flash
-
+          
+          
+          # some patch
+          cd 
+          sed -i '/+TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram \/d' code/friendlywrt/package/lean/autocore/Makefile   # dependence error
+          sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
+          sed -i '/+wsdd2/d'  code/friendlywrt/package/lean/autosamba/Makefile
+          
+          
       - name: Patch Kernel
         run: |
           cd code/kernel/
           # git apply ../../patches/001-add-full_cone_nat.patch
+          
 
       - name: Custom Configure Files
         run: |
@@ -180,6 +196,9 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
+          echo -e '\nCONFIG_TCP_CONG_ADVANCED=y' >> kernel/arch/arm/configs/sunxi_defconfig
+          echo -e '\nCONFIG_TCP_CONG_BBR=m' >> kernel/arch/arm/configs/sunxi_defconfig     
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j$(nproc) /' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
