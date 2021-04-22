@@ -164,7 +164,7 @@ jobs:
           echo '6'
           sed -i "/done/iblock detect | sed \"s/enabled\\\t'0'/enabled\\\t'1'/\" > /etc/config/fstab\n" package/base-files/files/root/setup.sh
           echo '7'
-          sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/lean/base-files/files/root/setup.sh
+          sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
           echo '8'
           sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
           echo '9'
