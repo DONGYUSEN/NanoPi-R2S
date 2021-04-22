@@ -215,10 +215,11 @@ jobs:
           ######## my code! 
           cd friendlywrt/
           make defconfig
-          make download -j$(nproc)
+          make download -j4
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
-          make -j$(nproc) || make -j1 V=s
+          #make -j$(nproc) || make -j1 V=s
+          make -j1
 
       - name: Fix Rootfs Owner and Group
         run: |
