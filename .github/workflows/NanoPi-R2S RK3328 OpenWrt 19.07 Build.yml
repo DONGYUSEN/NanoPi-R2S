@@ -206,19 +206,19 @@ jobs:
           echo -e '\nCONFIG_TCP_CONG_BBR=m' >> kernel/arch/arm/configs/sunxi_defconfig     
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j$(nproc) V=s/make -j$(nproc) /' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j1 /' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
-          # ./build.sh nanopi_r2s.mk
+          ./build.sh nanopi_r2s.mk
           
           
           ######## my code! 
-          cd friendlywrt/
-          make defconfig
-          make download -j4
-          find dl -size -1024c -exec ls -l {} \;
-          find dl -size -1024c -exec rm -f {} \;
+          #cd friendlywrt/
+          #make defconfig
+          #make download -j4
+          #find dl -size -1024c -exec ls -l {} \;
+          #find dl -size -1024c -exec rm -f {} \;
           #make -j$(nproc) || make -j1 V=s
-          make -j1
+         # make -j1
 
       - name: Fix Rootfs Owner and Group
         run: |
