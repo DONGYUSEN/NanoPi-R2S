@@ -7,7 +7,7 @@ rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/pac
 ---7,delete some packages； 8； 9; 10; 11
 -- 12, a bad dream for actions 369m
 -- 13, disable V=s
--- 14, 15, 16,17, 18, 19, 20, 21
+-- 14, 15, 16,17, 18, 19, 20, 21, 22
 
 
 ## 20210418. # all doesn't work
