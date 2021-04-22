@@ -173,9 +173,9 @@ jobs:
           
           # some patch
           cd 
-          sed -i '/+TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram \/d' code/friendlywrt/package/lean/autocore/Makefile   # dependence error
-          sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
-          sed -i '/+wsdd2/d'  code/friendlywrt/package/lean/autosamba/Makefile
+          #sed -i '/+TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram \/d' code/friendlywrt/package/lean/autocore/Makefile   # dependence error
+          #sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
+          #sed -i '/+wsdd2/d'  code/friendlywrt/package/lean/autosamba/Makefile
           
           
       - name: Patch Kernel
