@@ -182,6 +182,7 @@ jobs:
         run: |
           rm -f code/friendlywrt/.config*
           cp r2s-rk3328-config code/configs/config_rk3328
+          cp r2s-rk3328-config code/friendlywrt/.config
 
       - name: Set Default Values
         run: |
@@ -202,7 +203,16 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j$(nproc) /' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
-          ./build.sh nanopi_r2s.mk
+          # ./build.sh nanopi_r2s.mk
+          
+          
+          ######## my code! 
+          cd friendlywrt/
+          make defconfig
+          make download -j$(nproc)
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          make -j$(nproc) 
 
       - name: Fix Rootfs Owner and Group
         run: |
