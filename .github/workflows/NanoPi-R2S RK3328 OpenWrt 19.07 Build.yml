@@ -83,17 +83,14 @@ jobs:
           rm -rf lean/softethervpn5
           rm -rf lean/uugamebooster
           rm -rf lean/luci-app-jd-dailybonus
-                  
-
+          rm -rf lean/luci-theme-argon        
+          
+          cd lean
           git clone https://github.com/rufengsuixing/luci-app-adguardhome
           git clone https://github.com/jerrykuku/lua-maxminddb.git
           git clone https://github.com/jerrykuku/luci-app-vssr.git
-
-          rm -rf lean/luci-theme-argon
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
-          
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
@@ -104,17 +101,15 @@ jobs:
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
-          
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
-          
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
-          
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
-          
           # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
           git clone https://github.com/NateLol/luci-app-oled
-          # git clone https://github.com/xiaozhuai/luci-app-filebrowser
+          git clone https://github.com/xiaozhuai/luci-app-filebrowser
+          rm -rf v2ray/ && mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
+          rm -rf v2ray-plugin/ && mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
 
       - name: Install Clash Binaries
         run: |
@@ -211,8 +206,6 @@ jobs:
           sed -i 's/make -j$(nproc) V=s/make -j$(nproc) /' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
           ./build.sh nanopi_r2s.mk
-
- 
 
       - name: Fix Rootfs Owner and Group
         run: |
