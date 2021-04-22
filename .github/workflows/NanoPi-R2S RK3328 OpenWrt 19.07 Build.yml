@@ -113,11 +113,7 @@ jobs:
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
 
-      - name: Update Feeds		
-        run: |		
-          cd code/friendlywrt		
-          ./scripts/feeds update -a		
-          ./scripts/feeds install -a
+
 
       - name: Install Mods
         run: |
@@ -125,9 +121,7 @@ jobs:
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/libs/librpc/ && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
           rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-          
           rm -rf feeds/packages/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/antfs-mount
-          
           
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
@@ -183,12 +177,17 @@ jobs:
           cd code/kernel/
           # git apply ../../patches/001-add-full_cone_nat.patch
           
+      - name: Update Feeds		
+        run: |		
+          cd code/friendlywrt		
+          ./scripts/feeds update -a		
+          ./scripts/feeds install -a
 
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
           cp r2s-rk3328-config code/configs/config_rk3328
-          cp r2s-rk3328-config code/friendlywrt/.config
+          #cp r2s-rk3328-config code/friendlywrt/.config
 
       - name: Set Default Values
         run: |
