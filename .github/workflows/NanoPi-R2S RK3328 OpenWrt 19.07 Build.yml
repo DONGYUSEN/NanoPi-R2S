@@ -67,6 +67,7 @@ jobs:
           
           rm -rf lean/UnblockNeteaseMusic
           rm -rf lean/UnblockNeteaseMusicGo
+          rm -rf lean/antileech
           rm -rf lean/amule
           rm -rf lean/luci-app-amule
           rm -rf lean/frp
