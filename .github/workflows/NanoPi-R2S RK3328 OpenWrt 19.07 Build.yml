@@ -208,7 +208,7 @@ jobs:
         run: |
           cd code
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          # sed -i 's/-j$(nproc)/-j3/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j$(nproc) /' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
           ./build.sh nanopi_r2s.mk
 
