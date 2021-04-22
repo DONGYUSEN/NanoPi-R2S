@@ -168,7 +168,7 @@ jobs:
           echo '8'
           #sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
           echo '9'
-          sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
+          # sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
           
           
           # some patch
