@@ -38,5 +38,6 @@ Fork 到自己的账号下，将 `.github/workflows` 下 `.yml` 文件中的 `ru
 * [maxming2333/NanoPi-R2S](https://github.com/maxming2333/NanoPi-R2S)
 * [songchenwen/nanopi-r2s](https://github.com/songchenwen/nanopi-r2s)
 * [fanck0605/nanopi_r2s](https://github.com/fanck0605/nanopi_r2s)
-* 0[soffchen/NanoPi-R2S](https://github.com/soffchen/NanoPi-R2S)
-* 1[biliwala/nanopi-openwrt](https://github.com/biliwala/nanopi-openwrt)
+* [soffchen/NanoPi-R2S](https://github.com/soffchen/NanoPi-R2S)
+* [biliwala/nanopi-openwrt](https://github.com/biliwala/nanopi-openwrt)
+* [SuLingGG/OpenWrt-Rpi](https://github.com/SuLingGG/OpenWrt-Rpi)
