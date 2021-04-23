@@ -147,7 +147,7 @@ jobs:
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
-          # sed -i '/upx/d' package/lean/openwrt-passwall/trojan-go/Makefile
+          sed -i '/UPX/d' package/lean/openwrt-passwall/trojan-go/Makefile
           
           wget -O package/kernel/kmod-sched-cake/Makefile https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/kernel/kmod-sched-cake-oot/Makefile
           wget -O feeds/packages/libs/libxml2/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/master/libs/libxml2/Makefile
@@ -199,7 +199,7 @@ jobs:
           echo -e '\nCONFIG_TCP_CONG_BBR=m' >> kernel/arch/arm/configs/sunxi_defconfig     
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j$(nproc) V=s/make -j1 /' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j$(nproc) --ignore-errors/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
           ./build.sh nanopi_r2s.mk
           
@@ -210,7 +210,7 @@ jobs:
           #make download -j4
           #find dl -size -1024c -exec ls -l {} \;
           #find dl -size -1024c -exec rm -f {} \;
-          #make -j$(nproc) || make -j1 V=s
+          #make -j$(nproc) || make -j1 V=s --ignore-errors
          # make -j1
 
       - name: Fix Rootfs Owner and Group
