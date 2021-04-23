@@ -61,7 +61,7 @@ jobs:
           sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default
           # echo 'src-git node https://github.com/nxhack/openwrt-node-packages.git' >> feeds.conf.default
 
-      - name: Install Extra Packages
+      - name: Processing LEDE 
         run: |
           cd code/friendlywrt/package
           
@@ -107,21 +107,27 @@ jobs:
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
 
-
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-
-
-
+          
+          
+      - name: Update Feeds		
+        run: |		
+          cd code/friendlywrt		
+          ./scripts/feeds update -a		
+          ./scripts/feeds install -a
+          
       - name: Install Mods
         run: |
           cd code/friendlywrt
-          rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-          rm -rf feeds/packages/libs/librpc/ && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
+          
+          # add libs 
+          rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
+          rm -rf feeds/packages/libs/librpc && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
           rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-          rm -rf feeds/packages/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/antfs-mount
+          rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
           
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
@@ -129,7 +135,7 @@ jobs:
           
           ## netdata
           rm -rf package/feeds/packages/netdata && svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
-          sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          sed -i '/enable-jsonc/i\\t--disable-cloud \\' package/feeds/packages/netdata/Makefile
 
           # fix docker build with golang 
           rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
@@ -141,31 +147,22 @@ jobs:
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
-          # sed -i '/upx/d' package/trojan-go/Makefile
+          # sed -i '/upx/d' package/lean/openwrt-passwall/trojan-go/Makefile
           
           wget -O package/kernel/kmod-sched-cake/Makefile https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/kernel/kmod-sched-cake-oot/Makefile
           wget -O feeds/packages/libs/libxml2/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/master/libs/libxml2/Makefile
-          echo '1'
           sed -i "/redirect_https/d" package/network/services/uhttpd/files/uhttpd.config
-          echo '2'
           sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          echo '3'
           sed -i 's/pcdata(boardinfo.system or "?")/"ARMv8"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          echo '4'
           sed -i 's/resolv.conf.d\/resolv.conf.auto/resolv.conf.auto/g' package/lean/luci-app-flowoffload/root/etc/init.d/flowoffload
-          echo '5'
           sed -i '/done/imkfs.ext4 /dev/mmcblk0p2 && mkdir /mnt/mmcblk0p2 && mount /dev/mmcblk0p2 /mnt/mmcblk0p2 && mkdir /mnt/mmcblk0p2/docker\n' package/base-files/files/root/setup.sh
-          echo '6'
           sed -i "/done/iblock detect | sed \"s/enabled\\\t'0'/enabled\\\t'1'/\" > /etc/config/fstab\n" package/base-files/files/root/setup.sh
-          echo '7'
-          #sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
-          echo '8'
-          #sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
-          echo '9'
-          # sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
+          #ed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
+          sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
+          sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
           
           
-          # some patch
+          # some patch disable the depends. 
           cd 
           #sed -i '/+TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram \/d' code/friendlywrt/package/lean/autocore/Makefile   # dependence error
           #sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
@@ -177,11 +174,7 @@ jobs:
           cd code/kernel/
           # git apply ../../patches/001-add-full_cone_nat.patch
           
-      - name: Update Feeds		
-        run: |		
-          cd code/friendlywrt		
-          ./scripts/feeds update -a		
-          ./scripts/feeds install -a
+
 
       - name: Custom Configure Files
         run: |
