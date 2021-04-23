@@ -3,6 +3,8 @@
 -- xtables error!  mmm xxx 
 -- disable errors no use
 
+-- disable lede's package and luci
+
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
 4: go: cannot find main module -----》export GO111MODULE="on"
