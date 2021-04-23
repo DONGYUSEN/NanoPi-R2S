@@ -9,10 +9,9 @@
 
 ## 特色
 * 支持 RTL8821CU/RTL8822BU/RTL8812AU 芯片的 USB WiFi 设备，已知支持列表：
-    - [COMFAST 726B](https://u.jd.com/ISyZWQh)
-    - [COMFAST CF-759BF](https://u.jd.com/IRyZhYG)
-    - [COMFAST CF-927BF](https://u.jd.com/I2yv0kA)
-* 集成 [OpenClash](https://github.com/vernesong/OpenClash) 及其 core/tun/game binaries
+    - [COMFAST 726B](https://item.jd.com/100005336115.html)
+    - [COMFAST CF-759BF](https://item.jd.com/100008636704.html)
+    - [COMFAST CF-927BF](https://item.jd.com/100007517885.html)
 * 集成 [HelloWorld](https://github.com/jerrykuku/luci-app-vssr)
 * 集成 [Passwall](https://github.com/xiaorouji/openwrt-passwall)
 * 集成 [luci-app-adguardhome](https://github.com/rufengsuixing/luci-app-adguardhome)
@@ -21,7 +20,6 @@
 * 集成 [luci-app-r2sflasher](https://github.com/songchenwen/nanopi-r2s/tree/master/luci-app-r2sflasher)
 * 集成 [Smartdns](https://github.com/pymumu/smartdns) 与 luci-app-smartdns
 * 集成 [luci-app-oled](https://github.com/NateLol/luci-app-oled)
-* 集成 [luci-app-jd-dailybonus](https://github.com/jerrykuku/luci-app-jd-dailybonus)
 * 集成 [luci-app-dockerman](https://github.com/lisaac/luci-app-dockerman)
 
 ## 用法
