@@ -129,6 +129,9 @@ jobs:
           rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
           rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
           
+          # fix xtables-addons:
+          rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/coolsnowwolf/packages/trunk/net/xtables-addons package/feeds/packages/xtables-addons
+          
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
