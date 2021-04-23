@@ -130,7 +130,7 @@ jobs:
           rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
           
           # fix xtables-addons:
-          rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/coolsnowwolf/packages/trunk/net/xtables-addons package/feeds/packages/xtables-addons
+          #rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/coolsnowwolf/packages/trunk/net/xtables-addons package/feeds/packages/xtables-addons
           
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
@@ -204,7 +204,7 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           # sed -i 's/make -j$(nproc) V=s/make -j$(nproc) IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j$(nproc)/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j1 V=s/make -j1 IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
+          #sed -i 's/make -j1 V=s/make -j1 IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
           ./build.sh nanopi_r2s.mk
           
