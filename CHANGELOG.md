@@ -1,6 +1,7 @@
 ## 20210419
 ---copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
--- xtables error!  mmm
+-- xtables error!  mmm xxx 
+-- disable errors
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
