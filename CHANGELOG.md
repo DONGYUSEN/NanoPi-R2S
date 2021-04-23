@@ -1,15 +1,5 @@
 ## 20210419
-rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-
----2,3,4,5, copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
----6， timeout-minutes: 720 
----7,delete some packages； 8； 9; 10; 11
--- 12, a bad dream for actions 369m
--- 13, disable V=s
--- 14, 15, 16,17, 18, 19, 20, 21, 22, 23
-
-
+---copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
