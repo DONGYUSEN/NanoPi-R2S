@@ -186,7 +186,7 @@ jobs:
         run: |
           cd code/friendlywrt
           sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase=/luci-static/argon' package/lean/default-settings/files/zzz-default-settings
-          echo -e "\nBuild date:$(date +%Y-%m-%d)\n" >> package/base-files/files/etc/banner
+          echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
            
       - name: Install UPX
         run: |
