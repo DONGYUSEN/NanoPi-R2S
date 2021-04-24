@@ -84,7 +84,8 @@ jobs:
           rm -rf lean/softethervpn5
           rm -rf lean/uugamebooster
           rm -rf lean/luci-app-jd-dailybonus
-          rm -rf lean/luci-theme-argon    
+          rm -rf lean/luci-theme-argon
+          
           
           # for passwall next!
           rm -rf lean/openwrt-chinadns-ng
@@ -127,7 +128,7 @@ jobs:
           rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/libs/librpc && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
           rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-          rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
+          # rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
           
           # fix xtables-addons:
           #rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/coolsnowwolf/packages/trunk/net/xtables-addons package/feeds/packages/xtables-addons
@@ -145,6 +146,10 @@ jobs:
           rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          
+          # fix lede's shortcut-fe 
+          rm -rf package/lean/shortcut-fe && svn con  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
+          
           
           # some setting!
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
@@ -164,12 +169,6 @@ jobs:
           sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
           sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
           
-          
-          # some patch disable the depends. 
-          cd 
-          #sed -i '/+TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram \/d' code/friendlywrt/package/lean/autocore/Makefile   # dependence error
-          #sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
-          #sed -i '/+wsdd2/d'  code/friendlywrt/package/lean/autosamba/Makefile
           
           # 修复软件冲突，仅保留openwall中的文件
           rm -rf feeds/packages/net/shadowsocks-libev
