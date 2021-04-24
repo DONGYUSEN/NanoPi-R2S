@@ -171,6 +171,9 @@ jobs:
           #sed -i '/+block-mount +kmod-usb-storage +kmod-usb-storage-extras +!TARGET_ramips:kmod-usb-storage-uas +kmod-fs-vfat +kmod-fs-ext4 +kmod-fs-exfat +antfs-mount +libblkid/d' code/friendlywrt/package/lean/automount/Makefile   # dependence error
           #sed -i '/+wsdd2/d'  code/friendlywrt/package/lean/autosamba/Makefile
           
+          # 修复软件冲突，仅保留openwall中的文件
+          rm -rf feeds/packages/net/shadowsocks-libev
+          
           
       - name: Patch Kernel
         run: |
