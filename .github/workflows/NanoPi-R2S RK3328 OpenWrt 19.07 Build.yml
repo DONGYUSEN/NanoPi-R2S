@@ -206,8 +206,7 @@ jobs:
           #echo -e '\nCONFIG_TCP_CONG_BBR=m' >> kernel/arch/arm/configs/sunxi_defconfig     
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          # sed -i 's/make -j$(nproc) V=s/make -j$(nproc) IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make --j$(nproc) IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
           #sed -i 's/make -j1 V=s/make -j1 IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc) thread compile"
           ./build.sh nanopi_r2s.mk
