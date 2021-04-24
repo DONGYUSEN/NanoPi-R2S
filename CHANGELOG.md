@@ -2,7 +2,7 @@
 ---copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
 
 -- make -j1 v=s
--- disable vssr   
+-- disable vsssr 
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
