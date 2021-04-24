@@ -3,6 +3,7 @@
 -- xtables error!  mmm xxx 
 -- xtables git xtables-addons from lieon; update kmod-mlps
 -- disable passwall
+-- enable passwall and disable upx in tranjo-go
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
