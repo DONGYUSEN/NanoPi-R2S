@@ -2,8 +2,8 @@ name: openwrt-r2s-lean 19.07 Build
 
 on:
   push:
-    paths:
-      - 'CHANGELOG.md'
+    paths: workflows
+      - 'r2s-openwrt-lean.yml'
 
 jobs:
 
