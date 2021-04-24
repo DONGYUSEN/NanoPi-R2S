@@ -173,6 +173,7 @@ jobs:
           
           # 修复软件冲突，仅保留openwall中的文件
           rm -rf feeds/packages/net/shadowsocks-libev
+          #rm -rf wireguard
           
           
       - name: Patch Kernel
