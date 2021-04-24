@@ -148,7 +148,7 @@ jobs:
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
           
           # fix lede's shortcut-fe 
-          rm -rf package/lean/shortcut-fe && svn con  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
+          rm -rf package/lean/shortcut-fe && svn co  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
           
           
           # some setting!
