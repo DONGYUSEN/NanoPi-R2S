@@ -1,9 +1,6 @@
 ## 20210419
 ---copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
--- xtables error!  mmm xxx 
--- xtables git xtables-addons from lieon; update kmod-mlps
--- disable passwall
--- enable passwall and disable upx in tranjo-go
+-- make -j1 v=s
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
