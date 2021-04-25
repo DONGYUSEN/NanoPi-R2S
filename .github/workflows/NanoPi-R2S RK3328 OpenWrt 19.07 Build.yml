@@ -86,12 +86,6 @@ jobs:
           rm -rf lean/luci-theme-argon
           
           
-          # for passwall next!
-          rm -rf lean/openwrt-chinadns-ng
-          rm -rf lean/luci-app-kodexplorer
-          rm -rf lean/luci-app-pppoe-relay
-          rm -rf lean/luci-app-pptp-server
-          rm -rf lean/luci-app-v2ray-server
 
           cd lean
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
@@ -153,7 +147,7 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -j$($(nproc)+1) IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j$($(nproc)+1)/' scripts/mk-friendlywrt.sh
 
           ./build.sh nanopi_r2s.mk
         
