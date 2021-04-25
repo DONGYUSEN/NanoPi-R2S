@@ -6,7 +6,7 @@
 -- something always wrong！
 
 
--- God bless!   more bless !! with less package
+-- God bless!   more bless !! with less package and try -i
 
 
 
