@@ -69,9 +69,9 @@ jobs:
           rm -rf lean/antileech
           rm -rf lean/amule
           rm -rf lean/luci-app-amule
-          rm -rf lean/frp
-          rm -rf lean/luci-app-frpc
-          rm -rf lean/luci-app-frps
+          #rm -rf lean/frp
+          #rm -rf lean/luci-app-frpc
+          #rm -rf lean/luci-app-frps
           rm -rf lean/baidupcs-web
           rm -rf lean/luci-app-baidupcs-web
           rm -rf lean/luci-app-openvpn-server
@@ -96,16 +96,8 @@ jobs:
           cd lean
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
-          #git clone https://github.com/jerrykuku/lua-maxminddb.git
-          #git clone https://github.com/jerrykuku/luci-app-vssr.git
-          git clone https://github.com/xiaorouji/openwrt-passwall.git
-          git clone https://github.com/NateLol/luci-app-oled.git
-          git clone https://github.com/xiaozhuai/luci-app-filebrowser.git
-          
-          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
-          svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
-          svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
-          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
+          git clone https://github.com/jerrykuku/lua-maxminddb.git
+          git clone https://github.com/jerrykuku/luci-app-vssr.git
 
       - name: Update Target.mk
         run: |
@@ -123,53 +115,14 @@ jobs:
         run: |
           cd code/friendlywrt
           
-          # add libs 
-          rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-          rm -rf feeds/packages/libs/librpc && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
-          rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-         
-          # fix xtables-addons:
-          rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  package/feeds/packages/xtables-addons
 
-          # fix golang
-          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          
-          ## netdata
-          rm -rf package/feeds/packages/netdata && svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
-          sed -i '/enable-jsonc/i\\t--disable-cloud \\' package/feeds/packages/netdata/Makefile
-
-          # fix docker build with golang 
-          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
-          rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
-          rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          
-          # fix lede's shortcut-fe 
-          # rm -rf package/lean/shortcut-fe && svn co  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
-          
-          
           # some setting!
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
-          #sed -i '/UPX/d' package/lean/openwrt-passwall/trojan-go/Makefile
-          
-          wget -O package/kernel/kmod-sched-cake/Makefile https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/kernel/kmod-sched-cake-oot/Makefile
-          wget -O feeds/packages/libs/libxml2/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/master/libs/libxml2/Makefile
           sed -i "/redirect_https/d" package/network/services/uhttpd/files/uhttpd.config
           sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
           sed -i 's/pcdata(boardinfo.system or "?")/"ARMv8"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          sed -i 's/resolv.conf.d\/resolv.conf.auto/resolv.conf.auto/g' package/lean/luci-app-flowoffload/root/etc/init.d/flowoffload
-          sed -i '/done/imkfs.ext4 /dev/mmcblk0p2 && mkdir /mnt/mmcblk0p2 && mount /dev/mmcblk0p2 /mnt/mmcblk0p2 && mkdir /mnt/mmcblk0p2/docker\n' package/base-files/files/root/setup.sh
-          sed -i "/done/iblock detect | sed \"s/enabled\\\t'0'/enabled\\\t'1'/\" > /etc/config/fstab\n" package/base-files/files/root/setup.sh
-          sed -i '/done/i[ -f /etc/init.d/dockerman ] && /etc/init.d/dockerman restart\n' package/base-files/files/root/setup.sh
-          sed -i 's/\/opt\/docker/\/mnt\/mmcblk0p2\/docker/g' package/lean/luci-app-dockerman/root/etc/config/dockerman
-          sed -i 's/\/root/\/mnt\/mmcblk0p2/g' package/lean/luci-app-r2sflasher/root/usr/bin/rom_flash
-          
-          
-          # 修复软件冲突，仅保留openwall中的文件
-          rm -rf feeds/packages/net/shadowsocks-libev
          
           
       - name: Patch Kernel
