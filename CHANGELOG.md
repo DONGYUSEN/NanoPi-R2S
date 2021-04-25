@@ -3,6 +3,8 @@
 
 -- disable vsssr  && fix shortcut-fe   , j3 IGNORE_ERRORS=1.   
 
+-- something always wrong！
+
 
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
