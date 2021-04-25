@@ -58,7 +58,7 @@ jobs:
           rm -rf ../lede
           
           sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
-          sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages/' feeds.conf.default
+          sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages/; 19.07' feeds.conf.default
 
       - name: Processing LEDE 
         run: |
@@ -195,26 +195,15 @@ jobs:
           
       - name: Build OpenWrt
         run: |
-          cd code
-          #echo -e '\nCONFIG_TCP_CONG_ADVANCED=y' >> kernel/arch/arm/configs/sunxi_defconfig
-          #echo -e '\nCONFIG_TCP_CONG_BBR=m' >> kernel/arch/arm/configs/sunxi_defconfig     
+          cd code   
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make -j1 V=s/make -j1 IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j$(nproc) V=s/make --j3 IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc+1) thread compile"
+          sed -i 's/make -j$(nproc) V=s/make -j$($(nproc)+1) IGNORE_ERRORS=1/' scripts/mk-friendlywrt.sh
+
           ./build.sh nanopi_r2s.mk
-          
-          
-          ######## my code! 
-          #cd friendlywrt/
-          #make defconfig
-          #make download -j4
-          #find dl -size -1024c -exec ls -l {} \;
-          #find dl -size -1024c -exec rm -f {} \;
-          #make -j$(nproc) || make -j1 V=s --ignore-errors
-         # make -j1
+        
 
       - name: Fix Rootfs Owner and Group
         run: |
