@@ -6,6 +6,10 @@
 -- something always wrong！
 
 
+-- God bless!
+
+
+
 ## 20210418. # all doesn't work
 1:test1,2:Clash Binaries,3: libcap
 4: go: cannot find main module -----》export GO111MODULE="on"
