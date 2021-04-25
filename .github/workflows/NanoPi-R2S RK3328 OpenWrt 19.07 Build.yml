@@ -146,7 +146,7 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -j3 /' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -i -j3 /' scripts/mk-friendlywrt.sh
 
           ./build.sh nanopi_r2s.mk
         
