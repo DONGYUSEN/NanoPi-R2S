@@ -58,8 +58,7 @@ jobs:
           rm -rf ../lede
           
           sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
-          sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default
-          # echo 'src-git node https://github.com/nxhack/openwrt-node-packages.git' >> feeds.conf.default
+          sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages/' feeds.conf.default
 
       - name: Processing LEDE 
         run: |
@@ -128,11 +127,10 @@ jobs:
           rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/libs/librpc && svn co https://github.com/openwrt/openwrt/branches/lede-17.01/package/libs/librpc feeds/packages/libs/librpc
           rm -rf feeds/packages/libs/libnatpmp && svn co https://github.com/coolsnowwolf/packages/trunk/libs/libnatpmp feeds/packages/libs/libnatpmp
-          # rm -rf feeds/packages/utils/antfs-mount && svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount feeds/packages/utils/antfs-mount
-          
+         
           # fix xtables-addons:
-          #rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/coolsnowwolf/packages/trunk/net/xtables-addons package/feeds/packages/xtables-addons
           rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  package/feeds/packages/xtables-addons
+
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
@@ -148,7 +146,7 @@ jobs:
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
           
           # fix lede's shortcut-fe 
-          rm -rf package/lean/shortcut-fe && svn co  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
+          # rm -rf package/lean/shortcut-fe && svn co  https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe/shortcut-fe package/lean/shortcut-fe
           
           
           # some setting!
@@ -172,15 +170,12 @@ jobs:
           
           # 修复软件冲突，仅保留openwall中的文件
           rm -rf feeds/packages/net/shadowsocks-libev
-          #rm -rf wireguard
-          
+         
           
       - name: Patch Kernel
         run: |
           cd code/kernel/
           # git apply ../../patches/001-add-full_cone_nat.patch
-          
-
 
       - name: Custom Configure Files
         run: |
