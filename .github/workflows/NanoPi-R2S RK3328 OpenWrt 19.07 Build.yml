@@ -108,7 +108,19 @@ jobs:
         run: |
           cd code/friendlywrt
           
+          # fix golang
+          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
+          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
+          
+          ## netdata
+          rm -rf package/feeds/packages/netdata && svn co https://github.com/openwrt/packages/trunk/admin/netdata package/feeds/packages/netdata
+          sed -i '/enable-jsonc/i\\t--disable-cloud \\' package/feeds/packages/netdata/Makefile
 
+          # fix docker build with golang 
+          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
+          rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
+          rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
+          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
           # some setting!
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
@@ -146,7 +158,7 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -i -j3 /' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -i -j3 V=s/' scripts/mk-friendlywrt.sh
 
           ./build.sh nanopi_r2s.mk
         
