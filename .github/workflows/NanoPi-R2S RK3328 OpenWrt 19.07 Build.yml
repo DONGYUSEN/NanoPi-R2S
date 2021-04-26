@@ -4,6 +4,13 @@ on:
   push:
     paths:
       - 'CHANGELOG.md'
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'True'
 
 jobs:
 
