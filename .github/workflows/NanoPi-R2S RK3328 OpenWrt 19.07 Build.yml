@@ -90,7 +90,7 @@ jobs:
         run: |
           rm -f code/friendlywrt/.config*
           cp r2s-rk3328-config code/configs/config_rk3328
-          cat r2s-rk3328-config > code/friendlywr/.config
+          # cat r2s-rk3328-config > code/friendlywr/.config
         
       - name: Set Default Values
         run: |
@@ -108,17 +108,17 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code/friendlywrt   
-          make defconfig
-          make download -j8
-          make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
+          #make defconfig
+          #make download -j8
+          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
           
-          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
-          #sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
-          #echo -e "$(nproc+1) thread compile"
-          #sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make -j1 V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
-          #./build.sh nanopi_r2s.mk
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
+          sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
+          sed -i 's/make download -j$(nproc)/make download -j8/' scripts/mk-friendlywrt.sh
+          echo -e "$(nproc+1) thread compile"
+          sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j1 V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
+          ./build.sh nanopi_r2s.mk
           
 
       - name: Fix Rootfs Owner and Group
@@ -143,7 +143,7 @@ jobs:
           mkdir -p ./artifact/others
           cp -a code/bin/targets/*/* ./artifact/other
           
-          cp code/out/*.img.zip ./artifact/
+          cp code/out/*.* ./artifact/
           cp code/friendlywrt/.config ./artifact/
 
       - name: Upload Artifact
