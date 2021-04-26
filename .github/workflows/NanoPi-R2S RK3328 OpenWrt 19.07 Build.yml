@@ -60,7 +60,7 @@ jobs:
           echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02' >> feeds.conf.default
           echo 'src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-21.02' >> feeds.conf.default
 
-      - name: Processing drivers: 
+      - name: Processing drivers
         run: |
           cd code/friendlywrt/package
          
