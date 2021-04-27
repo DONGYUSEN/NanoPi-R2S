@@ -122,12 +122,12 @@ jobs:
           #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
           
           # sed -i 's/make download -j$(nproc)/make download -j8 V=s/'  build.sh
-          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
+          # sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           # sed -i 's/make download -j$(nproc)/make download -j4 V=s/' scripts/mk-friendlywrt.sh
           echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
-          sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
+          # sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
           
       - name: Fix Rootfs Owner and Group
@@ -147,9 +147,6 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          
-          #mkdir -p ./artifact/others
-          #cp -a code/bin/targets/*/* ./artifact/other
           
           cp code/out/*.* ./artifact/
           cp code/friendlywrt/.config ./artifact/
