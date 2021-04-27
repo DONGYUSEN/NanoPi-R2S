@@ -69,7 +69,7 @@ jobs:
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
-         
+          #git clone  https://github.com/fw876/helloworld custom/helloworld
           #new drivers:
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
