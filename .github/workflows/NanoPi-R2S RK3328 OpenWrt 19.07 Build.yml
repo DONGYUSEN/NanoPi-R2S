@@ -123,18 +123,22 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
-          # cd friendlywrt   
-          #make defconfig
-          #make download -j8
-          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
           
-          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
-          sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          sed -i 's/make download -j$(nproc)/make download -j8 V=s/' scripts/mk-friendlywrt.sh
-          echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
-          sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
-          ./build.sh nanopi_r2s.mk
+          ## manully compiler
+          cd friendlywrt   
+          make defconfig
+          make download -j8
+          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
+          time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
+          
+          
+          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
+          #sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
+          #sed -i 's/make download -j$(nproc)/make download -j8 V=s/' scripts/mk-friendlywrt.sh
+          #echo -e "$(nproc+1) thread compile"
+          #sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
+          #sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
+          #./build.sh nanopi_r2s.mk
           
 
       - name: Fix Rootfs Owner and Group
