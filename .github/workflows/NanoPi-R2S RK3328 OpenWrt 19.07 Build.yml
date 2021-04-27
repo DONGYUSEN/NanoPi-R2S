@@ -69,25 +69,23 @@ jobs:
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
-          #git clone  https://github.com/fw876/helloworld custom/helloworld
+          git clone  https://github.com/fw876/helloworld custom/helloworld
           #new drivers:
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
           
           
           
           # 花生壳内网穿透
-          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel custom/phtunnel
-          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
-          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
+          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
+          svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
 
       - name: Update Target.mk
         run: |
@@ -104,8 +102,8 @@ jobs:
       - name: Custom Configure Files
         run: |
           #rm -f code/friendlywrt/.config*
-          #cp r2s-rk3328-config code/configs/config_rk3328
-          # cat r2s-rk3328-config > code/friendlywr/.config
+          cp r2s-rk3328-config code/configs/config_rk3328
+          cat r2s-rk3328-config > code/friendlywr/.config
         
       - name: Set Default Values
         run: |
