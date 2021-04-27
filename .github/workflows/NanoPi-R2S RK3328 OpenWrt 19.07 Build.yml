@@ -69,23 +69,23 @@ jobs:
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
-          git clone  https://github.com/fw876/helloworld custom/helloworld
+          # git clone  https://github.com/fw876/helloworld custom/helloworld
           #new drivers:
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
-          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
-          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
-          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
-          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
-          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
+          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
+          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
+          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
+          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
+          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
           
           
           
           # 花生壳内网穿透
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
-          svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
+          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
 
       - name: Update Target.mk
         run: |
@@ -123,20 +123,20 @@ jobs:
           cd code
           
           ## manully compiler
-          cd friendlywrt   
-          make defconfig
-          make download -j8
+          #cd friendlywrt   
+          #make defconfig
+          #make download -j8
           #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
-          time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
+          #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
           
           
-          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
-          #sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make download -j$(nproc)/make download -j8 V=s/' scripts/mk-friendlywrt.sh
-          #echo -e "$(nproc+1) thread compile"
-          #sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
-          #sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
-          #./build.sh nanopi_r2s.mk
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
+          sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
+          sed -i 's/make download -j$(nproc)/make download -j8 V=s/' scripts/mk-friendlywrt.sh
+          echo -e "$(nproc+1) thread compile"
+          sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
+          sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
+          ./build.sh nanopi_r2s.mk
           
 
       - name: Fix Rootfs Owner and Group
@@ -158,8 +158,8 @@ jobs:
           rm -rf ./artifact/
           mkdir -p ./artifact/
           
-          mkdir -p ./artifact/others
-          cp -a code/bin/targets/*/* ./artifact/other
+          #mkdir -p ./artifact/others
+          #cp -a code/bin/targets/*/* ./artifact/other
           
           cp code/out/*.* ./artifact/
           cp code/friendlywrt/.config ./artifact/
