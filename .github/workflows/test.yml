@@ -52,21 +52,13 @@ jobs:
       - name: Merge LEDE
         run: |
           
-          cd code
-          git clone https://github.com/coolsnowwolf/lede
+          cd code/friendlywrt
           
-          cd friendlywrt
-          cp -r ../lede/package/lean package/
-          cp -r ../lede/package/libs/pcre package/libs/
+          echo 'src-git packages https://git.openwrt.org/feed/packages.git;openwrt-21.02' > feeds.conf.default
+          echo 'src-git luci https://git.openwrt.org/project/luci.git;openwrt-21.02' >> feeds.conf.default
+          echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02' >> feeds.conf.default
+          echo 'src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-21.02' >> feeds.conf.default
           
-          #echo 'src-git packages https://git.openwrt.org/feed/packages.git;openwrt-21.02' > feeds.conf.default
-          #echo 'src-git luci https://git.openwrt.org/project/luci.git;openwrt-21.02' >> feeds.conf.default
-          #echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02' >> feeds.conf.default
-          #echo 'src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-21.02' >> feeds.conf.default
-          
-          sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
-          sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default          
-
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
