@@ -8,7 +8,7 @@
 
 -- God bless!   more bless !! with less package and try -i
 runc 
-ssh for make xxxxxx  xxxx xx
+ssh for make xxxxxx  xxxx xx xx
 
 
 
