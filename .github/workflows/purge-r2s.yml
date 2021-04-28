@@ -53,7 +53,13 @@ jobs:
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
-   
+          git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+          git clone https://github.com/xiaorouji/openwrt-passwall.git
+          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
+          
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
@@ -64,6 +70,12 @@ jobs:
           svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
           svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
           svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+
+      - name: Update Feeds		
+        run: |		
+          cd code/friendlywrt		
+          ./scripts/feeds update -a		
+          ./scripts/feeds install -a
           
       - name: Update Target.mk
         run: |
@@ -75,10 +87,6 @@ jobs:
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
            
-      - name: Install UPX
-        run: |
-          # wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
-      
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
@@ -86,7 +94,7 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
-    
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
           
@@ -109,8 +117,7 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          
-          cp code/out/* ./artifact/
+          cp code/out/*.* ./artifact/
           cp code/friendlywrt/.config ./artifact/
       - name: Upload Artifact
         uses: actions/upload-artifact@master
