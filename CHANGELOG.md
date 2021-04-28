@@ -1,14 +1,5 @@
 ## 20210419
----copy from  https://github.com/biliwala/nanopi-openwrt/blob/master/3_prepare_packages.sh
-
--- disable vsssr  && fix shortcut-fe   , j3 IGNORE_ERRORS=1.   
-
--- something always wrong！
-
-
--- God bless!   more bless !! with less package and try -i
-runc 
-ssh for make xxxxxx  xxxx xx xx
+---
 
 
 
