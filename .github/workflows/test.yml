@@ -93,8 +93,8 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           
-          echo 'CONFIG_PACKAGE_luci-app-oray=y' >.config
-          echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >.config
+          echo 'CONFIG_PACKAGE_luci-app-oray=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >> .config
           
       - name: Custom Configure Files
         run: |
