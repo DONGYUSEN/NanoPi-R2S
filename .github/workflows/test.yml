@@ -102,8 +102,10 @@ jobs:
       - name: Custom Configure Files
         run: |
           #cp code/friendlywrt/config_rk3328 ./
-          #rm -f code/friendlywrt/.config*
-          #cp config_rk3328 code/friendlywrt/config_rk3328      
+          rm -f code/friendlywrt/.config*
+          cp feeds-2102.conf code/friendlywrt/config_rk3328
+          cd code/friendlywrt/
+          cp config_rk3328 .config
         
       - name: Set Default Values
         run: |
