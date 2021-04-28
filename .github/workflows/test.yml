@@ -93,6 +93,9 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           
+          echo 'CONFIG_TARGET_rockchip=y' >> .config
+          echo 'CONFIG_TARGET_rockchip_armv8=y' >> .config
+          echo 'CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-oray=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >> .config
           
