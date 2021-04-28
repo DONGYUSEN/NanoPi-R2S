@@ -89,9 +89,13 @@ jobs:
           
       - name: Update Feeds		
         run: |		
-          cd code/friendlywrt		
-          ./scripts/feeds update -a		
+          cd code/friendlywrt
+          ./scripts/feeds update -a
           ./scripts/feeds install -a
+          
+          echo 'CONFIG_PACKAGE_luci-app-oray=y' >.config
+          echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >.config
+          
       - name: Custom Configure Files
         run: |
           #cp code/friendlywrt/config_rk3328 ./
@@ -102,14 +106,7 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
-           
-      - name: update feeds
-        run: |
-          cd code/OpenWrt
-          ./scripts/feeds install -a
-          echo 'CONFIG_PACKAGE_luci-app-oray=y' >.config
-          echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >.config
-
+         
           # wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
