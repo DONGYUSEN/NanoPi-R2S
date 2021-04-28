@@ -4,9 +4,9 @@ env:
   SSH_ACTIONS:  false
   
 on:
-  #push:
-  #  paths:
-  #    - 'CHANGELOG.md'
+  push:
+    paths:
+      - 'CHANGELOG.md'
   watch:
     types: started
 
