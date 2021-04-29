@@ -184,10 +184,10 @@ jobs:
           rm -rf ./artifact/
           mkdir -p ./artifact/
           
-          cp code/out/*.zip ./artifact/
+          cp code/out/*/* ./artifact/
           cp code/friendlywrt/.config ./artifact/config.seed.txt
       - name: Upload Artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: FriendlyWrt_NanoPi-R2S test
           path: ./artifact/
