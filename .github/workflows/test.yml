@@ -141,7 +141,7 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
-         
+          mkdir -p code/friendlywrt/staging_dir/host/bin
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
       
       - name: SSH连接
