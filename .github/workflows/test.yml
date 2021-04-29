@@ -92,10 +92,21 @@ jobs:
           
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
           
-          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          
           svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
           svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
+          
+          # git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core
+          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
+          sed -i '/upx/d' trojan-go/Makefile
           
           # fix golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
@@ -123,12 +134,9 @@ jobs:
          
       - name: Custom Configure Files
         run: |
-          #cp code/friendlywrt/config_rk3328 ./
           rm -f code/friendlywrt/.config*
           cp feeds-1907.conf code/friendlywrt/config_rk3328
-          #cd code/friendlywrt/
-          #cp config_rk3328 .config
-        
+          
       - name: Set Default Values
         run: |
           cd code/friendlywrt
