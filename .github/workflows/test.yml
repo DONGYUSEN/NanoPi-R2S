@@ -1,7 +1,7 @@
 name: NanoPi-R2S test
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -59,11 +59,11 @@ jobs:
           #cp -r ../lede/package/lean package/
           #cp -r ../lede/package/libs/pcre package/libs/
           
-          echo 'src-git routing https://git.openwrt.org/feed/routing.git' > feeds.conf.default
-          echo 'src-git telephony https://git.openwrt.org/feed/telephony.git' >> feeds.conf.default
-          echo 'src-git freifunk https://github.com/freifunk/openwrt-packages.git' >> feeds.conf.default
-          echo 'src-git packages https://github.com/friendlyarm/friendlywrt_project_packages' >> feeds.conf.default
-          echo 'src-git luci https://github.com/friendlyarm/friendlywrt_project_luci' >> feeds.conf.default
+          echo 'src-git routing https://git.openwrt.org/feed/routing.git; openwrt-19.07' > feeds.conf.default
+          echo 'src-git telephony https://git.openwrt.org/feed/telephony.git; openwrt-19.07' >> feeds.conf.default
+          echo 'src-git freifunk https://github.com/freifunk/openwrt-packages.git; openwrt-19.07' >> feeds.conf.default
+          echo 'src-git packages https://github.com/friendlyarm/friendlywrt_project_packages; master-v19.07.5' >> feeds.conf.default
+          echo 'src-git luci https://github.com/friendlyarm/friendlywrt_project_luci; master-v19.07.5' >> feeds.conf.default
           
       - name: Processing drivers
         run: |
@@ -77,10 +77,26 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
   
           # 花生壳内网穿透
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
-          svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
+          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
           
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
+
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
+          
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
+          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
+          
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
+          
+          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          
+          svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
+          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
+
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
@@ -92,20 +108,15 @@ jobs:
           cd code/friendlywrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          
-          echo 'CONFIG_TARGET_rockchip=y' >> .config
-          echo 'CONFIG_TARGET_rockchip_armv8=y' >> .config
-          echo 'CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-oray=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-phtunnel=y' >> .config
-          
+       
+         
       - name: Custom Configure Files
         run: |
           #cp code/friendlywrt/config_rk3328 ./
           rm -f code/friendlywrt/.config*
-          cp feeds-2102.conf code/friendlywrt/config_rk3328
-          cd code/friendlywrt/
-          cp config_rk3328 .config
+          cp feeds-1907.conf code/friendlywrt/config_rk3328
+          #cd code/friendlywrt/
+          #cp config_rk3328 .config
         
       - name: Set Default Values
         run: |
@@ -113,6 +124,7 @@ jobs:
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
          
           # wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
+      
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
