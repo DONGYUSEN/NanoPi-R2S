@@ -2,7 +2,7 @@ name: purge-r2s test
 #
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
