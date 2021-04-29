@@ -159,7 +159,7 @@ jobs:
           cp code/out/*/* ./artifact/
           cp code/friendlywrt/.config ./artifact/config.seed.txt
       - name: Upload Artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: purge-r2s
           path: ./artifact/
