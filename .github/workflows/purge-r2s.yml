@@ -67,9 +67,9 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
   
           # 花生壳内网穿透
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
-          svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
+          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
 
 
           #passwall
@@ -85,17 +85,18 @@ jobs:
           svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
           sed -i '/upx/d' trojan-go/Makefile
           
+         
+      - name: Update Target.mk
+        run: |
+          cd code/friendlywrt/include
+          sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk          
+          
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds update -a		
           ./scripts/feeds install -a
-          
-      - name: Update Target.mk
-        run: |
-          cd code/friendlywrt/include
-          sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-        
+
       - name: Set Default Values
         run: |
           cd code/friendlywrt
