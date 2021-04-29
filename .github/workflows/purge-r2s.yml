@@ -156,8 +156,8 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp code/out/*.* ./artifact/
-          cp code/friendlywrt/.config ./artifact/
+          cp code/out/*.zip ./artifact/
+          cp code/friendlywrt/.config ./artifact/config.seed.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
