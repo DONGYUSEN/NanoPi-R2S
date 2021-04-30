@@ -145,7 +145,7 @@ jobs:
         run: |
           rm -f code/friendlywrt/.config*
           cp feeds-1907.conf code/friendlywrt/config_rk3328
-          cat feeds-1907.conf >  code/friendlywrt/.config
+          cat r2s-rk3328-config >  code/friendlywrt/.config
           
       - name: Set Default Values
         run: |
