@@ -132,6 +132,7 @@ jobs:
 
       - name: Build OpenWrt
         run: |
+          cat feeds-1907.conf >  code/friendlywrt/.config
           cd code
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
@@ -152,12 +153,14 @@ jobs:
           sudo chown -R root:root /mnt/friendlywrt-tmp
           sudo umount /mnt/friendlywrt-tmp
           sudo losetup -d $lodev
+          
       - name: Assemble Artifact
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp -r code/out/*/* ./artifact/
+          cp code/out/*.img.zip ./artifact/
           cp code/friendlywrt/.config ./artifact/config.seed.txt
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
