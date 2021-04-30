@@ -111,18 +111,18 @@ jobs:
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
-          #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman          
+          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman          
           
           # fix golang
-          #rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          #rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
+          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
+          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           
-          #rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
-          #rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
-          #rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-          #rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          #sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
-          #sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
+          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
+          rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
+          rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
+          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
+          sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
           # fix xtables-addons:
           #rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  package/feeds/packages/xtables-addons
@@ -163,7 +163,8 @@ jobs:
           cd code/friendlywrt
           make defconfig
           make download -j8
-          make -j$(($(nproc) + 1)) || make -j1 V=s
+          # make -j$(($(nproc) + 1)) || make -j1 V=s
+          make -j1 
           
       - name: Assemble Artifact
         run: |
