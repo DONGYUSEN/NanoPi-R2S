@@ -2,7 +2,7 @@ name: purge-r2s test
 #
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -93,9 +93,7 @@ jobs:
           ./scripts/feeds update -a		
           ./scripts/feeds install -a
           
-      - name: SSH连接
-        uses: DONGYUSEN/debugger-action@master
-        if: env.SSH_ACTIONS == 'true'   
+
         
 
       - name: Set Default Values
@@ -104,16 +102,22 @@ jobs:
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
                 
 
+
       - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
-            
+          cat feeds-1907.conf > code/friendlywrt/.config
+          cd code/friendlywrt
+          make defconfig
 
-
+      - name: SSH连接
+        uses: DONGYUSEN/debugger-action@master
+        if: env.SSH_ACTIONS == 'true'   
+        
       - name: Build OpenWrt
         run: |
           # cat r2s-rk3328-config > code/friendlywrt/.config
-          cat feeds-1907.conf > code/friendlywrt/.config
+          #cat feeds-1907.conf > code/friendlywrt/.config
           
           #cd code
           #sed -i '/feeds/d' scripts/mk-friendlywrt.sh
