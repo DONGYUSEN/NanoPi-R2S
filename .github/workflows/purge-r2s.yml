@@ -135,7 +135,7 @@ jobs:
           echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-ssr-plus=y' >> .config
           
-          make download -j8
+          make download -j2
           make -j$(($(nproc) + 1)) || make -j1 V=s
           
           df -h
