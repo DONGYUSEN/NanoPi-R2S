@@ -71,7 +71,7 @@ jobs:
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
           #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
-         
+          #http://www.domyself.me/assets/upload/20150612/luci-app-oray.ipk 
 
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
