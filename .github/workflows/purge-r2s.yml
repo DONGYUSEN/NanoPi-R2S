@@ -54,7 +54,7 @@ jobs:
         run: |
           cd code/friendlywrt/package
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          #git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
           
@@ -77,6 +77,10 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
           svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
+          
+          # luci-app-netdata
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata custom/luci-app-netdata
+          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus custom/luci-app-ssr-plus
          
       - name: Update Target.mk
         run: |
@@ -127,7 +131,9 @@ jobs:
           echo 'CONFIG_PACKAGE_luci-app-adguardhome=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-adbyby-plus=y' >> .config
           echo 'CONFIG_PACKAGE_wget-ssl=y' >> .config
-          
+          echo 'CONFIG_PACKAGE_luci-app-netdata=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-app-ssr-plus=y' >> .config
           
           make download -j8
           make -j$(($(nproc) + 1)) || make -j1 V=s
