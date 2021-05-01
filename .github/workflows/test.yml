@@ -145,7 +145,7 @@ jobs:
         run: |
           rm -f code/friendlywrt/.config*
           cp feeds-1907.conf code/friendlywrt/config_rk3328
-          # cat r2s-rk3328-config >  code/friendlywrt/.config
+          # cat feeds-1907.conf >  code/friendlywrt/.config
           cat feeds-1907.conf >  code/friendlywrt/.config
           
       - name: Set Default Values
@@ -163,7 +163,7 @@ jobs:
         run: |
           cd code/friendlywrt
           make defconfig
-          make download -j8
+          make download -j2
           make -j$(($(nproc) + 1)) || make -j1 V=s
           # make -j1 
           
