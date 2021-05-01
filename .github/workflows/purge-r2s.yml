@@ -79,8 +79,8 @@ jobs:
           svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
           
           # luci-app-netdata
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata custom/luci-app-netdata
-          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus custom/luci-app-ssr-plus custom/luci-app-ssr-plus
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
+          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus custom/luci-app-ssr-plus
          
       - name: Update Target.mk
         run: |
