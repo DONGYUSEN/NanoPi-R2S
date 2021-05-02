@@ -106,9 +106,9 @@ jobs:
       - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
-          cat feeds-1907.conf > code/friendlywrt/.config
-          cd code/friendlywrt
-          make defconfig
+          #cat feeds-1907.conf > code/friendlywrt/.config
+          #cd code/friendlywrt
+          #make defconfig
 
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
@@ -117,26 +117,19 @@ jobs:
       - name: Build OpenWrt
         run: |
           # cat r2s-rk3328-config > code/friendlywrt/.config
-          #cat feeds-1907.conf > code/friendlywrt/.config
+          cat feeds-1907.conf > code/friendlywrt/.config
           
-          #cd code
-          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh
-          #sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
+          cd code
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh
+          sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           #sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
-          #./build.sh nanopi_r2s.mk
+          ./build.sh nanopi_r2s.mk
           
-          
-          cd code/friendlywrt
-          make defconfig
-          
-          
-          make download -j2
-          make -j$(($(nproc) + 1)) || make -j1 V=s
-          
-          
-          
-          
-          
+          #########################
+          #cd code/friendlywrt
+          #make defconfig
+          #make download -j2
+          #make -j$(($(nproc) + 1)) || make -j1 V=s  
           
       - name: Fix Rootfs Owner and Group
         run: |
@@ -156,10 +149,8 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          ls -l code/out/*
-          ls -l code/out/*/*
           cp code/out/*.img.zip ./artifact/
-          #cp -a code/friendlywrt/bin/targets/*/* artifact
+          ls -lh code.out/*
           cp code/friendlywrt/.config ./artifact/config.seed.txt
           
       - name: Upload Artifact
