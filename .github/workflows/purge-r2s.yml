@@ -125,7 +125,7 @@ jobs:
           cd code
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
           
           #########################
