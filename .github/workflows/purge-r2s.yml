@@ -133,10 +133,10 @@ jobs:
           make download -j2
           make -j$(($(nproc) + 1)) || make -j1 V=s
           
-          df -h
           
-          ls -l code/out/*
-          ls -l code/out/*/*
+          
+          
+          
           
       - name: Fix Rootfs Owner and Group
         run: |
