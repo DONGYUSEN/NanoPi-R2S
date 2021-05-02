@@ -125,7 +125,7 @@ jobs:
           sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
           
           # fix xtables-addons:
-          #rm -rf package/feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  package/feeds/packages/xtables-addons
+          rm -rf feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  feeds/packages/xtables-addons
 
 
       - name: Update Target.mk
