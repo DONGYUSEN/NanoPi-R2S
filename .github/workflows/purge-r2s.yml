@@ -53,12 +53,49 @@ jobs:
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
+          
+          #漂亮的主题
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
-          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
+          
+          #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
+          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           
+          #翻越的补丁/或者最新版 -- golang
+          # rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
+          # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
+          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+          
+          # 广告过滤
+          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
+          
+          # VPN，虚拟局域网
+          ### zerotier
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
+          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
+          ### 花生壳内网穿透？无法使用
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
+          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
+          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          #################http://www.domyself.me/assets/upload/20150612/luci-app-oray.ipk 
+          
+          # 系统工具
+          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
+          ### luci-app-netdata
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
+          ### luci-app-filebrowser
+          svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
+          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
+          ### kms服务器
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
+          
+          ## 网络驱动
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
@@ -68,23 +105,7 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
   
-          # 花生壳内网穿透
-          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
-          #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
-          #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
-          #http://www.domyself.me/assets/upload/20150612/luci-app-oray.ipk 
 
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
-          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
-          
-          # luci-app-netdata
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
-          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
-          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
-       
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
@@ -95,16 +116,11 @@ jobs:
           cd code/friendlywrt		
           ./scripts/feeds update -a		
           ./scripts/feeds install -a
-          
-
-        
 
       - name: Set Default Values
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
-                
-
 
       - name: Install UPX
         run: |
@@ -169,10 +185,14 @@ jobs:
           echo 'CONFIG_PACKAGE_kmod-rtl8192du=y' >> .config
           echo 'CONFIG_PACKAGE_kmod-rtl88x2bu=y' >> .config
           
+          echo 'CONFIG_PACKAGE_kmod-tun=y' >> .config
+          
           make defconfig
           
           make download -j2
           make -j$(($(nproc) + 1)) || make -j1 V=s  
+          
+          ls -l /bin/targets/*
           
       - name: Fix Rootfs Owner and Group
         run: |
