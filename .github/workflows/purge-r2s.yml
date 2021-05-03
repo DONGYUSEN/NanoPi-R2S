@@ -130,7 +130,17 @@ jobs:
           
           #########################
           cd code/friendlywrt
-          make defconfig
+          #make defconfig
+          
+          echo 'CONFIG_TARGET_rockchip_rk3328=y' > .config
+          echo 'CONFIG_TARGET_rockchip_rk3328_Default=y' >> .config
+          echo 'CONFIG_TARGET_BOARD="rockchip-rk3328"' >> .config
+          echo 'CONFIG_TARGET_SUBTARGET="generic"' >> .config
+          echo 'CONFIG_TARGET_PROFILE="Default"' >> .config
+          echo 'CONFIG_ARCH="aarch64"' >> .config
+          echo 'CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"' >> .config
+          echo 'CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"' >> .config
+          echo 'CONFIG_CPU_TYPE="cortex-a53"' >> .config
           
           echo 'CONFIG_PACKAGE_luci-app-ssr-plus=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
