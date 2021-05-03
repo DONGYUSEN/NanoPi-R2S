@@ -136,7 +136,7 @@ jobs:
           echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-passwall=y' >> .config
           
-          ehco 'CONFIG_PACKAGE_luci-theme-argon=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-theme-argon=y' >> .config
           
           echo 'CONFIG_PACKAGE_luci-app-adguardhome=y' >> .config
           
