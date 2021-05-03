@@ -60,7 +60,7 @@ jobs:
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
           
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
-          # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
@@ -151,7 +151,7 @@ jobs:
           echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
           
           echo 'CONFIG_PACKAGE_kmod-r8125=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-r8152=y' >> .config
+          # echo 'CONFIG_PACKAGE_kmod-r8152=y' >> .config
           echo 'CONFIG_PACKAGE_kmod-r8168=y' >> .config
           echo 'CONFIG_PACKAGE_kmod-rtl8812au-ac=y' >> .config
           echo 'CONFIG_PACKAGE_kmod-rtl8821cu=y' >> .config
