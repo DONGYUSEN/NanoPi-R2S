@@ -159,6 +159,8 @@ jobs:
           echo 'CONFIG_PACKAGE_kmod-rtl8192du=y' >> .config
           echo 'CONFIG_PACKAGE_kmod-rtl88x2bu=y' >> .config
           
+          make defconfig
+          
           make download -j2
           make -j$(($(nproc) + 1)) || make -j1 V=s  
           
