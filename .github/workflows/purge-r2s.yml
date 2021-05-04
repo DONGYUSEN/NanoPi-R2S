@@ -73,7 +73,7 @@ jobs:
           
           #翻越的补丁/或者最新版 -- golang
           # rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
+          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
           
           # 广告过滤
