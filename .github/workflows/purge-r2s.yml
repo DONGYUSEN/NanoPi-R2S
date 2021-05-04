@@ -187,6 +187,9 @@ jobs:
           
           echo 'CONFIG_PACKAGE_luci-app-autoreboot=y' >> .config
           echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-lib-fs=y' >> .config
+          echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
+          
           
           echo 'CONFIG_PACKAGE_kmod-r8125=y' >> .config
           # echo 'CONFIG_PACKAGE_kmod-r8152=y' >> .config
