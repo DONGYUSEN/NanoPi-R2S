@@ -95,17 +95,22 @@ jobs:
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
           ### luci-app-netdata
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
+          
           ### luci-app-filebrowser
           svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
           svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
+          
           ### kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
+          
           ## autoreboot
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
+          
           ## luci-app-usb-printer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer custom/luci-app-filetransfer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
           
           
           ## 网络驱动
