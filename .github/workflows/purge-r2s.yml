@@ -2,7 +2,7 @@ name: purge-r2s test
 #
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -70,6 +70,9 @@ jobs:
           sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
           sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
           sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
+          
+          more ustom/openwrt-passwall/xray-core/Makefile
+          
           
           #翻越的补丁/或者最新版 -- golang
           # rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
