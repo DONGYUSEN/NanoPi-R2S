@@ -95,18 +95,18 @@ jobs:
           svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
           svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
           
-          # git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core
-          svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
-          sed -i '/upx/d' trojan-go/Makefile
+          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core
+          #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-plugin
+          #sed -i '/upx/d' trojan-go/Makefile
           
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
