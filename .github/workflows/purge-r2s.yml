@@ -73,7 +73,7 @@ jobs:
           sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
           sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-core/Makefile
           
-          more custom/openwrt-passwall/xray-core/Makefile
+          # more custom/openwrt-passwall/xray-core/Makefile
           
           
           #翻越的补丁/或者最新版 -- golang
@@ -133,10 +133,7 @@ jobs:
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-          
-          cd ../package
-
-          
+         
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt		
@@ -161,100 +158,22 @@ jobs:
         
       - name: Build OpenWrt
         run: |
-          # cat r2s-rk3328-config > code/friendlywrt/.config
-          # cat feeds-1907.conf > code/friendlywrt/.config
           
-          #cd code
-          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh
-          #sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
-          #./build.sh nanopi_r2s.mk
+          cat feeds-1907.conf > code/friendlywrt/.confi
           
-          #########################
-          cd code/friendlywrt
-          # make defconfig
-          echo 'CONFIG_TARGET_rockchip_rk3328=y' >> .config
-          echo 'CONFIG_TARGET_rockchip_rk3328_Default=y' >> .config
-          echo 'CONFIG_TARGET_BOARD="rockchip-rk3328"' >> .config
-          echo 'CONFIG_TARGET_SUBTARGET="generic"' >> .config
-          echo 'CONFIG_TARGET_PROFILE="Default"' >> .config
-          echo 'CONFIG_ARCH="aarch64"' >> .config
-          echo 'CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"' >> .config
-          echo 'CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53"' >> .config
-          echo 'CONFIG_CPU_TYPE="cortex-a53"' >> .config
-          echo 'CONFIG_TARGET_ROOTFS_PARTSIZE=960' >> .config
-          echo 'CONFIG_IPV6=y' >> .config
-          
-          echo 'CONFIG_PACKAGE_luci-app-ssr-plus=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-openclash=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-passwall=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-vssr=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-ssr-plus=y' >> .config
-
-          echo 'CONFIG_PACKAGE_ca-certificates=y' >> .config
-          echo 'CONFIG_PACKAGE_coreutils=y' >> .config
-          echo 'CONFIG_PACKAGE_coreutils-nohup=y' >> .config
-          echo 'CONFIG_PACKAGE_coreutils-base64=y' >> .config
-          echo 'CONFIG_PACKAGE_bash=y' >> .config
-          echo 'CONFIG_PACKAGE_curl=y' >> .config
-          echo 'CONFIG_PACKAGE_ip=y' >> .config
-          echo 'CONFIG_PACKAGE_ip-full=y' >> .config
-          echo 'CONFIG_PACKAGE_iptables-mod-tproxy=y' >> .config
-          echo 'CONFIG_PACKAGE_iptables-mod-extra=y' >> .config
-          echo 'CONFIG_PACKAGE_iptables-mod-tproxy=y' >> .config
-          echo 'CONFIG_PACKAGE_libcap=y' >> .config
-          echo 'CONFIG_PACKAGE_luasocket=y' >> .config
-          echo 'CONFIG_PACKAGE_lua-maxminddb=y' >> .config
-          echo 'CONFIG_PACKAGE_ruby=y' >> .config
-          echo 'CONFIG_PACKAGE_ruby-yaml=y' >> .config
-          echo 'CONFIG_PACKAGE_wget-ssl=y' >> .config
-          echo 'CONFIG_PACKAGE_zerotier=y' >> .config
-          echo 'CONFIG_PACKAGE_vlmcsd=y' >> .config
-          echo 'CONFIG_PACKAGE_ipset=y' >> .config
-          echo 'CONFIG_PACKAGE_netdata=y' >> .config
-          echo 'CONFIG_PACKAGE_simple-obfs=y' >> .config
-          echo 'CONFIG_PACKAGE_resolveip=y' >> .config
-          echo 'CONFIG_PACKAGE_unzip=y' >> .config
-          echo 'CONFIG_PACKAGE_tcping=y' >> .config
-          echo 'CONFIG_PACKAGE_libuci-lua=y' >> .config
-          echo 'CONFIG_PACKAGE_ipt2socks=y' >> .config
-          echo 'CONFIG_PACKAGE_microsocks=y' >> .config
-            
-          echo 'CONFIG_PACKAGE_luci-theme-argon=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-adguardhome=y' >> .config
-          echo 'CONFIG_PACKAGE_adbyby=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-adbyby-plus=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-vlmcsd=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-zerotier=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-netdata=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-autoreboot=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-lib-fs=y' >> .config
-          echo 'CONFIG_PACKAGE_luci-app-filebrowser=y' >> .config
-          echo 'CONFIG_PACKAGE_filebrowser=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-r8125=y' >> .config
-          # echo 'CONFIG_PACKAGE_kmod-r8152=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-r8168=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-rtl8812au-ac=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-rtl8821cu=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-rtl8188eu=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-rtl8192du=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-rtl88x2bu=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-tun=y' >> .config
-          echo 'CONFIG_PACKAGE_kmod-usb-core=y' >> .config
-          
+          ######################### mannully
+          # cd code/friendlywrt
           #make download -j4
           #make -j$(($(nproc) + 1)) 
           # || make -j1 V=s  
           
-          cd ../
+          ######################### 
+          cd code/
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
-          
-          # ls -l /bin/targets/*
-          
+         
       - name: Fix Rootfs Owner and Group
         run: |
           sudo df -lh
@@ -274,7 +193,8 @@ jobs:
           rm -rf ./artifact/
           mkdir -p ./artifact/
           cp code/out/*.img.zip ./artifact/
-          ls -lh code.out/*
+          
+          ls -lh code/out/*
           cp code/friendlywrt/.config ./artifact/config.seed.txt
           
       - name: Upload Artifact
