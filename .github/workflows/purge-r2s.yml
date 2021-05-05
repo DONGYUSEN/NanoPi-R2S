@@ -215,7 +215,7 @@ jobs:
           
           echo 'CONFIG_PACKAGE_kmod-tun=y' >> .config
           
-          #make defconfig
+          make defconfig
           
           #make download -j4
           #make -j$(($(nproc) + 1)) 
