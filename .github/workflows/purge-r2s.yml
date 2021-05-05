@@ -215,13 +215,19 @@ jobs:
           
           echo 'CONFIG_PACKAGE_kmod-tun=y' >> .config
           
-          make defconfig
+          #make defconfig
           
-          make download -j4
-          make -j$(($(nproc) + 1)) 
+          #make download -j4
+          #make -j$(($(nproc) + 1)) 
           # || make -j1 V=s  
           
-          ls -l /bin/targets/*
+          cd ../
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh
+          sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
+          ./build.sh nanopi_r2s.mk
+          
+          # ls -l /bin/targets/*
           
       - name: Fix Rootfs Owner and Group
         run: |
