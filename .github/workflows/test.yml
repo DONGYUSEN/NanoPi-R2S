@@ -98,7 +98,7 @@ jobs:
           sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
           sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
           sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-core/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/v2ray-plugin/Makefile
+          # sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/v2ray-plugin/Makefile
           sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-plugin/Makefile
           
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
