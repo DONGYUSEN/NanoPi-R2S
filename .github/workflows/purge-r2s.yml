@@ -81,10 +81,15 @@ jobs:
           
           
           #翻越的补丁/或者最新版 -- golang
+          # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
-          
+          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
+          rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
+          rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
+          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+
           # 广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
