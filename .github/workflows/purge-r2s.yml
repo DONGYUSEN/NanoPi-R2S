@@ -50,6 +50,11 @@ jobs:
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
           
+      - name: Clone Feeds
+        run: |
+          cd code/friendlywrt/
+          ./scripts/feeds update -a
+          
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
@@ -136,17 +141,16 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
-  
 
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
          
-      - name: Update Feeds		
+      - name: Install Feeds	
         run: |		
           cd code/friendlywrt		
-          ./scripts/feeds update -a		
+          # ./scripts/feeds update -a		
           ./scripts/feeds install -a
 
       - name: Set Default Values
