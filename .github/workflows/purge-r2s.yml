@@ -64,7 +64,6 @@ jobs:
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
           #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
-          #svn co https://github.com/fw876/helloworld/trunk/v2ray-core custom/openwrt-passwall/v2ray-core
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
           
           ##### 长城的修改！
