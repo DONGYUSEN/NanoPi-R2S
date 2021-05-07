@@ -174,7 +174,7 @@ jobs:
       - name: Build OpenWrt
         run: |
           
-          #cat feeds-1907.conf > code/friendlywrt/.confi
+          cat feeds-1907.conf > code/friendlywrt/.confi
           
           ######################### mannully
           # cd code/friendlywrt
