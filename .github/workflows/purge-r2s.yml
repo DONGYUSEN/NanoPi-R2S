@@ -73,7 +73,8 @@ jobs:
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
-          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          #sed -i '/INCLUDE_V2ray_plugin:v2ray-plugin/d' custom/luci-app-ssr-plus/Makefile
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
           
           #翻越的补丁/或者最新版 -- golang
