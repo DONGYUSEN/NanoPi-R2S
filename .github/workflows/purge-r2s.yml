@@ -65,9 +65,9 @@ jobs:
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          #svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          #git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          #git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
           #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
