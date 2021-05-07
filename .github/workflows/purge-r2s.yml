@@ -15,7 +15,8 @@ jobs:
 
   build:
     timeout-minutes: 720
-    runs-on: ubuntu-18.04
+    #runs-on: ubuntu-18.04
+    runs-on: ubuntu-last
 
     steps:
 
@@ -78,8 +79,8 @@ jobs:
           #sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
           #sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
           #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-core/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
+          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-core/Makefile
+          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
           #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
           
           # more custom/openwrt-passwall/xray-core/Makefile
