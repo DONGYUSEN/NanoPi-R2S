@@ -93,42 +93,13 @@ jobs:
           
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
           
-          svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
-          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer custom/luci-app-filetransfer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
           
-          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          #sed -i '/upx/d'  custom/openwrt-passwall/v2ray-plugin/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/xray-core/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
-          #sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-plugin/Makefile
-          
-          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
-          
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
           svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
-          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman          
-          
-          # fix golang
-          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          
-          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
-          rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
-          rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          sed -i '/STAMP_BUILT/d' feeds/packages/utils/runc/Makefile
-          sed -i '/STAMP_BUILT/d' feeds/packages/utils/containerd/Makefile
-          
-          # fix xtables-addons:
-          rm -rf feeds/packages/xtables-addons && svn co https://github.com/Lienol/openwrt-packages/trunk/net/xtables-addons  feeds/packages/xtables-addons
 
       - name: Update Target.mk
         run: |
