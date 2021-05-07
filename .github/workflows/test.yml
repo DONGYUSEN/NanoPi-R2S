@@ -57,7 +57,12 @@ jobs:
           echo 'src-git freifunk https://github.com/freifunk/openwrt-packages.git' >> feeds.conf.default
           echo 'src-git packages https://github.com/friendlyarm/friendlywrt_project_packages' >> feeds.conf.default
           echo 'src-git luci https://github.com/friendlyarm/friendlywrt_project_luci' >> feeds.conf.default
-          
+
+      - name: Update Feeds		
+        run: |		
+          cd code/friendlywrt
+          ./scripts/feeds update -a
+
       - name: Additional mod
         run: |
 
@@ -128,11 +133,10 @@ jobs:
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
           
-      - name: Update Feeds		
+      - name: Install Feeds		
         run: |		
           cd code/friendlywrt
           ./scripts/feeds update -a
-          ./scripts/feeds install -a
 
       - name: Custom Configure Files
         run: |
