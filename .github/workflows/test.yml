@@ -55,8 +55,10 @@ jobs:
           echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-21.02' > feeds.conf.default
           echo 'src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-21.02' >> feeds.conf.default
           echo 'src-git freifunk https://github.com/freifunk/openwrt-packages.git;openwrt-21.02' >> feeds.conf.default
-          echo 'src-git packages https://github.com/friendlyarm/friendlywrt_project_packages' >> feeds.conf.default
-          echo 'src-git luci https://github.com/friendlyarm/friendlywrt_project_luci' >> feeds.conf.default
+          echo 'src-git packages https://git.openwrt.org/feed/packages.git;openwrt-21.02' >> feeds.conf.default
+          echo 'src-git luci https://git.openwrt.org/project/luci.git;openwrt-21.02' >> feeds.conf.default
+          #echo 'src-git packages https://github.com/friendlyarm/friendlywrt_project_packages' >> feeds.conf.default
+          #echo 'src-git luci https://github.com/friendlyarm/friendlywrt_project_luci' >> feeds.conf.default
 
       - name: Update Feeds		
         run: |		
@@ -98,13 +100,13 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
           
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          sed -i '/upx/d'  custom/openwrt-passwall/v2ray-plugin/Makefile
-          sed -i '/upx/d'  custom/openwrt-passwall/xray-core/Makefile
-          sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
-          sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-core/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
-          sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-plugin/Makefile
+          #sed -i '/upx/d'  custom/openwrt-passwall/v2ray-plugin/Makefile
+          #sed -i '/upx/d'  custom/openwrt-passwall/xray-core/Makefile
+          #sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
+          #sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
+          #sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-core/Makefile
+          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
+          #sed -i 's/export GO111MODULE=on/export GO111MODULE=auto/' custom/openwrt-passwall/xray-plugin/Makefile
           
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
