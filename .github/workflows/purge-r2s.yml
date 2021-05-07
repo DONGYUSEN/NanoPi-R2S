@@ -68,29 +68,13 @@ jobs:
           rm -rf custom/openwrt-passwall/v2ray-core
           rm -rf custom/openwrt-passwall/v2ray-plugin
           
-          
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
           svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
-          
-          ##### 长城的修改！
-          #sed -i '/upx/d'  custom/openwrt-passwall/v2ray-plugin/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/v2ray-core/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/xray-core/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/xray-plugin/Makefile
-          #sed -i '/upx/d'  custom/openwrt-passwall/trojan-go/Makefile
-          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
-          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-core/Makefile
-          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
-          #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
-          
-          
-          
-          # more custom/openwrt-passwall/xray-core/Makefile
-          
           
           #翻越的补丁/或者最新版 -- golang
           # rm -rf feeds/packages/lang/golang/ && svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
@@ -127,8 +111,8 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           ### luci-app-filebrowser
-          svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filebrowser custom/luci-app-filebrowser
-          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/filebrowser custom/filebrowser
+          svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-filebrowser custom/luci-app-filebrowser
+          svn co https://github.com/immortalwrt/packages/trunk/utils/filebrowser custom/filebrowser
           
           ### kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
