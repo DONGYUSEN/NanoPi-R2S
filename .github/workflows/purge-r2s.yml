@@ -10,6 +10,8 @@ on:
       - 'purge-r2s.yml'
   watch:
     types: started
+  schedule:
+    - cron: '00 18 * * *'
 
 jobs:
 
