@@ -65,12 +65,16 @@ jobs:
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          #svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          #git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          #git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          rm -rf custom/openwrt-passwall/v2ray-core
+          rm -rf custom/openwrt-passwall/v2ray-plugin
           
-          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
+          
+          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          
+          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/openwrt-passwall/redsocks2
           
           ##### 长城的修改！
           #sed -i '/upx/d'  custom/openwrt-passwall/v2ray-plugin/Makefile
@@ -82,6 +86,8 @@ jobs:
           #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-core/Makefile
           #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/v2ray-plugin/Makefile
           #sed -i 's/export GO111MODULE=on/export GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
+          
+          
           
           # more custom/openwrt-passwall/xray-core/Makefile
           
