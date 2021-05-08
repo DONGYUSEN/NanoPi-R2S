@@ -53,7 +53,7 @@ jobs:
 
       - name: Custom Configure Files
         run: |
-          cat feeds-1907.conf >  lede/.config
+          #cat feeds-1907.conf >  lede/.config
           
       - name: Set Default Values
         run: |
