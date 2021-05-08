@@ -63,7 +63,7 @@ jobs:
 
       - name: Build OpenWrt
         run: |
-          cd code/friendlywrt
+          cd lede
           make defconfig
           make download -j4
           make -j$(($(nproc) + 1)) 
