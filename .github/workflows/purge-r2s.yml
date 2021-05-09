@@ -55,6 +55,7 @@ jobs:
           
           cd friendlywrt
           rm -rf toolchain && svn con https://github.com/openwrt/openwrt/branches/openwrt-19.07/toolchain
+          ls -l toolchain
           
       - name: Clone Feeds
         run: |
