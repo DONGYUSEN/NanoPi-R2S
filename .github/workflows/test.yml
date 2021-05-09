@@ -1,7 +1,7 @@
 name: NanoPi-R2S test
 
 env:
-  SSH_ACTIONS:  true
+  SSH_ACTIONS:  false
   
 on:
   push:
@@ -53,7 +53,7 @@ jobs:
 
       - name: Custom Configure Files
         run: |
-          #cat feeds-1907.conf >  lede/.config
+          cat feeds-1907.conf >  lede/.config
           
       - name: Set Default Values
         run: |
