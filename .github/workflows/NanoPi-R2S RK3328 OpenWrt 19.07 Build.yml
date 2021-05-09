@@ -34,9 +34,6 @@ jobs:
           sudo apt-get -y purge dotnet* ghc* google* llvm* mysql* php* zulu* firefox hhvm
           sudo apt-get -y autoremove --purge          
           wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
-
-      #- name: Setup Debug Session
-      #  uses: P3TERX/debugger-action@master
   
       - name: Install Repo
         run: |
@@ -52,34 +49,74 @@ jobs:
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
 
-      - name: Merge LEDE
-        run: |
-          cd code/friendlywrt
-          echo 'src-git packages https://git.openwrt.org/feed/packages.git;openwrt-19.07' > feeds.conf.default
-          echo 'src-git luci https://git.openwrt.org/project/luci.git;openwrt-19.07' >> feeds.conf.default
-          echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-19.07' >> feeds.conf.default
-          echo 'src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-19.07' >> feeds.conf.default
+      - name: Update Feeds		
+        run: |		
+          cd code/friendlywrt		
+          ./scripts/feeds update -a		
           
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
-          # git clone  https://github.com/fw876/helloworld custom/helloworld
-          #new drivers:
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
           
+          #漂亮的主题
+          git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
           
+          #越过长城
+          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          rm -rf custom/openwrt-passwall/v2ray-core
+          rm -rf custom/openwrt-passwall/v2ray-plugin
+          
+          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          
+          # 广告过滤
+          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
+          
+          # VPN，虚拟局域网
+          ### zerotier
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
+          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
           
           # 花生壳内网穿透
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
           #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
+          
+          # 系统工具
+          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
+          ### luci-app-netdata
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
+     
+          ### kms服务器
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
+          
+          ## autoreboot
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
+          
+          ## luci-app-usb-printer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer custom/luci-app-filetransfer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
+          
+          ## 网络驱动
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
+          # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
+          
+          # UPX 可执行软件压缩
+          cd ../
+          sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
+          sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/upx tools/upx
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/ucl tools/ucl
 
       - name: Update Target.mk
         run: |
@@ -87,22 +124,21 @@ jobs:
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
           
           
-      - name: Update Feeds		
+      - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
-          ./scripts/feeds update -a		
           ./scripts/feeds install -a
 
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
-          cp r2s-rk3328-config code/configs/config_rk3328
-          # cat r2s-rk3328-config > code/friendlywr/.config
+          cat feeds-1907.conf > code/friendlywrt/.config
+          cp feeds-1907.conf code/configs/config_rk3328
         
       - name: Set Default Values
         run: |
           cd code/friendlywrt
-          #echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
+          echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
            
       - name: Install UPX
         run: |
@@ -123,13 +159,10 @@ jobs:
           #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
           #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
           
-          #sed -i 's/make download -j$(nproc)/make download -j2 V=s/'  build.sh
-          #sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
+          #
+          sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          #sed -i 's/make download -j$(nproc)/make download -j$(nproc) V=s/' scripts/mk-friendlywrt.sh
-          #echo -e "$(nproc+1) thread compile"
-          sed -i 's/make -j$(nproc) V=s/make -j1 V=s/' scripts/mk-friendlywrt.sh
-          # sed -i '/make -j1 V=s/d' scripts/mk-friendlywrt.sh
+          sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
           
 
@@ -151,10 +184,6 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          
-          #mkdir -p ./artifact/others
-          #cp -a code/bin/targets/*/* ./artifact/other
-          
           cp code/out/*.* ./artifact/
           cp code/friendlywrt/.config ./artifact/
 
