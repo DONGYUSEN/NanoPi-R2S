@@ -54,6 +54,7 @@ jobs:
           repo sync -c --no-clone-bundle -j8
           
           cp ../download.pl  friendlywrt/scripts/download.pl
+          cp ../bin-makefile  friendlywrt/toolchain/binutils/Makefile
           
           cd friendlywrt/scripts
           rm -rf config && svn co https://github.com/openwrt/openwrt/trunk/scripts/config 
