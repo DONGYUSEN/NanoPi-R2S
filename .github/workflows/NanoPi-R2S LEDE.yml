@@ -54,7 +54,7 @@ jobs:
       - name: Custom Configure Files
         run: |
           cat feeds-1907.conf >  lede/.config
-          make defconfig
+          # make defconfig
           
       - name: Set Default Values
         run: |
