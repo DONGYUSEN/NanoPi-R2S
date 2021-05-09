@@ -7,7 +7,7 @@ env:
 on:
   push:
     paths:
-      - 'openwrt-r2s.yml'
+      - 'FriendlyElec-r2s'
   watch:
     types: started
   schedule:
@@ -109,5 +109,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: purge-r2s
+          name: FriendlyElec-r2s
           path: ./artifact/
