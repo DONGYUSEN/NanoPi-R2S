@@ -53,6 +53,9 @@ jobs:
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
           
+          cd friendlyarm
+          rm -rf toolchain && svn con https://github.com/openwrt/openwrt/branches/openwrt-19.07/toolchain
+          
       - name: Clone Feeds
         run: |
           cd code/friendlywrt/
