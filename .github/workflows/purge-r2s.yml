@@ -155,6 +155,7 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
 
           # UPX 可执行软件压缩
+          cd ../
           sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
           sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
           svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/upx tools/upx
