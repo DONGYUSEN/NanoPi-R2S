@@ -1,7 +1,7 @@
 name: NanoPi-R2S test
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -67,7 +67,7 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd lede
-          make defconfig
+          # make defconfig
           make download -j4
           make -j$(($(nproc) + 1)) || make -j1 V=s
           # make -j1 
