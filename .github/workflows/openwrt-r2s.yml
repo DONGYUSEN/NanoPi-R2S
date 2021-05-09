@@ -69,6 +69,7 @@ jobs:
           
           rm -f .config*
           cat ../../feeds-1907.conf > .config
+          cp ../../feeds-1907.conf ../configs/config_rk3328
 
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
