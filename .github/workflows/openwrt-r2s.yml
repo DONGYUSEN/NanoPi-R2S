@@ -55,6 +55,9 @@ jobs:
           
           cp ../download.pl  friendlywrt/scripts/download.pl
           
+          cd friendlywrt/scripts
+          rm -rf config && svn co https://github.com/openwrt/openwrt/trunk/scripts/config 
+          
       - name: Clone Feeds
         run: |
           cd code/friendlywrt/
