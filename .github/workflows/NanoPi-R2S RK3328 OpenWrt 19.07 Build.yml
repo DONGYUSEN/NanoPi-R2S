@@ -5,8 +5,8 @@ env:
   
 on:
   push:
-    paths:
-      - 'CHANGELOG.md'
+    #paths:
+    #  - 'CHANGELOG.md'
   watch:
     types: started
   schedule:
