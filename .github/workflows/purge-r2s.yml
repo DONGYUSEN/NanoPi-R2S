@@ -52,13 +52,10 @@ jobs:
           repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
-          sed -i 's/PKG_VERSION:=$(call qstrip,$(CONFIG_BINUTILS_VERSION))/PKG_VERSION:=2.31.1/‘ friendlywrt/toolchain/binutils/Makefile
-          # cd friendlywrt/scripts
-          # rm download.pl && wget -c https://github.com/coolsnowwolf/lede/truck/scripts/download.pl
+          
+          
+          cp ../bin-makefile  friendlywrt/toolchain/binutils/Makefile
           cp ../download.pl  friendlywrt/scripts/download.pl
-          # rm -rf toolchain && svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/toolchain
-          # rm -rf toolchain && svn co https://github.com/openwrt/openwrt/truck/toolchain
-          # ls -l toolchain
           
       - name: Clone Feeds
         run: |
