@@ -124,7 +124,7 @@ jobs:
           
           ######################### mannully
           cd code/friendlywrt
-          make download -j1 V=sc
+          make download -j8
           make -j$(($(nproc) + 1)) || make -j1 V=s  
           
           ######################### 
