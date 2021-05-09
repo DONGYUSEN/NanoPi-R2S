@@ -53,10 +53,12 @@ jobs:
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
           
-          cd friendlywrt
+          cd friendlywrt/scripts
+          # rm download.pl && wget -c https://github.com/coolsnowwolf/lede/truck/scripts/download.pl
+          
           # rm -rf toolchain && svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/toolchain
-          rm -rf toolchain && svn co https://github.com/openwrt/openwrt/truck/toolchain
-          ls -l toolchain
+          # rm -rf toolchain && svn co https://github.com/openwrt/openwrt/truck/toolchain
+          # ls -l toolchain
           
       - name: Clone Feeds
         run: |
