@@ -1,4 +1,4 @@
-name: purge-r2s test
+name: FriendlyElec R2S
 #
 
 env:
@@ -66,6 +66,9 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
+          
+          rm -f .config*
+          cat ../../feeds-1907.conf > .config
 
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
