@@ -54,7 +54,8 @@ jobs:
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt		
-          ./scripts/feeds update -a		
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
           
       - name: Processing drivers
         run: |
@@ -129,7 +130,7 @@ jobs:
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
-          ./scripts/feeds install -a
+          # ./scripts/feeds install -a
 
       - name: Custom Configure Files
         run: |
