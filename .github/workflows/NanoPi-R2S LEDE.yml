@@ -68,8 +68,8 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd lede
-          # cat ../feeds-1907.conf > .config
-          make defconfig
+          #cat ../feeds-1907.conf > .config
+          #make defconfig
           make download -j4
           make -j$(($(nproc) + 1)) || make -j1 V=s
           # make -j1 
