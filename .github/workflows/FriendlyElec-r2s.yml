@@ -11,7 +11,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: '00 18 * * *'
+    - cron: '00 22 * * *'
 
 jobs:
 
