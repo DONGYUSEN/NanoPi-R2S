@@ -101,7 +101,7 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp code/out/*.img* ./artifact/
+          cp code/out/*.img.zip ./artifact/
           
           ls -lh code/out/*
           cp code/friendlywrt/.config ./artifact/config.seed.txt
