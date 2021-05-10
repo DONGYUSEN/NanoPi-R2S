@@ -72,17 +72,17 @@ jobs:
           git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
           
           #越过长城
-          #git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          #rm -rf custom/openwrt-passwall/v2ray-core
-          #rm -rf custom/openwrt-passwall/v2ray-plugin
+          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          rm -rf custom/openwrt-passwall/v2ray-core
+          rm -rf custom/openwrt-passwall/v2ray-plugin
           
           #git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           #git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
           #广告过滤
-          #git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
+          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           
           #VPN，虚拟局域网
           ### zerotier
@@ -95,31 +95,31 @@ jobs:
           #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
           
           #系统工具
-          #svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
-          #luci-app-netdata
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
+          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
+          luci-app-netdata
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           # kms服务器
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
           
           ## autoreboot
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
           
           ## luci-app-usb-printer
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer custom/luci-app-filetransfer
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer custom/luci-app-filetransfer
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs custom/luci-lib-fs
           
           ## 网络驱动
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8125 custom/r8125
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8152 custom/r8152
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
-          #svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/r8168 custom/r8168
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8821cu custom/rtl8821cu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
+          svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
           
           #necessary lib
           #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
