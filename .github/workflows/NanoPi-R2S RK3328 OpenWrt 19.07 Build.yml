@@ -130,7 +130,7 @@ jobs:
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
-          # ./scripts/feeds install -a
+          ./scripts/feeds install -a
 
       - name: Custom Configure Files
         run: |
