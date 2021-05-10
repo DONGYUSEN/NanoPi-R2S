@@ -96,7 +96,7 @@ jobs:
           
           #系统工具
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
-          luci-app-netdata
+          #luci-app-netdata
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           # kms服务器
