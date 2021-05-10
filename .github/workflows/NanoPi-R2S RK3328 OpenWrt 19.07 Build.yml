@@ -49,6 +49,9 @@ jobs:
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
           cp ../download.pl  friendlywrt/scripts/download.pl
+          cp ../bin-makefile friendlywrt/toolchain/binutils/Makefile
+          cp ../gcc-common friendlywrt/toolchain/gcc/common.mk
+          
 
       - name: Update Feeds		
         run: |		
