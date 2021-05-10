@@ -155,6 +155,8 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
+          make defconfig
+          make download -j4
            
       - name: Install UPX
         run: |
