@@ -52,6 +52,8 @@ jobs:
           repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
+          
+          rm -rf friendlyarm/toolchain && svn co https://github.com/coolsnowwolf/lede/trunk/toolchain friendlyarm/toolchain
 
       - name: Update Feeds		
         run: |		
@@ -121,6 +123,10 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
+          
+          
+          #necessary lib
+          rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           
           # UPX 可执行软件压缩
           cd ../
