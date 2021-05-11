@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -75,7 +75,7 @@ jobs:
           
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
-          echo -i '/+PACKAGE_$(PKG_NAME)_INCLUDE_Xray_plugin:xray-/d' custom/luci-app-vssr/Makefile
+          # echo -i '/+PACKAGE_$(PKG_NAME)_INCLUDE_Xray_plugin:xray-/d' custom/luci-app-vssr/Makefile
           
           #广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
