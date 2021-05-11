@@ -77,14 +77,18 @@ jobs:
           #rm -rf custom/openwrt-passwall/v2ray-core
           #rm -rf custom/openwrt-passwall/v2ray-plugin
           
-          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
-          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
+
           
-          #cd custom/openwrt-passwall
+          cd custom/
           #mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
           #mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
           # rm -rf trojan/ && svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan
-          #cd ../../
+          
+          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
+          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
+          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
+          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile        
+          cd ../
           
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
