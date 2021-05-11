@@ -72,8 +72,8 @@ jobs:
           rm -rf custom/openwrt-passwall/v2ray-core
           rm -rf custom/openwrt-passwall/v2ray-plugin
           
-          #git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          #git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
           #广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
@@ -82,17 +82,16 @@ jobs:
           
           #VPN，虚拟局域网
           ### zerotier
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
-          #svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
+          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
           
-          #花生壳内网穿透
+          #花生壳内网穿透--源代码内容不全，不支持arm64，需要补充！！！！
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel custom/luci-app-phtunnel
           #svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel custom/phtunnel
           #svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray custom/luci-app-oray
           
           #系统工具
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
-          #luci-app-netdata
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           # kms服务器
