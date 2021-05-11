@@ -69,17 +69,22 @@ jobs:
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          rm -rf custom/openwrt-passwall/v2ray-core
-          rm -rf custom/openwrt-passwall/v2ray-plugin
+          mv custom/openwrt-passwall/v2ray-core custom/
+          mv custom/openwrt-passwall/v2ray-plugin custom/
+          mv custom/openwrt-passwall/xray-core custom/
+          mv custom/openwrt-passwall/xray-plugin custom/
           
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
+          #rm -rf custom/openwrt-passwall/v2ray-core
+          #rm -rf custom/openwrt-passwall/v2ray-plugin
           
-          cd custom/openwrt-passwall
-          mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
-          mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-core/Makefile
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/openwrt-passwall/xray-plugin/Makefile
+          
+          #cd custom/openwrt-passwall
+          #mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
+          #mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
           # rm -rf trojan/ && svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan
-          cd ../../
+          #cd ../../
           
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
@@ -105,8 +110,8 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           #smart dns
-          svn co https://github.com/pymumu/smartdns/trunk/package/openwrt smartdns
-          svn co https://github.com/pymumu/luci-app-smartdns/branches/lede luci-app-smartdns
+          svn co https://github.com/pymumu/smartdns/trunk/package/openwrt custom/smartdns
+          svn co https://github.com/pymumu/luci-app-smartdns/branches/lede custom/luci-app-smartdns
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
