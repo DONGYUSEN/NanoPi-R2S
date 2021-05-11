@@ -4,26 +4,24 @@
 
 
 ## 说明
-* 管理 IP: 192.168.2.1
-* 默认管理密码: password
+* 管理 IP: 192.168.1.1
+* 默认管理密码: password 或者为空
 
-## 特色
+## NanoPi-R2S RK3328 OpenWrt 19.07特色
 * 支持 RTL8821CU/RTL8822BU/RTL8812AU 芯片的 USB WiFi 设备，已知支持列表：
-    - [COMFAST 726B](https://item.jd.com/100005336115.html)
-    - [COMFAST CF-759BF](https://item.jd.com/100008636704.html)
-    - [COMFAST CF-927BF](https://item.jd.com/100007517885.html)
 * 集成 [HelloWorld](https://github.com/jerrykuku/luci-app-vssr)
 * 集成 [Passwall](https://github.com/xiaorouji/openwrt-passwall)
 * 集成 [luci-app-adguardhome](https://github.com/rufengsuixing/luci-app-adguardhome)
-* 集成 [coolsnowwolf/packages](https://github.com/coolsnowwolf/packages), [coolsnowwolf/luci](https://github.com/coolsnowwolf/luci) 与 [coolsnowwolf/lede/package/lean](https://github.com/coolsnowwolf/lede/tree/master/package/lean)
 * 集成 [luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon)
 * 集成 [luci-app-r2sflasher](https://github.com/songchenwen/nanopi-r2s/tree/master/luci-app-r2sflasher)
 * 集成 [Smartdns](https://github.com/pymumu/smartdns) 与 luci-app-smartdns
-* 没有集成 [luci-app-oled](https://github.com/NateLol/luci-app-oled)
-* 没有集成 [luci-app-dockerman](https://github.com/lisaac/luci-app-dockerman)
+
+## FriendlyElec R2S 官方原版，重新编译，没有添加任何多余的软件。
+
+## NanoPi-R2S LEDE 官方原版，针对R2S重新编译，没有添加任何多余的软件。
 
 ## 用法
-Fork 到自己的账号下，将 `.github/workflows` 下 `.yml` 文件中的 `runs-on: self-hosted` 改成 `runs-on: ubuntu-latest`（因为我是自己的服务器上编译，更快），编辑文件 `CHANGELOG.md` 触发编译动作。
+Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 
 ## 注意
 产品发布初期，官方代码每天都在变，遇到无法编译时，请过来查看 `.yml` 与 `config` 最新异动。
