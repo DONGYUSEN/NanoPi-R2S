@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  true
+  SSH_ACTIONS:  false
   
 on:
   push:
@@ -158,6 +158,7 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
+          sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase=/luci-static/argon' package/lean/default-settings/files/zzz-default-settings
           make defconfig
           
       - name: Install UPX
