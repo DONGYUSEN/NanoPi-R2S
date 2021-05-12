@@ -63,6 +63,7 @@ jobs:
           ./scripts/feeds update -a
           
           rm -rf feeds/packages/net/shadowsocks-libev
+          rm -rf feeds/packages/net/zerotier
 
              
       - name: Processing drivers
