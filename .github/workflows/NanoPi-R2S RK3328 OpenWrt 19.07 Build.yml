@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  true
+  SSH_ACTIONS:  false
   
 on:
   push:
@@ -48,8 +48,6 @@ jobs:
           repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
           cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
-          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
-          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
           
       - name: Update Feeds		
         run: |		
@@ -64,7 +62,8 @@ jobs:
           
           rm -rf feeds/packages/net/shadowsocks-libev
           rm -rf feeds/packages/net/zerotier
-
+          chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
+          chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
              
       - name: Processing drivers
         run: |
