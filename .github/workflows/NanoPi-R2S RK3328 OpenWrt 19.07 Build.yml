@@ -62,7 +62,7 @@ jobs:
 
           ./scripts/feeds update -a
           
-          rm  feeds/packages/net/shadowsocks-libev
+          rm -rf feeds/packages/net/shadowsocks-libev
 
              
       - name: Processing drivers
