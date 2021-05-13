@@ -84,6 +84,8 @@ jobs:
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
           # sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           sed -i '/rm -f/d' feeds/packages/utils/runc/Makefile
+          sed -i 's/GO111MODULE=auto/GO111MODULE=off/' feeds/packages/utils/runc/Makefile
+          
           # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           
           
