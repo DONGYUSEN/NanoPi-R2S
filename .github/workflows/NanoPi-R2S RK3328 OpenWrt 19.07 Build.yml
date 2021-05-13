@@ -71,30 +71,21 @@ jobs:
           mv custom/openwrt-passwall/v2ray-plugin custom/
           mv custom/openwrt-passwall/xray-core custom/
           mv custom/openwrt-passwall/xray-plugin custom/
-          
-          #### patch！
-          #rm -rf custom/v2ray-core
-          #rm -rf custom/v2ray-plugin        
-          #cd custom/
-          #mkdir v2ray && cd v2ray && wget https://github.com/coolsnowwolf/lede/raw/622af09a79af119f4f719a50988b5b314f723383/package/lean/v2ray/Makefile && sed -i 's/4\.34\.0/4\.37\.2/g' Makefile && sed -i 's/b250f569cb0369f394f63184e748f1df0c90500feb8a1bf2276257c4c8b81bee/ece74b2f0e04d9cd487d1b4d79010f0269b6ee0742aaeb147979e5b97639ffa3/g' Makefile && cd ..
-          #mkdir v2ray-plugin && cd v2ray-plugin && wget https://github.com/coolsnowwolf/lede/raw/763081f891c89f86fa6de0defdbfe359fb3aec92/package/lean/v2ray-plugin/Makefile && cd ..
-          #cd ../
-          
-          
+
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
-          
-          #sed -i 's/GO111MODULE=auto/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile
-          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile   
-          
+
           # fix golang && dockce &&
           cd ../
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
+          
           # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          
           
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
