@@ -52,12 +52,6 @@ jobs:
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt
-          
-          # echo 'src-git packages https://github.com/coolsnowwolf/packages;openwrt-19.07' >  feeds.conf.default
-          # echo 'src-git luci https://github.com/coolsnowwolf/luci' >>  feeds.conf.default
-          # echo 'src-git routing https://git.openwrt.org/feed/routing.git;openwrt-19.07' >>  feeds.conf.default
-          # echo 'src-git helloworld https://github.com/fw876/helloworld' >>  feeds.conf.default
-
           ./scripts/feeds update -a
           
           rm -rf feeds/packages/net/shadowsocks-libev
@@ -78,6 +72,7 @@ jobs:
           mv custom/openwrt-passwall/v2ray-plugin custom/
           mv custom/openwrt-passwall/xray-core custom/
           mv custom/openwrt-passwall/xray-plugin custom/
+          mv custom/openwrt-passwall/shadowsocks-libev custom/
           
           #### patch！
           #rm -rf custom/v2ray-core
@@ -99,7 +94,8 @@ jobs:
           cd ../
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           
           #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
@@ -107,7 +103,7 @@ jobs:
           #rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
           #rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
           #rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-          #rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+
           cd package/
 
           
