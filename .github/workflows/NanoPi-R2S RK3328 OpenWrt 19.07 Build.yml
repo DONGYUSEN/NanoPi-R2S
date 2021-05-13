@@ -85,8 +85,8 @@ jobs:
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
-          sed -i 's/GO111MODULE=auto/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile   
+          #sed -i 's/GO111MODULE=auto/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' ../feeds/packages/utils/runc/Makefile   
           
           # fix golang && dockce &&
           cd ../
