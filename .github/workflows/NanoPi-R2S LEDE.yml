@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: '00 20 * * *'
+    - cron: '00 20 * * 6'
 
 jobs:
 
