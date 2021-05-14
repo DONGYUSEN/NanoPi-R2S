@@ -58,7 +58,7 @@ jobs:
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
              
-      - name: Processing drivers
+      - name: Install Software
         run: |
           cd code/friendlywrt/package
           
@@ -67,17 +67,17 @@ jobs:
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          ##不明原因，目录多个文件不给编译，挪出单独编译
           mv custom/openwrt-passwall/v2ray-core custom/
           mv custom/openwrt-passwall/v2ray-plugin custom/
           mv custom/openwrt-passwall/xray-core custom/
           mv custom/openwrt-passwall/xray-plugin custom/
-
+          ##修改编译参数
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
-
-          # fix golang && dockce &&
+          ##修改golang、docker-ce、containered文件及编译参数
           cd ../
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
@@ -85,23 +85,14 @@ jobs:
           rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
           rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
-          
           # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
-          
-          
+          cd package/
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
 
-
-          cd package/
-
-          
-          
-          #####
-          
+          ##### 补充翻墙vssr
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
@@ -149,10 +140,7 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
-          
-          #necessary lib
-          #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-          
+               
           # UPX 可执行软件压缩
           cd ../
           sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
@@ -164,8 +152,7 @@ jobs:
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-          
-          
+  
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
@@ -183,7 +170,7 @@ jobs:
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           make defconfig
           
-      - name: Install UPX
+      - name: Install UPX for compress
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
 
@@ -194,20 +181,10 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
-          
-          ## manully compiler
-          #cd friendlywrt   
-          #make defconfig
-          #make download -j8
-          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
-          #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
-          
-          #
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
-          
 
       - name: Fix Rootfs Owner and Group
         run: |
