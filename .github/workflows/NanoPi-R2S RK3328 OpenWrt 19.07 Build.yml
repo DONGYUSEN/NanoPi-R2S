@@ -34,12 +34,10 @@ jobs:
           sudo apt-get -y --no-install-recommends install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
           curl https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/852acb5b6511d31a450fd0a8829a0f795b3f21fd/install.sh  | sed '/#/d' | sed 's/\\//g' | sed 's/exit 0//g' | sed 's/sudo apt -y install//g' | sed 's/sudo apt-get -y install//g' | sed 's/:i386//g' | xargs sudo apt-get -y --no-install-recommends install
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
-
       - name: Install Repo
         run: |
           git clone https://github.com/friendlyarm/repo
           sudo cp repo/repo /usr/bin/
-
       - name: Download Source
         run: |
           rm -rf code
@@ -58,7 +56,7 @@ jobs:
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
              
-      - name: Install Software
+      - name: Processing drivers
         run: |
           cd code/friendlywrt/package
           
@@ -67,17 +65,15 @@ jobs:
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
-          ##不明原因，目录多个文件不给编译，挪出单独编译
           mv custom/openwrt-passwall/v2ray-core custom/
           mv custom/openwrt-passwall/v2ray-plugin custom/
           mv custom/openwrt-passwall/xray-core custom/
           mv custom/openwrt-passwall/xray-plugin custom/
-          ##修改编译参数
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
-          ##修改golang、docker-ce、containered文件及编译参数
+          # fix golang && dockce &&
           cd ../
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
@@ -87,12 +83,17 @@ jobs:
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
+          
           # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
-          cd package/
+          
+          
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
-
-          ##### 补充翻墙vssr
+          cd package/
+          
+          
+          #####
+          
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
@@ -140,24 +141,26 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
-               
+          
+          #necessary lib
+          #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
+          
           # UPX 可执行软件压缩
           cd ../
           sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
           sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
           svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/upx tools/upx
           svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/ucl tools/ucl
-
       - name: Update Target.mk
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-  
+          
+          
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
@@ -170,10 +173,9 @@ jobs:
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           make defconfig
           
-      - name: Install UPX for compress
+      - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
-
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
@@ -181,11 +183,20 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
+          
+          ## manully compiler
+          #cd friendlywrt   
+          #make defconfig
+          #make download -j8
+          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
+          #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
+          
+          #
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
-
+          
       - name: Fix Rootfs Owner and Group
         run: |
           sudo df -lh
@@ -199,18 +210,16 @@ jobs:
           sudo chown -R root:root /mnt/friendlywrt-tmp
           sudo umount /mnt/friendlywrt-tmp
           sudo losetup -d $lodev
-
+          
       - name: Assemble Artifact
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
           cp code/out/*.zip ./artifact/
-          cp code/friendlywrt/.config ./artifact/config.txt
+          cp code/friendlywrt/.config ./artifact/
           unalias cp
           mkdir ./artifact/package && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
-          # && zip -jr artifact/R2S-Package-$(date +%Y-%m-%d).zip artifact/package/*
-          # mkdir ./artifact/kmod && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ko") ./artifact/kmod/ && zip -jr artifact/R2S-Kmod-$(date +%Y-%m-%d).zip artifact/kmod/*
-
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
