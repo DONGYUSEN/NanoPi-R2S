@@ -227,11 +227,15 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp code/out/*.* ./artifact/
-          cp code/friendlywrt/.config ./artifact/
+          cp code/out/*.zip ./artifact/
+          cp code/friendlywrt/.config ./artifact/config.txt 
+          mkdir ./artifact/package && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
+          ## && zip -jr artifact/R2S-Package-$(date +%Y-%m-%d).zip artifact/package/*
+          mkdir ./artifact/kmod && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ko") ./artifact/kmod/ 
+          ## && zip -jr artifact/R2S-Kmod-$(date +%Y-%m-%d).zip artifact/kmod/*
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R2S RK3328 v19.07 make build.sh
+          name: FriendlyWrt_NanoPi-R2S RK3328 v19.07
           path: ./artifact/
