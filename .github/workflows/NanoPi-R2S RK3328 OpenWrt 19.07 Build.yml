@@ -217,7 +217,7 @@ jobs:
           mkdir -p ./artifact/
           cp code/out/*.zip ./artifact/
           cp code/friendlywrt/.config ./artifact/
-          unalias cp
+          
           mkdir ./artifact/package && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
           
       - name: Upload Artifact
