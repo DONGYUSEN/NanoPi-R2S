@@ -218,7 +218,7 @@ jobs:
           cp code/out/*.zip ./artifact/
           cp code/friendlywrt/.config ./artifact/
           
-          mkdir ./artifact/package && cp -rf $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
+          mkdir ./artifact/package && mv $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
