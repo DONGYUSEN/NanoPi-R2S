@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -176,6 +176,7 @@ jobs:
       - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
+          
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
