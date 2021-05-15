@@ -217,8 +217,12 @@ jobs:
           mkdir -p ./artifact/
           cp code/out/*.zip ./artifact/
           cp code/friendlywrt/.config ./artifact/
+          tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
+          cd ./artifact/
+          md5 *img* > md5.txt
+          md5 packages.tar.gz >> md5.txt
           
-          mkdir ./artifact/package && mv $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
+          #mkdir ./artifact/package && mv $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
