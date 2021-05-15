@@ -217,9 +217,9 @@ jobs:
           rm -rf ./artifact/
           mkdir -p ./artifact/
           cp code/out/*.zip ./artifact/
-          cp code/friendlywrt/.config ./artifact/
+          cp code/friendlywrt/.config ./artifact/config.txt
           tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
-          cd ./artifact/
+          #cd ./artifact/
           #md5 *img* > md5.txt
           #md5 packages.tar.gz >> md5.txt
           
