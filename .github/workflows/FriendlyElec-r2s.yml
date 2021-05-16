@@ -8,8 +8,8 @@ on:
   push:
     paths:
       - 'FriendlyElec-r2s.yml'
-  #watch:
-  #  types: started
+  watch:
+    types: started
   schedule:
     - cron: '0 12 * * 5'
   release:
