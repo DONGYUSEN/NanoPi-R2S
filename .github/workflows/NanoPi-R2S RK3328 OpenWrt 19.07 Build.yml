@@ -66,7 +66,7 @@ jobs:
           cd code/friendlywrt/package
           
           #漂亮的主题
-          git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
+          git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
           
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
