@@ -21,8 +21,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@master
-        with:
-          ref: master
+        #with:
+        #  ref: master
 
       - name: Initialize Environment
         env:
