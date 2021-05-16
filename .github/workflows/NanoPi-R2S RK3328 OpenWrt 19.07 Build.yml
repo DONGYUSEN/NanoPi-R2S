@@ -21,8 +21,9 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
         with:
+          repository: DONGYUSEN/NanoPi-R2S
           ref: master
 
       - name: Initialize Environment
