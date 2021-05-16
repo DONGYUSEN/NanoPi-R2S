@@ -90,11 +90,11 @@ jobs:
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
           
           #修改luci
-          rm -rf feeds/luci/modules/luci-mod-admin-full && svn co https://github.com/coolsnowwolf/luci/trunk/modules/luci-mod-admin-full  feeds/luci/modules/luci-mod-admin-full
-          sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          sed -i 's/pcdata(boardinfo.system or "?")/"R2S-ARMv8-2021"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+          #rm -rf feeds/luci/modules/luci-mod-admin-full && svn co https://github.com/coolsnowwolf/luci/trunk/modules/luci-mod-admin-full  feeds/luci/modules/luci-mod-admin-full
+          #sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+          #sed -i 's/pcdata(boardinfo.system or "?")/"R2S-ARMv8-2021"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
           
-          # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          #sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           
           
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
