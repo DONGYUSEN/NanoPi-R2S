@@ -107,6 +107,7 @@ jobs:
           
           ls -lh code/out/*
           cp code/friendlywrt/.config ./artifact/config.seed.txt
+          tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
