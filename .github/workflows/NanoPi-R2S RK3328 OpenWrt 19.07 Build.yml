@@ -53,7 +53,6 @@ jobs:
           #sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
           #sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default
           #有些冲突
-          #
           
           ./scripts/feeds update -a
           
@@ -67,7 +66,7 @@ jobs:
           
           #漂亮的主题
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
-          
+
           #越过长城
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           mv custom/openwrt-passwall/v2ray-core custom/
@@ -78,7 +77,8 @@ jobs:
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
-          # fix golang && dockce &&
+          
+          # 修改 golang && dockce &&
           cd ../
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
@@ -88,6 +88,11 @@ jobs:
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
+          
+          #修改luci
+          rm -rf feeds/luci/modules/luci-mod-admin-full && svn co https://github.com/coolsnowwolf/luci/trunk/modules/luci-mod-admin-full  feeds/luci/modules/luci-mod-admin-full
+          sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+          sed -i 's/pcdata(boardinfo.system or "?")/"R2S-ARMv8-2021"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
           
           # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           
