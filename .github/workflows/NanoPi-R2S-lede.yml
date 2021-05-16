@@ -100,7 +100,7 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
           
           #花生壳内网穿透--源代码内容不全，测试
-          svn co https://github.com/DONGYUSEN/phtunnel.git
+          # svn co https://github.com/DONGYUSEN/phtunnel.git
 
           #系统工具
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
