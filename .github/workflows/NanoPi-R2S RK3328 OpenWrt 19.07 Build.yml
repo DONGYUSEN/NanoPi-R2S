@@ -19,10 +19,10 @@ jobs:
 
     steps:
 
-      #- name: Checkout
-      #  uses: actions/checkout@master
-      #  with:
-      #    ref: master
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          ref: master
 
       - name: Initialize Environment
         env:
