@@ -1,4 +1,4 @@
-name: NanoPi-R2S LEDE
+name: NanoPi-R2S by LEDE
 
 env:
   SSH_ACTIONS:  false
@@ -86,5 +86,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: NanoPi-R2S LEDE
+          name: NanoPi-R2S by LEDE
           path: ./artifact/
