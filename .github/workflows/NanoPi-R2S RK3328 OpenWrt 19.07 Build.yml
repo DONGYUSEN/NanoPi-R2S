@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -182,6 +182,10 @@ jobs:
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           make defconfig
+          
+          cp ../../scripts/cpuinfo.sh staging_dir/host/bin/cpuinfo && chmod +x staging_dir/host/bin/cpuinfo
+          cp ../../scripts/ipv6-helper.sh staging_dir/host/bin/ipv6-helper.sh && chmod +x staging_dir/host/bin/ipv6-helper.sh
+          cp ../../scripts/init-setting.sh  staging_dir/host/etc/uci-defaults/99-init-settings && chmod +x staging_dir/host/etc/uci-defaults/99-init-settings          
           
       - name: Install UPX
         run: |
