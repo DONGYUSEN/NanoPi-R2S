@@ -18,5 +18,9 @@ sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 
 # Add execute permission for ipv6-helper
 chmod +x /bin/ipv6-helper
+chmod +x /bin/cpuinfo
+
+sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' /usr/lib/lua/luci/view/admin_status/index.htm
+sed -i 's/pcdata(boardinfo.system or "?")/"R2S ARMv8 2021"/' /usr/lib/lua/luci/view/admin_status/index.htm
 
 exit 0
