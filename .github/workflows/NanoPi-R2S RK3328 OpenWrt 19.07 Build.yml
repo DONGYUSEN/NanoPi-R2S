@@ -228,9 +228,9 @@ jobs:
           sudo chown -R root:root /mnt/friendlywrt-tmp
           
           # copy some scripts
-          cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
-          cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
-          cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings   && chmod +x /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings    
+          sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
+          sudo cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && sudo chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
+          sudo cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings   && sudo chmod +x /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings    
           # cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/init.d/99-init-settings   && chmod +x /mnt/friendlywrt-tmp/etc/init.d/99-init-settings         
           
           sudo umount /mnt/friendlywrt-tmp
