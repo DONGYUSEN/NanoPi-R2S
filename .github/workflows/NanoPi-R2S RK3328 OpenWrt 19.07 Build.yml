@@ -198,7 +198,7 @@ jobs:
 
       - name: Fix Rootfs Owner and Group
         run: |
-          sudo df -lh
+          
           lodev=$(sudo losetup -f)
           echo "found unused loop dev $lodev"
           sudo losetup -o 100663296 $lodev code/out/*.img
@@ -207,6 +207,8 @@ jobs:
           sudo mkdir -p /mnt/friendlywrt-tmp
           sudo mount $lodev /mnt/friendlywrt-tmp
           sudo chown -R root:root /mnt/friendlywrt-tmp
+          
+          sudo df -lh
           
           # Copy Some Scripts
           sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
@@ -224,12 +226,14 @@ jobs:
           mkdir -p ./artifact/
           
           cd code/out
-          tar -czvf ./artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          tar -czvf FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          cp FriendlyWrt_NanoPi-R2S.img.tar.gz ../../artifact/
           cd ../../          
-          # cp code/out/*.zip ./artifact/
+          cp code/out/*.zip ./artifact/
 
           cp code/friendlywrt/.config ./artifact/config.txt
           cd ./code/friendlywrt/bin/targets/rockchip-rk3328/generic
+          
           tar -czvf ./artifact/packages.tar.gz packages/
           
       - name: Upload Artifact
