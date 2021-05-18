@@ -233,9 +233,11 @@ jobs:
           cp code/out/*.zip ./artifact/
 
           cp code/friendlywrt/.config ./artifact/config.txt
-          cd ./code/friendlywrt/bin/targets/rockchip-rk3328/generic
           
-          tar -czvf ./artifact/packages.tar.gz packages/
+          cd ./code/friendlywrt/bin/targets/rockchip-rk3328/generic
+          tar -czvf packages.tar.gz packages/
+          cd ../../../../../../
+          cp ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages.tar.gz ./artifact/
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
