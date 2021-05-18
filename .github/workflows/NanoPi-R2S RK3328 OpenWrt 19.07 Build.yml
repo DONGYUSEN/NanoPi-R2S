@@ -1,7 +1,7 @@
 name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  false
+  SSH_ACTIONS:  true
   
 on:
   push:
@@ -88,19 +88,12 @@ jobs:
           rm -rf feeds/packages/utils/libnetwork && svn export https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
-          
-          #修改luci
-          #rm -rf feeds/luci/modules/luci-mod-admin-full && svn co https://github.com/coolsnowwolf/luci/trunk/modules/luci-mod-admin-full  feeds/luci/modules/luci-mod-admin-full
-          #sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          #sed -i 's/pcdata(boardinfo.system or "?")/"R2S-ARMv8-2021"/' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-          
-          #sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
-          
-          
-          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
+          sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           cd package/
           
+          #####
+          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
           
           #####
           
@@ -176,19 +169,17 @@ jobs:
           rm -f code/friendlywrt/.config*
           cat feeds-1907.conf > code/friendlywrt/.config
           cp feeds-1907.conf code/configs/config_rk3328
+
+      - name: SSH连接
+        uses: DONGYUSEN/debugger-action@master
+        if: env.SSH_ACTIONS == 'true'
         
       - name: Set Default Values
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           make defconfig
-          
-          cp ../../scripts/cpuinfo.sh staging_dir/host/bin/cpuinfo && chmod +x staging_dir/host/bin/cpuinfo
-          cp ../../scripts/ipv6-helper.sh staging_dir/host/bin/ipv6-helper.sh && chmod +x staging_dir/host/bin/ipv6-helper.sh
-          # cp ../../scripts/init-setting.sh  staging_dir/host/etc/uci-defaults/99-init-settings   && chmod +x staging_dir/host/etc/uci-defaults/99-init-settings    
-          # cp ../../scripts/init-setting.sh  staging_dir/host/etc/init.d/99-init-settings   && chmod +x staging_dir/host/etc/init.d/99-init-settings 
-          cp ../../scripts/init-setting.sh  staging_dir/host/bin/99-init-settings   && chmod +x staging_dir/host/bin/99-init-settings 
-          
+       
       - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
@@ -197,24 +188,11 @@ jobs:
       - name: Build OpenWrt
         run: |
           cd code
-          
-          ## manully compiler
-          #cd friendlywrt   
-          #make defconfig
-          #make download -j8
-          #make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1))  V=s
-          #time make V=s VERBOSE=1 -j$(nproc) JOBS=$(nproc) 2>&1 | tee build.log | egrep -i '(warn|error)'
-          
-          #
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
-          
-      - name: SSH连接
-        uses: DONGYUSEN/debugger-action@master
-        if: env.SSH_ACTIONS == 'true'
-        
+
       - name: Fix Rootfs Owner and Group
         run: |
           sudo df -lh
@@ -227,11 +205,12 @@ jobs:
           sudo mount $lodev /mnt/friendlywrt-tmp
           sudo chown -R root:root /mnt/friendlywrt-tmp
           
-          # copy some scripts
+          # Copy Some Scripts
           sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
           sudo cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && sudo chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
           sudo cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings   && sudo chmod +x /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings    
-          # cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/init.d/99-init-settings   && chmod +x /mnt/friendlywrt-tmp/etc/init.d/99-init-settings         
+          sudo sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' /mnt/friendlywrt-tmp/usr/lib/lua/luci/view/admin_status/index.htm
+          sudo sed -i 's/pcdata(boardinfo.system or "?")/"R2S ARMv8 2021"/' /mnt/friendlywrt-tmp/usr/lib/lua/luci/view/admin_status/index.htm
           
           sudo umount /mnt/friendlywrt-tmp
           sudo losetup -d $lodev
@@ -240,14 +219,15 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp code/out/*.zip ./artifact/
-          cp code/friendlywrt/.config ./artifact/config.txt
-          tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
-          #cd ./artifact/
-          #md5 *img* > md5.txt
-          #md5 packages.tar.gz >> md5.txt
           
-          #mkdir ./artifact/package && mv $(find ./code/friendlywrt/ -type f -name "*.ipk") ./artifact/package/ 
+          cd code/out
+          tar -czvf ./artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          cd ../../          
+          # cp code/out/*.zip ./artifact/
+
+          cp code/friendlywrt/.config ./artifact/config.txt
+          cd ./code/friendlywrt/bin/targets/rockchip-rk3328/generic
+          tar -czvf ./artifact/packages.tar.gz packages/
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
