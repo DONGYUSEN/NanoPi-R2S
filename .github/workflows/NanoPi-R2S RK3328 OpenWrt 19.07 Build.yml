@@ -227,8 +227,9 @@ jobs:
           
           cd code/out
           tar -czvf FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
-          cp FriendlyWrt_NanoPi-R2S.img.tar.gz ../../artifact/
-          cd ../../          
+          cd ../../
+          cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
+              
           cp code/out/*.zip ./artifact/
 
           cp code/friendlywrt/.config ./artifact/config.txt
