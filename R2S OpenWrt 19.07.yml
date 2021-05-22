@@ -1,4 +1,4 @@
-name: NanoPi-R2S RK3328 OpenWrt 19.07 Build
+name: R2S OpenWrt 19.07 without docker
 
 env:
   SSH_ACTIONS:  false
@@ -240,5 +240,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R2S RK3328 v19.07
+          name: FriendlyWrt_R2S v19.07 no Docker
           path: ./artifact/
