@@ -20,8 +20,6 @@
 
 ## FriendlyElec R2S 官方原版，重新编译，没有添加任何多余的软件。
 
-## NanoPi-R2S LEDE 官方原版，针对R2S重新编译，没有添加任何多余的软件。
-
 ## 用法
 Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 
