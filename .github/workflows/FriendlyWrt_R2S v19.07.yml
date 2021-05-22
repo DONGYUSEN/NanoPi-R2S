@@ -130,8 +130,9 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
           
-          ## autoreboot
+          ## autoreboot && autocore
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore custom/autocore
           
           ## luci-app-usb-printer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
