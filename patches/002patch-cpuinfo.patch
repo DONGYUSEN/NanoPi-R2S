@@ -51,7 +51,7 @@ index 35b85d4..3cf2264 100644
 +			local sys = require "luci.sys"
 +			local cpubench = {}
 +
-+			cpubench.cpubench = sys.exec("cat /etc/bench.log 2>/dev/null")
++			cpubench.cpubench = 'Good'
 +			return cpubench
 +		end
 +	},
@@ -124,7 +124,7 @@ index 942b2dd..16aa1d2 100644
 -			_('Model'),            boardinfo.model,
 -			_('Architecture'),     boardinfo.system,
 -			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
-+			_('Model'),            "Rockchip RK3328: 4 Processors " + cpubench.cpubench,
++			_('Model'),            "Rockchip RK3328: 4 Processors ",
 +			_('CPU Info'),         cpuinfo.cpuinfo,
 +			_('Architecture'),     'ARMv8 / Cortex-A53,64-bit',
 +			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
