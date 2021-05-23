@@ -1,7 +1,7 @@
 name: NanoPi-R2S OpenWrt 19.07 Build
 
 env:
-  SSH_ACTIONS:  true
+  SSH_ACTIONS:  false
   
 on:
   push:
@@ -179,7 +179,7 @@ jobs:
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           sed -i 's/timezone='UTC'/timezone='CST-8'/' package/base-files/files/bin/config_generate
           cp ../../patches/002patch-cpuinfo.patch 002patch-cpuinfo.patch
-          # patch -p0 <  002patch-cpuinfo.patch
+          patch -p0 <  002patch-cpuinfo.patch
           
           make defconfig
        
