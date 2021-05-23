@@ -49,13 +49,8 @@ jobs:
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt
-          
-          #sed -i 's/^src-git luci.*/src-git luci https:\/\/github.com\/coolsnowwolf\/luci/' feeds.conf.default
-          #sed -i 's/^src-git packages.*/src-git packages https:\/\/github.com\/coolsnowwolf\/packages;openwrt-19.07/' feeds.conf.default
-          #有些冲突
-          
           ./scripts/feeds update -a
-          
+
           rm -rf feeds/packages/net/zerotier
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
           chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
@@ -182,6 +177,7 @@ jobs:
         run: |
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
+          sed -i 's/timezone='UTC'/timezone='CST-8'/' package/base-files/files/bin/config_generate
           make defconfig
        
       - name: Install UPX
@@ -214,13 +210,9 @@ jobs:
           # Copy Some Scripts
           sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
           sudo cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && sudo chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
-          sudo cp ./scripts/init-setting.sh  /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings   && sudo chmod +x /mnt/friendlywrt-tmp/etc/uci-defaults/99-init-settings    
           sudo cp ./scripts/FCN_V3.9_Linux.zip /mnt/friendlywrt-tmp/root
-          
-          # 这些修改luci的代码已经失效了
-          sudo sed -i '/Load Average/i\\t\t<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("cut -c1-2 /sys/class/thermal/thermal_zone0/temp")%><span>&#8451;</span></td></tr>' /mnt/friendlywrt-tmp/usr/lib/lua/luci/view/admin_status/index.htm
-          sudo sed -i 's/pcdata(boardinfo.system or "?")/"R2S ARMv8 2021"/' /mnt/friendlywrt-tmp/usr/lib/lua/luci/view/admin_status/index.htm
-          
+          sed -i 's/_('Architecture'),boardinfo.system/'_('Architecture'),ARMv8 Cortex-A53,64-bit'/'  /mnt/friendlywrt-tmp/www/luci-static/resources/view/status/include/10_system.js
+
           sudo umount /mnt/friendlywrt-tmp
           sudo losetup -d $lodev
           
