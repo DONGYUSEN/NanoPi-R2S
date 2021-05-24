@@ -1,6 +1,6 @@
 --- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 +++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
-@@ -115,6 +115,18 @@ local methods = {
+@@ -115,5 +115,17 @@
  		end
  	},
  
@@ -8,13 +8,10 @@
 +		call = function()
 +			local sys = require "luci.sys"
 +			local cpuinfo = {}
-+
 +			cpuinfo.cpuinfo = sys.exec("/bin/cpuinfo")
-+
 +			if (cpuinfo.cpuinfo == nil) or (cpuinfo.cpuinfo == "") then
 +				cpuinfo.cpuinfo = "ARMv8 Cortex-A53 / Rockchip RK3328 / 4 Processors"
 +			end
-+
 +			return cpuinfo
 +		end
 +	},
@@ -38,9 +35,9 @@
  	method: 'info'
  });
  
-+var callCPUBench = rpc.declare({
++var callCPUInfo = rpc.declare({
 +	object: 'luci',
-+	method: 'getCPUBench'
++	method: 'getCPUInfo'
 +});
  return baseclass.extend({
  	title: _('System'),
@@ -58,7 +55,7 @@
  		var boardinfo   = data[0],
  		    systeminfo  = data[1],
 -		    luciversion = data[2];
-+		    cpubench    = data[2],
++		    cpuinfo     = data[2],
 +		    luciversion = data[3];
  
  		luciversion = luciversion.filter(function(l) {
