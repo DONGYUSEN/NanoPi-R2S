@@ -17,7 +17,7 @@ diff --git a/feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci b/feeds/luc
 index 35b85d4..3cf2264 100644
 --- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 +++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
-@@ -115,6 +115,41 @@ local methods = {
+@@ -115,6 +115,18 @@ local methods = {
  		end
  	},
  
@@ -36,26 +36,6 @@ index 35b85d4..3cf2264 100644
 +		end
 +	},
 +
-+	getCPUUsage = {
-+		call = function()
-+			local sys = require "luci.sys"
-+			local cpuusage = {}
-+
-+			cpuusage.cpuusage = (sys.exec("expr 100 - $(top -n 1 | grep 'CPU:' | awk -F '%' '{print$4}' | awk -F ' ' '{print$2}')") or "2.33") .. "%"
-+			return cpuusage
-+		end
-+	},
-+
-+	getCPUBench = {
-+		call = function()
-+			local sys = require "luci.sys"
-+			local cpubench = {}
-+
-+			cpubench.cpubench = "Good"
-+			return cpubench
-+		end
-+	},
-+
  	getUSBDevices = {
  		call = function()
  			local fs     = require "nixio.fs"
@@ -68,7 +48,7 @@ index 8b8481b..d555a88 100644
  				"file": [ "list", "read", "stat" ],
  				"iwinfo": [ "assoclist", "freqlist", "txpowerlist", "countrylist" ],
 -				"luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getUSBDevices", "getSwconfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints" ],
-+				"luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getCPUBench", "getCPUUsage", "getCPUInfo", "getUSBDevices", "getSwconfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints" ],
++				"luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getCPUInfo", "getUSBDevices", "getSwconfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints" ],
  				"luci-rpc": [ "getBoardJSON", "getDHCPLeases", "getDSLStatus", "getDUIDHints", "getHostHints", "getNetworkDevices", "getWirelessDevices" ],
  				"network.interface": [ "dump" ],
  				"network.rrdns": [ "lookup" ],
@@ -76,7 +56,7 @@ diff --git a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/vie
 index 942b2dd..16aa1d2 100644
 --- feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 +++ feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-@@ -13,6 +13,18 @@ var callSystemInfo = rpc.declare({
+@@ -13,6 +13,10 @@ var callSystemInfo = rpc.declare({
  	method: 'info'
  });
  
@@ -84,62 +64,37 @@ index 942b2dd..16aa1d2 100644
 +	object: 'luci',
 +	method: 'getCPUBench'
 +});
-+var callCPUInfo = rpc.declare({
-+	object: 'luci',
-+	method: 'getCPUInfo'
-+});
-+var callCPUUsage = rpc.declare({
-+	object: 'luci',
-+	method: 'getCPUUsage'
-+});
  return baseclass.extend({
  	title: _('System'),
  
-@@ -20,6 +32,9 @@ return baseclass.extend({
+@@ -20,6 +24,7 @@ return baseclass.extend({
  		return Promise.all([
  			L.resolveDefault(callSystemBoard(), {}),
  			L.resolveDefault(callSystemInfo(), {}),
-+			L.resolveDefault(callCPUBench(), {}),
 +			L.resolveDefault(callCPUInfo(), {}),
-+			L.resolveDefault(callCPUUsage(), {}),
  			fs.lines('/usr/lib/lua/luci/version.lua')
  		]);
  	},
-@@ -27,7 +42,10 @@ return baseclass.extend({
+@@ -27,7 +32,8 @@ return baseclass.extend({
  	render: function(data) {
  		var boardinfo   = data[0],
  		    systeminfo  = data[1],
 -		    luciversion = data[2];
 +		    cpubench    = data[2],
-+		    cpuinfo     = data[3],
-+		    cpuusage    = data[4],
-+		    luciversion = data[5];
++		    luciversion = data[3];
  
  		luciversion = luciversion.filter(function(l) {
  			return l.match(/^\s*(luciname|luciversion)\s*=/);
-@@ -52,9 +70,10 @@ return baseclass.extend({
+@@ -52,9 +58,9 @@ return baseclass.extend({
  
  		var fields = [
  			_('Hostname'),         boardinfo.hostname,
--			_('Model'),            boardinfo.model,
+ 			_('Model'),            boardinfo.model,
 -			_('Architecture'),     boardinfo.system,
--			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
-+			_('Model'),            "Rockchip RK3328: 4 Processors ",
-+			_('CPU Info'),         cpuinfo.cpuinfo,
-+			_('Architecture'),     'ARMv8 / Cortex-A53,64-bit',
-+			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' built from Mr.D',
++			_('Architecture'),     cpuinfo.cpuinfo,
+ 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' built from Mr.D',
  			_('Kernel Version'),   boardinfo.kernel,
  			_('Local Time'),       datestr,
  			_('Uptime'),           systeminfo.uptime ? '%t'.format(systeminfo.uptime) : null,
-@@ -62,7 +81,8 @@ return baseclass.extend({
- 				systeminfo.load[0] / 65535.0,
- 				systeminfo.load[1] / 65535.0,
- 				systeminfo.load[2] / 65535.0
--			) : null
-+			) : null,
-+			_('CPU usage (%)'),    cpuusage.cpuusage
- 		];
- 
- 		var table = E('div', { 'class': 'table' });
 -- 
 2.14.1.windows.1
