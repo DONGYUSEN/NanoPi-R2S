@@ -15,8 +15,8 @@ Signed-off-by: kongfl888 <kongfl888@outlook.com>
 
 diff --git a/feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci b/feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 index 35b85d4..3cf2264 100644
---- a/feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
-+++ b/feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
+--- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
++++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 @@ -115,6 +115,41 @@ local methods = {
  		end
  	},
@@ -61,8 +61,8 @@ index 35b85d4..3cf2264 100644
  			local fs     = require "nixio.fs"
 diff --git a/feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json b/feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 index 8b8481b..d555a88 100644
---- a/feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
-+++ b/feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
+--- feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
++++ feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 @@ -62,7 +62,7 @@
  			"ubus": {
  				"file": [ "list", "read", "stat" ],
@@ -74,8 +74,8 @@ index 8b8481b..d555a88 100644
  				"network.rrdns": [ "lookup" ],
 diff --git a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 index 942b2dd..16aa1d2 100644
---- a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-+++ b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+--- feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
++++ feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 @@ -13,6 +13,18 @@ var callSystemInfo = rpc.declare({
  	method: 'info'
  });
