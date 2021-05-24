@@ -16,7 +16,7 @@
 +		end
 +	},
 +
- 	getUSBDevices = {
+ getUSBDevices = {
  		call = function()
 --- feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 +++ feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
@@ -60,13 +60,12 @@
  
  		luciversion = luciversion.filter(function(l) {
  			return l.match(/^\s*(luciname|luciversion)\s*=/);
-@@ -52,9 +58,9 @@ return baseclass.extend({
- 
+@@ -53,7 +59,7 @@
  		var fields = [
  			_('Hostname'),         boardinfo.hostname,
  			_('Model'),            boardinfo.model,
 -			_('Architecture'),     boardinfo.system,
 +			_('Architecture'),     cpuinfo.cpuinfo,
- 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || '') + ' built from Mr.D',
+ 			_('Firmware Version'), (L.isObject(boardinfo.release) ? boardinfo.release.description + ' / ' : '') + (luciversion || ''),
  			_('Kernel Version'),   boardinfo.kernel,
  			_('Local Time'),       datestr,
