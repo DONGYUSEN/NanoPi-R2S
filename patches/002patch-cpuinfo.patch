@@ -1,8 +1,8 @@
 --- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 +++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 @@ -115,5 +115,17 @@
-                end
-        },
+ 		end
+ 	},
 
 +	getCPUInfo = {
 +		call = function()
@@ -16,8 +16,8 @@
 +		end
 +	},
 +
-        getUSBDevices = {
-                call = function()
+ 	getUSBDevices = {
+ 		call = function()
 --- feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 +++ feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 @@ -62,7 +62,7 @@
