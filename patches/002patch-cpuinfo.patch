@@ -1,5 +1,5 @@
---- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci     2021-05-24 02:59:35.540022129 +0000
-+++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci     2021-05-24 03:11:54.294294287 +0000
+--- feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
++++ feeds/luci/modules/luci-base/root/usr/libexec/rpcd/luci
 @@ -37,6 +37,18 @@
                 end
         },
@@ -19,23 +19,19 @@
         getLocaltime = {
                 call = function(args)
                         return { result = os.time() }
-
---- feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json       2021-05-24 02:59:35.544022150 +0000
-+++ feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json       2021-05-24 03:14:14.510930278 +0000
+--- feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
++++ feeds/luci/modules/luci-base/root/usr/share/rpcd/acl.d/luci-base.json
 @@ -62,7 +62,7 @@
                         "ubus": {
                                 "file": [ "list", "read", "stat" ],
                                 "iwinfo": [ "assoclist", "freqlist", "txpowerlist", "countrylist" ],
--                               "luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getUSBDevices", "getSwco
-nfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints" ],
-+                               "luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getUSBDevices", "getSwco
-nfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints", "getCPUInfo" ],
+-                               "luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getUSBDevices", "getSwconfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints" ],
++                               "luci": [ "getConntrackList", "getInitList", "getLocaltime", "getProcessList", "getRealtimeStats", "getTimezones", "getLEDs", "getUSBDevices", "getSwconfigFeatures", "getSwconfigPortState", "getBlockDevices", "getMountPoints", "getCPUInfo" ],
                                 "luci-rpc": [ "getBoardJSON", "getDHCPLeases", "getDSLStatus", "getDUIDHints", "getHostHints", "getNetworkDevices", "getWirelessDevices" ],
                                 "network.interface": [ "dump" ],
-                                "network.rrdns": [ "lookup" ], 
-
---- feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js    2021-05-24 02:59:35.544022150 +0000
-+++ feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js    2021-05-24 03:21:50.320818270 +0000
+                                "network.rrdns": [ "lookup" ],
+--- feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
++++ feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 @@ -13,6 +13,11 @@
         method: 'info'
  });
