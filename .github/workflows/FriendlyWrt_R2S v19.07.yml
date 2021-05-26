@@ -178,9 +178,9 @@ jobs:
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           sed -i 's/timezone='UTC'/timezone='CST-8'/' package/base-files/files/bin/config_generate
-          patch -p1 <  ../../newpatches/luci/0004-luci-mod-status-add-realtime-CPU-information-display.patch 
-          #cp ../../patches/002patch-cpuinfo.patch 002patch-cpuinfo.patch
-          #patch -p0 <  002patch-cpuinfo.patch
+          # patch -p1 <  ../../newpatches/luci/0004-luci-mod-status-add-realtime-CPU-information-display.patch 
+          cp ../../patches/002patch-cpuinfo.patch 002patch-cpuinfo.patch
+          patch -p0 <  002patch-cpuinfo.patch
 
           make defconfig
           
