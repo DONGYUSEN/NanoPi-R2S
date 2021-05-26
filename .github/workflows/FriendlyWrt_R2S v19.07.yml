@@ -63,6 +63,8 @@ jobs:
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
 
           #越过长城
+          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           mv custom/openwrt-passwall/v2ray-core custom/
           mv custom/openwrt-passwall/v2ray-plugin custom/
@@ -168,7 +170,19 @@ jobs:
           rm -f code/friendlywrt/.config*
           cat feeds-1907.conf > code/friendlywrt/.config
           cp feeds-1907.conf code/configs/config_rk3328
-
+          
+      - name: Install Clash Binaries
+        run: |
+          cd code/friendlywrt/package/base-files/files
+          mkdir -p etc/openclash/core
+          # for updates, go to: https://github.com/Dreamacro/clash/releases
+          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.6.0/clash-linux-armv8-v1.6.0.gz | gunzip -c > etc/openclash/core/clash
+          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
+          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2021.04.08.gz | gunzip -c > etc/openclash/core/clash_tun
+          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN
+          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv8.tar.gz | tar xOvz > etc/openclash/core/clash_game
+          chmod +x etc/openclash/core/clash*
+          
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
