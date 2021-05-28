@@ -63,8 +63,9 @@ jobs:
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
 
           #越过长城
-          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           
+          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           mv custom/openwrt-passwall/v2ray-core custom/
           mv custom/openwrt-passwall/v2ray-plugin custom/
@@ -96,7 +97,6 @@ jobs:
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
           
           #####
-          
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           
