@@ -123,7 +123,7 @@ jobs:
           
           #smart dns
           svn co https://github.com/pymumu/smartdns/trunk/package/openwrt custom/smartdns
-          git clone https://github.com/pymumu/luci-app-smartdns.git custom/luci-app-smartdns
+          git clone https://github.com/pymumu/luci-app-smartdns.git luci-app-smartdns
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
