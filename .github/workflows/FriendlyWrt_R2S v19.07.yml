@@ -259,7 +259,7 @@ jobs:
           cd ../../../../
           cp ./code/friendlywrt/staging_dir/packages/packages.tar.gz ./artifact/
           cd ./artifact/
-          md5sun packages.tar.gz > packages.tar.gz.md5.txt
+          md5sum packages.tar.gz > packages.tar.gz.md5.txt
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
