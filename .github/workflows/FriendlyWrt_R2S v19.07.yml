@@ -122,7 +122,7 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           #smart dns
-          git clone https://github.com/pymumu/openwrt-smartdns.git custom/smartdns
+          svn co https://github.com/pymumu/smartdns/trunk/package/openwrt custom/smartdns
           git clone https://github.com/pymumu/luci-app-smartdns.git custom/luci-app-smartdns
           
           # kms服务器
