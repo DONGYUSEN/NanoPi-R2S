@@ -247,19 +247,21 @@ jobs:
           cd ../../
           cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
           md5sum code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz > ./artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz.md5.txt
-          # find ./ -name *.ipk > ./artifact/ipkfiles.txt
+          find -L ./ -name *.ipk > ./artifact/ipkfiles.txt
           
           # 只保留tar.gz
           # cp code/out/*.zip ./artifact/
 
           cp code/friendlywrt/.config ./artifact/config.txt
           
-          cd ./code/friendlywrt/staging_dir/packages/
-          tar -czvf packages.tar.gz rockchip-rk3328/
-          cd ../../../../
-          cp ./code/friendlywrt/staging_dir/packages/packages.tar.gz ./artifact/
-          cd ./artifact/
-          md5sum packages.tar.gz > packages.tar.gz.md5.txt
+          # cd ./code/friendlywrt/staging_dir/packages/
+          # tar -czvf packages.tar.gz rockchip-rk3328/
+          # cd ../../../../
+          # cp ./code/friendlywrt/staging_dir/packages/packages.tar.gz ./artifact/
+          # cd ./artifact/
+          # md5sum packages.tar.gz > packages.tar.gz.md5.txt
+          
+           
           
       - name: Upload Artifact
         uses: actions/upload-artifact@master
