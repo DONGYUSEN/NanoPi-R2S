@@ -246,7 +246,7 @@ jobs:
           tar -czvf FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
           cd ../../
           cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
-          md5sum code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz > ./artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz.md5.txt
+          md5sum code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz > ./artifact/md5.txt
           find ./ -name *.ipk > ./artifact/ipkfiles.txt
           
           # 只保留tar.gz
@@ -265,13 +265,12 @@ jobs:
           
           cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk ./artifact/package
           cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk   ./artifact/package
-          cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-19.07.5-rockchip-rk3328.Linux-x86_64/packages/*.ipk    ./artifact/package
-          # tar -czvf packages.tar.gz ./artifact/package/*
-          
-          
-           
-          
+          cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-19.07.5-rockchip-rk3328.Linux-x86_64/packages/*.ipk ./artifact/package
+          tar -czvf packages.tar.gz ./artifact/package/
+          rm -rf ./artifact/package/
+          md4sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
+
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
