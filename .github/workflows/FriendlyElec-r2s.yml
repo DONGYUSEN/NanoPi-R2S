@@ -125,7 +125,7 @@ jobs:
           commit: main
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ./artifact/*.gz,./artifact/*.gz,./artifact/*.txt
+          artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
           
       - name: Delete Artifacts
         uses: geekyeggo/delete-artifact@v1
