@@ -114,3 +114,21 @@ jobs:
         with:
           name: FriendlyElec-r2s
           path: ./artifact/
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1.7.3
+        with:
+          name: FriendlyElec R2s v19.07.5
+          allowUpdates: true
+          tag: $(date +"%Y-%m-%d")
+          commit: main
+          replacesArtifacts: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: ./artifact/*.gz,./artifact/*.gz,./artifact/*.txt
+          
+      - name: Delete Artifacts
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: |
+            bin-archive
