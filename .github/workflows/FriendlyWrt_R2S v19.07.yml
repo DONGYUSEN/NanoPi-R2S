@@ -269,6 +269,7 @@ jobs:
           cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-19.07.5-rockchip-rk3328.Linux-x86_64/packages/*.ipk ./artifact/package
           tar -czvf packages.tar.gz ./artifact/package/*.ipk
           rm -rf ./artifact/package/
+          mv packages.tar.gz ./artifact/
           md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
 
       - name: Upload Artifact
