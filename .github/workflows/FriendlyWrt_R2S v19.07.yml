@@ -271,6 +271,7 @@ jobs:
           rm -rf ./artifact/package/
           mv packages.tar.gz ./artifact/
           md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
+          echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Upload Artifact
         uses: actions/upload-artifact@master
@@ -280,15 +281,25 @@ jobs:
           
       - name: Create Release
         id: create_release
-        uses: ncipollo/release-action@v1.7.3
+        uses: ncipollo/release-action@v1.8.6
         with:
-          name: FriendlyWrt_NanoPi-R2S v19.07.5
+          name: "Friendlywrt R2s v19.07.5"
           allowUpdates: true
-          tag: FriendlyWrt R2S 19.7.05
+          tag: ${{env.strDate}} 
+          # tag_name: ${{env.strDate}} 
           commit: main
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ./artifact/*.gz,./artifact/*.txt
+          artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
+          
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@v0.1.0
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        with:
+          keep_latest: 30
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
           
       - name: Delete Artifacts
         uses: geekyeggo/delete-artifact@v1
