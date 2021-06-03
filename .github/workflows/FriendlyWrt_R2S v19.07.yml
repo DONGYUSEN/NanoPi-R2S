@@ -284,7 +284,7 @@ jobs:
         with:
           name: FriendlyWrt_NanoPi-R2S v19.07.5
           allowUpdates: true
-          tag: $(date +"%Y-%m-%d")
+          tag: FriendlyWrt R2S 19.7.05
           commit: main
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
