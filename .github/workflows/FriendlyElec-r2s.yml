@@ -109,6 +109,8 @@ jobs:
           cp code/friendlywrt/.config ./artifact/config.seed.txt
           tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
           
+          echo "strDate=$(TZ=UTC-8 date +%Y-%m-%d)" >> $GITHUB_ENV
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -119,13 +121,22 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.7.3
         with:
-          name: FriendlyElec R2s v19.07.5
+          name: FriendlyElec R2s v19.07.5 官方原版重新编译
           allowUpdates: true
-          tag: $(date +"%Y-%m-%d")
+          tag: ${{env.strDate}} 
           commit: main
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
+          
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@v0.1.0
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        with:
+          keep_latest: 30
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
           
       - name: Delete Artifacts
         uses: geekyeggo/delete-artifact@v1
