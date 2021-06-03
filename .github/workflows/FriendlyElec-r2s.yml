@@ -109,7 +109,7 @@ jobs:
           cp code/friendlywrt/.config ./artifact/config.seed.txt
           tar -czvf ./artifact/packages.tar.gz ./code/friendlywrt/bin/targets/rockchip-rk3328/generic/packages/
           
-          echo "strDate=$(TZ=UTC-8 date +%Y-%m-%d)" >> $GITHUB_ENV
+          echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
