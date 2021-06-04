@@ -283,12 +283,12 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.8.6
         with:
-          name: "Friendlywrt R2s v19.07.5"
-          allowUpdates: true
-          tag: ${{env.strDate}} 
-          # tag_name: ${{env.strDate}} 
-          commit: main
-          replacesArtifacts: true
+          #name: "Friendlywrt R2s v19.07.5"
+          #allowUpdates: true
+          #tag: ${{env.strDate}} 
+          tag_name: ${{env.strDate}} 
+          #commit: main
+          #replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
           
