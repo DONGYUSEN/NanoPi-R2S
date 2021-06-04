@@ -286,7 +286,7 @@ jobs:
           #name: "Friendlywrt R2s v19.07.5"
           #allowUpdates: true
           #tag: ${{env.strDate}} 
-          tag_name: ${{env.strDate}} 
+          #tag_name: ${{env.strDate}} 
           #commit: main
           #replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
