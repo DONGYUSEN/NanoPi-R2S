@@ -278,14 +278,18 @@ jobs:
         with:
           name: FriendlyWrt_NanoPi-R2S RK3328 v19.07
           path: ./artifact/
-          
+ 
+      - name: set NOW
+        run: |
+          echo "::set-env name=NOW::$(date +'%Y-%m-%dT%H:%M:%S')"
+    
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1.8.6
         with:
           #name: "Friendlywrt R2s v19.07.5"
           #allowUpdates: true
-          #tag: ${{env.strDate}} 
+          tag: ${{ env.NOW }}
           #tag_name: ${{env.strDate}} 
           #commit: main
           #replacesArtifacts: true
