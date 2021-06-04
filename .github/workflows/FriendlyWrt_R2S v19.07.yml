@@ -2,7 +2,8 @@ name: NanoPi-R2S OpenWrt 19.07 Build
 
 env:
   SSH_ACTIONS:  false
-  
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
 on:
   push:
     #paths:
