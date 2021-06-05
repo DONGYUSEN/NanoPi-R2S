@@ -310,4 +310,4 @@ jobs:
         uses: geekyeggo/delete-artifact@v1
         with:
           name: |
-            bin-archive
+            FriendlyWrt_NanoPi-R2S RK3328 v19.07
