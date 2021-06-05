@@ -282,7 +282,7 @@ jobs:
  
       - name: set NOW
         run: |
-          echo "::set-env name=NOW::$(date +'%Y-%m-%d')"
+          echo "::set-env name=NOW::$(date +'%Y-%m-%dT%H:%M:%S')"
     
       - name: Create Release
         id: create_release
