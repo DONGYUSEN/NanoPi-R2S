@@ -102,8 +102,8 @@ jobs:
           git clone https://github.com/lisaac/luci-app-dockerman.git  custom/luci-app-dockerman
           
           #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-docker custom/luci-app-docker
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-docker custom/luci-app-docker
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-docker  custom/luci-lib-docker
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
