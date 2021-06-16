@@ -89,8 +89,8 @@ jobs:
           # for dockerman update
           #rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
           #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
-          rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
+          #rm -rf feeds/packages/utils/docker-ce
+          #rm -rf feeds/luci/applications/luci-app-docker
           
           rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
@@ -174,8 +174,8 @@ jobs:
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-          rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
+          #rm -rf feeds/packages/utils/docker-ce
+          #rm -rf feeds/luci/applications/luci-app-docker
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
@@ -303,7 +303,7 @@ jobs:
           #commit: main
           #replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
+          artifacts: ./artifact/*.gz,./artifact/*.txt
           
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
