@@ -62,7 +62,7 @@ jobs:
           
           #漂亮的主题
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
-          git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config  custom/uci-app-argon-config
+          git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config  custom/luci-app-argon-config
 
           #越过长城
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
