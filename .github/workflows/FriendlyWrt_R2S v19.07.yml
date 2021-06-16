@@ -62,6 +62,7 @@ jobs:
           
           #漂亮的主题
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
+          git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config  custom/uci-app-argon-config
 
           #越过长城
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
@@ -99,14 +100,18 @@ jobs:
           cd package/
           
           #####
-          svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker custom/docker
-          svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd custom/dockerd
-          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
-          svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
+          #svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker custom/docker
+          #svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd custom/dockerd
+          #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
+          #svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+
+          #git clone --depth=1 https://github.com/garypang13/luci-app-bypass custom/luci-app-bypass
+          #git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le
+
           
           #广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
@@ -128,17 +133,20 @@ jobs:
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
           
           #smart dns
+          # Add luci-app-smartdns & smartdns
+          svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
+          svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdns
+          
           # svn co https://github.com/pymumu/smartdns/trunk/package/openwrt custom/smartdns
-          git clone https://github.com/pymumu/openwrt-smartdns.git custom/smartdns
-          git clone https://github.com/pymumu/luci-app-smartdns.git custom/luci-app-smartdns
+          # git clone https://github.com/pymumu/openwrt-smartdns.git custom/smartdns
+          # git clone https://github.com/pymumu/luci-app-smartdns.git custom/luci-app-smartdns
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd custom/luci-app-vlmcsd
           
-          ## autoreboot && autocore
+          ## autoreboot 
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot custom/luci-app-autoreboot
-          # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore custom/autocore
           
           ## luci-app-usb-printer
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer custom/luci-app-usb-printer
@@ -154,7 +162,12 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl8192du custom/rtl8192du
           svn co https://github.com/immortalwrt/immortalwrt/trunk/package/kernel/rtl88x2bu custom/rtl88x2bu
-          
+
+          # Add dafeiji
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/luci-app-cpufreq custom/luci-app-cpufreq
+          svn co https://github.com/281677160/openwrt-package/trunk/cpulimit custom/cpulimit
+          svn co https://github.com/281677160/openwrt-package/trunk/luci-app-cpulimit custom/luci-app-cpulimit 
+
           #necessary lib
           #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           
@@ -174,8 +187,8 @@ jobs:
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-          #rm -rf feeds/packages/utils/docker-ce
-          #rm -rf feeds/luci/applications/luci-app-docker
+          rm -rf feeds/packages/utils/docker-ce
+          rm -rf feeds/luci/applications/luci-app-docker
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
