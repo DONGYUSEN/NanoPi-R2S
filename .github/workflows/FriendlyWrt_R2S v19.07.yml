@@ -88,8 +88,11 @@ jobs:
           rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
           
           # for dockerman update
-          #rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
-          #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
+          rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
+          rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
+          # sed -i '/exit/d' feeds/packages/utils/docker/Makefile
+          
+          
           #rm -rf feeds/packages/utils/docker-ce
           #rm -rf feeds/luci/applications/luci-app-docker
           
