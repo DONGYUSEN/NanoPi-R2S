@@ -225,11 +225,13 @@ jobs:
 
           make defconfig
           
+          more .config | grep docker
+          
        
       - name: Install UPX
         run: |
           wget -q -O - https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz | tar -Jx --strip 1 -f - -C code/friendlywrt/staging_dir/host/bin/
-
+          
 
       - name: Build OpenWrt
         run: |
