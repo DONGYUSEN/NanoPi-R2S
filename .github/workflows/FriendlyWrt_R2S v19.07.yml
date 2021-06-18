@@ -225,7 +225,7 @@ jobs:
 
           make defconfig
           
-          more .config | grep docker
+          # more .config | grep docker
           
        
       - name: Install UPX
