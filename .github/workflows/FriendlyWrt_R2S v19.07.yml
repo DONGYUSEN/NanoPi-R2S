@@ -82,7 +82,7 @@ jobs:
           
           # 修改 golang && dockce &&
           cd ../
-          rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libcap feeds/packages/libs/libcap
+          rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/lang/golang feeds/packages/lang/golang
           rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/runc feeds/packages/utils/runc
           rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/containerd feeds/packages/utils/containerd
