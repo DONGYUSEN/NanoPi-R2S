@@ -95,7 +95,7 @@ jobs:
           #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
           
           rm -rf feeds/packages/utils/docker-ce && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker  && svn co https://github.com/coolsnowwolf/openwrt/trunk/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker 
+          # rm -rf feeds/luci/applications/luci-app-docker  && svn co https://github.com/coolsnowwolf/openwrt/trunk/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker 
           
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
@@ -180,7 +180,7 @@ jobs:
           cd code/friendlywrt		
           ./scripts/feeds install -a
           #rm -rf feeds/packages/utils/docker-ce
-          #rm -rf feeds/luci/applications/luci-app-docker
+          rm -rf feeds/luci/applications/luci-app-docker
           
       - name: Custom Configure Files
         run: |
