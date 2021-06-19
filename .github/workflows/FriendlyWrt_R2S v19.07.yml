@@ -94,7 +94,7 @@ jobs:
           #rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
           #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
           
-          rm -rf feeds/packages/utils/docker-ce && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
+          # rm -rf feeds/packages/utils/docker-ce && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
           # rm -rf feeds/luci/applications/luci-app-docker  && svn co https://github.com/coolsnowwolf/openwrt/trunk/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker 
           
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
@@ -102,6 +102,7 @@ jobs:
           cd package/
           
           #####
+          svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce custom/docker-ce
           svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
           svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
           sed -i '/dockerd/d' custom/luci-app-dockerman/Makefile
