@@ -82,30 +82,28 @@ jobs:
           
           # 修改 golang && dockce &&
           cd ../
-          rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
+
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
+          rm -rf feeds/packages/utils/runc && svn co https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          rm -rf feeds/packages/utils/containerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
           rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           
-          # for dockerman update
-          rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
-          rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
-          
+          rm -rf feeds/packages/utils/docker-ce && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce 
+          rm -rf feeds/luci/applications/luci-app-docker && svn co https://github.com/coolsnowwolf/openwrt/branches/lede-17.01/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker
+                    
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
           
-          # for lede 19.07
+          # for lean 19.07
           #sed -i 's/rm -f/# rm -f/' feeds/packages/utils/runc/Makefile
           #sed -i 's/rm -f/# rm -f/' feeds/packages/utils/containerd/Makefile
 
           cd package/
           
           #####
-          svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
-          svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
+          #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
+          #svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
@@ -189,8 +187,7 @@ jobs:
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-          rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
+
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
