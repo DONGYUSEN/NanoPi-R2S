@@ -120,6 +120,8 @@ jobs:
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           
+          git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
+          
           #VPN，虚拟局域网
           ### zerotier
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier custom/luci-app-zerotier
