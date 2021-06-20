@@ -169,6 +169,14 @@ jobs:
           #necessary lib
           #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           
+          #关闭一些不必要的软件
+          #rm -rf custom/luci-app-ssr-plus
+          #rm -rf custom/openwrt-passwall/luci-app-passwall
+          #rm -rf custom/luci-app-vssr
+          #rm -rf custom/luci-app-openclash
+          #rm -rf custom/luci-app-bypass
+          
+          
           # UPX 可执行软件压缩
           cd ../
           sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
