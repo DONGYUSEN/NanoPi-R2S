@@ -195,7 +195,7 @@ jobs:
           cd code/friendlywrt		
           ./scripts/feeds install -a
           #rm -rf feeds/packages/utils/docker-ce
-          #rm -rf feeds/luci/applications/luci-app-docker
+          rm -rf feeds/luci/applications/luci-app-docker
           
       - name: Custom Configure Files
         run: |
