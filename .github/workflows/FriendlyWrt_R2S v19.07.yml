@@ -120,8 +120,8 @@ jobs:
           
           #广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           
           git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
           
@@ -141,8 +141,8 @@ jobs:
           
           #smart dns
           # Add luci-app-smartdns & smartdns
-          svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
-          svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
+          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
+          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
@@ -170,11 +170,11 @@ jobs:
           #rm -rf feeds/packages/libs/libcap && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           
           #关闭一些不必要的软件
-          #rm -rf custom/luci-app-ssr-plus
-          #rm -rf custom/openwrt-passwall/luci-app-passwall
+          rm -rf custom/luci-app-ssr-plus
+          rm -rf custom/openwrt-passwall/luci-app-passwall
           #rm -rf custom/luci-app-vssr
           #rm -rf custom/luci-app-openclash
-          rm -rf custom/luci-app-bypass
+          #rm -rf custom/luci-app-bypass
           
           
           # UPX 可执行软件压缩
