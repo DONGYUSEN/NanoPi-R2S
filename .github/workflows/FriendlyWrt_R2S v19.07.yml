@@ -141,8 +141,8 @@ jobs:
           
           #smart dns
           # Add luci-app-smartdns & smartdns
-          svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
-          svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
+          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
+          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
