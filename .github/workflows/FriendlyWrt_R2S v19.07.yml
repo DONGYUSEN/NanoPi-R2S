@@ -121,7 +121,7 @@ jobs:
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           
-          git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
+          #git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
           #svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
           
           
@@ -255,6 +255,7 @@ jobs:
           sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
           sudo cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && sudo chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
           sudo cp ./scripts/FCN_V3.9_Linux.zip /mnt/friendlywrt-tmp/root
+          sudo cp ./scripts/luci-app-dnsfilter_1.0-8_all.ipk /mnt/friendlywrt-tmp/root
           # sed -i  "s/_('Architecture'),boardinfo.system/'_('Architecture'),ARMv8 Cortex-A53,64-bit'/"  /mnt/friendlywrt-tmp/www/luci-static/resources/view/status/include/10_system.js
 
           sudo umount /mnt/friendlywrt-tmp
