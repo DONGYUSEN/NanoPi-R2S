@@ -9,12 +9,10 @@
 
 ## NanoPi-R2S RK3328 OpenWrt 19.07特色
 * 支持 RTL8821CU/RTL8822BU/RTL8812AU 芯片的 USB WiFi 设备。
-* 集成 [HelloWorld](https://github.com/jerrykuku/luci-app-vssr)
-* 集成 [Passwall](https://github.com/xiaorouji/openwrt-passwall)
+* 集成 [HelloWorld](https://github.com/jerrykuku/luci-app-vssr) openclash, vssr足够用了。
 * 集成 [luci-app-adguardhome](https://github.com/rufengsuixing/luci-app-adguardhome)
 * 集成 [luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon)
 * 集成 [luci-app-r2sflasher](https://github.com/songchenwen/nanopi-r2s/tree/master/luci-app-r2sflasher)
-* 集成 [Smartdns](https://github.com/pymumu/smartdns) 与 luci-app-smartdns
 * 集成 Zerotier、打印机、kms服务器等
 * 稳定自用。
 
