@@ -122,7 +122,7 @@ jobs:
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
           
           #git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
-          #svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
+          svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
           
           
           #VPN，虚拟局域网
