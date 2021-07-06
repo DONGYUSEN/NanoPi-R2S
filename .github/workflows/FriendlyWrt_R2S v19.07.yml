@@ -89,7 +89,7 @@ jobs:
           # 修改 golang && dockce &&
           cd ../
           #rm -rf feeds/packages/utils/docker-ce
-          #rm -rf feeds/luci/applications/luci-app-docker
+          rm -rf feeds/luci/applications/luci-app-docker
           rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
           rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
           rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
@@ -106,10 +106,10 @@ jobs:
           # rm -rf feeds/luci/applications/luci-app-docker  && svn co https://github.com/coolsnowwolf/openwrt/trunk/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker 
           
           #rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
-          sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
+          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
+          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
+          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
+          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
           
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
@@ -195,7 +195,7 @@ jobs:
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-          #rm -rf feeds/packages/utils/docker-ce
+          rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
 
       - name: SSH连接
