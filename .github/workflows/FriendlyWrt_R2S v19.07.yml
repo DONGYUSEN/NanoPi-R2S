@@ -87,7 +87,7 @@ jobs:
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           git clone --depth=1 https://github.com/garypang13/luci-app-bypass custom/luci-app-bypass
-          git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le    
+          #git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le    
           
           # 修改 golang && dockce &&
           cd ../
@@ -148,7 +148,7 @@ jobs:
           #smart dns
           # Add luci-app-smartdns & smartdns
           #svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
-          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
+          svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
