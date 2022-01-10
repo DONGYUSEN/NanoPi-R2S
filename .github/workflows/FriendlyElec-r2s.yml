@@ -126,7 +126,7 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.8.6
         with:
-          name: "FriendlyElec R2s v19.07.5 官方原版重新编译"
+          name: "FriendlyElec R2s v21.02 官方原版重新编译"
           tag: ${{ env.NOW }}
           #tag_name: ${{env.strDate}} 
           #commit: main
