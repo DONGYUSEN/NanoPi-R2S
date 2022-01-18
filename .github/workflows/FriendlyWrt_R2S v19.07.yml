@@ -315,7 +315,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R2S RK3328 v19.07
+          name: FriendlyWrt_NanoPi-R2S RK3328 v21.02
           path: ./artifact/
  
       - name: set NOW
@@ -326,7 +326,7 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.8.6
         with:
-          name: "Friendlywrt R2s v19.07.5"
+          name: "Friendlywrt R2s v21.02"
           #allowUpdates: true
           tag: ${{ env.NOW }}
           #tag_name: ${{env.strDate}} 
