@@ -55,8 +55,8 @@ jobs:
           ./scripts/feeds update -a
 
           rm -rf feeds/packages/net/zerotier
-          chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
-          chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
+          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
+          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
              
       - name: Processing drivers
         run: |
