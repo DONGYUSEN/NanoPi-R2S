@@ -204,6 +204,7 @@ jobs:
           ./scripts/feeds install -a
           rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
+          rm -rf feeds/luci/applications/luci-app-dockerman
 
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
