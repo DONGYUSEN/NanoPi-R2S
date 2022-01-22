@@ -250,7 +250,7 @@ jobs:
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           # sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
-          sed -i 's/make -j$(nproc) V=s/make -j1/' scripts/mk-friendlywrt.sh
+          # sed -i 's/make -j$(nproc) V=s/make -j1/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
 
       - name: Fix Rootfs Owner and Group
@@ -340,7 +340,7 @@ jobs:
         uses: dev-drprasad/delete-older-releases@v0.1.0
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          keep_latest: 120
+          keep_latest: 15
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
