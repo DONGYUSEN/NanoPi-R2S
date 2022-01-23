@@ -36,6 +36,7 @@ jobs:
           curl https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/852acb5b6511d31a450fd0a8829a0f795b3f21fd/install.sh  | sed '/#/d' | sed 's/\\//g' | sed 's/exit 0//g' | sed 's/sudo apt -y install//g' | sed 's/sudo apt-get -y install//g' | sed 's/:i386//g' | xargs sudo apt-get -y --no-install-recommends install
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo apt-get autoclean
           echo "Free space:"
           df -h
       - name: Install Repo
