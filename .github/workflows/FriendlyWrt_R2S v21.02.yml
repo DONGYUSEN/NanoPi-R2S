@@ -248,7 +248,8 @@ jobs:
           #cp ../../patches/002patch-cpuinfo.patch 002patch-cpuinfo.patch
           #patch -p0 <  002patch-cpuinfo.patch
 
-          make defconfig
+          ## test
+          #make defconfig
       
       - name: Install UPX
         run: |
