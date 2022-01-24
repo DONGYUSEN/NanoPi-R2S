@@ -55,20 +55,15 @@ jobs:
           rm -rf code
           mkdir code
           cd code
-          # repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
           repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v21.02 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
-          # cp ../rk3328.xml ../code/.repo/manifests/rk3328.xml
           repo sync -c --no-clone-bundle -j8
           
       - name: Update Feeds		
         run: |		
           cd code/friendlywrt
           ./scripts/feeds update -a
-
           rm -rf feeds/packages/net/zerotier
-          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/01_leds
-          #chmod +x ./target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
-             
+  
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
@@ -100,12 +95,11 @@ jobs:
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           git clone --depth=1 https://github.com/garypang13/luci-app-bypass custom/luci-app-bypass
-          #git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le    
+          git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le    
           
-          # 修改 golang && dockce &&
           cd ../
           #rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
+          #rm -rf feeds/luci/applications/luci-app-docker
           
           ## perl error ？
           #rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
@@ -116,40 +110,16 @@ jobs:
           #rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
           ## perl error test
           
-          #rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
-          #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
-          #rm -rf feeds/packages/utils/docker-compose && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker-compose
-          rm -rf feeds/packages/utils/docker 
-          rm -rf feeds/packages/utils/dockerd
-          rm -rf feeds/packages/utils/docker-compose
-          
-          # rm -rf feeds/packages/utils/docker-ce && svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
-          # rm -rf feeds/luci/applications/luci-app-docker  && svn co https://github.com/coolsnowwolf/openwrt/trunk/package/lean/luci-app-docker feeds/luci/applications/luci-app-docker 
-          
-          #rm -rf feeds/packages/utils/docker-ce && svn export https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce feeds/packages/utils/docker-ce
-          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
-          #sed -i '/call CheckExpectedSrcVer/d' feeds/packages/utils/docker-ce/Makefile
+          #rm -rf feeds/packages/utils/docker 
+          #rm -rf feeds/packages/utils/dockerd
+          #rm -rf feeds/packages/utils/docker-compose
           
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
           cd package/
-          
-          #####
-          #svn co https://github.com/coolsnowwolf/packages/branches/openwrt-19.07/utils/docker-ce custom/docker-ce
-          #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman custom/luci-app-dockerman
-          #svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker custom/luci-lib-docker
-          #sed -i '/dockerd/d' custom/luci-app-dockerman/Makefile
-          #sed -i 's/+docker/+docker-ce/g' custom/luci-app-dockerman/Makefile
-          #sed -i 's/..\/..\/lang\/golang\/golang-package.mk/..\/..\/..\/feeds\/packages\/lang\/golang\/golang-package.mk/g' custom/docker-ce/Makefile
 
           #广告过滤
           git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby custom/adbyby
-          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus custom/luci-app-adbyby-plus
-          
-          #git clone https://github.com/garypang13/luci-app-dnsfilter.git custom/luci-app-dnsfilter
           svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
           
           
@@ -162,11 +132,6 @@ jobs:
           #系统工具
           svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata custom/luci-app-netdata
-          
-          #smart dns
-          # Add luci-app-smartdns & smartdns
-          #svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns custom/luci-app-smartdns
-          svn co https://github.com/281677160/openwrt-package/trunk/feeds/packages/net/smartdns  custom/smartdn
           
           # kms服务器
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd  custom/vlmcsd
@@ -216,9 +181,9 @@ jobs:
         run: |		
           cd code/friendlywrt		
           ./scripts/feeds install -a
-          rm -rf feeds/packages/utils/docker-ce
-          rm -rf feeds/luci/applications/luci-app-docker
-          rm -rf feeds/luci/applications/luci-app-dockerman
+          #rm -rf feeds/packages/utils/docker-ce
+          #rm -rf feeds/luci/applications/luci-app-docker
+          #rm -rf feeds/luci/applications/luci-app-dockerman
 
       - name: SSH连接
         uses: DONGYUSEN/debugger-action@master
@@ -228,7 +193,7 @@ jobs:
         run: |
           rm -f code/friendlywrt/.config*
           cat feeds-1907.conf > code/friendlywrt/.config
-          cp feeds-1907.conf code/configs/config_rk3328
+          # cp feeds-1907.conf code/configs/config_rk3328
           
       - name: Install Clash Binaries
         run: |
@@ -247,11 +212,7 @@ jobs:
           cd code/friendlywrt
           echo -e "\nBuild date:$(date +%Y-%m-%d), by dongyusen@gmail.com\n" >> package/base-files/files/etc/banner
           sed -i 's/timezone='UTC'/timezone='CST-8'/' package/base-files/files/bin/config_generate
-          #patch -p1 <  ../../newpatches/luci/0004-luci-mod-status-add-realtime-CPU-information-display.patch 
-          #cp ../../patches/002patch-cpuinfo.patch 002patch-cpuinfo.patch
-          #patch -p0 <  002patch-cpuinfo.patch
 
-          ## test
           make defconfig
       
       - name: Install UPX
@@ -289,8 +250,9 @@ jobs:
           # Copy Some Scripts
           sudo cp ./scripts/cpuinfo.sh /mnt/friendlywrt-tmp/bin/cpuinfo && sudo chmod +x /mnt/friendlywrt-tmp/bin/cpuinfo
           sudo cp ./scripts/ipv6-helper.sh /mnt/friendlywrt-tmp/bin/ipv6-helper.sh && sudo chmod +x /mnt/friendlywrt-tmp/bin/ipv6-helper.sh
-          sudo cp ./scripts/FCN_V3.9_Linux.zip /mnt/friendlywrt-tmp/root
-          sudo cp ./scripts/luci-app-dnsfilter_1.0-8_all.ipk /mnt/friendlywrt-tmp/root
+          
+          #sudo cp ./scripts/FCN_V3.9_Linux.zip /mnt/friendlywrt-tmp/root
+          #sudo cp ./scripts/luci-app-dnsfilter_1.0-8_all.ipk /mnt/friendlywrt-tmp/root
           # sed -i  "s/_('Architecture'),boardinfo.system/'_('Architecture'),ARMv8 Cortex-A53,64-bit'/"  /mnt/friendlywrt-tmp/www/luci-static/resources/view/status/include/10_system.js
 
           sudo umount /mnt/friendlywrt-tmp
@@ -313,23 +275,16 @@ jobs:
 
           cp code/friendlywrt/.config ./artifact/config.txt
           
-          # cd ./code/friendlywrt/staging_dir/packages/
-          # tar -czvf packages.tar.gz rockchip-rk3328/
-          # cd ../../../../
-          # cp ./code/friendlywrt/staging_dir/packages/packages.tar.gz ./artifact/
-          # cd ./artifact/
-          # md5sum packages.tar.gz > packages.tar.gz.md5.txt
+          #mkdir ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk  ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk  ./artifact/package
+          #cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-21.02-rockchip-rk3328.Linux-x86_64/packages/*.ipk ./artifact/package
+          #tar -czvf packages.tar.gz ./artifact/package/*.ipk
+          #rm -rf ./artifact/package/
+          #mv packages.tar.gz ./artifact/
+          #md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
           
-          mkdir ./artifact/package
-          
-          cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-19.07.5-rockchip-rk3328.Linux-x86_64/packages/*.ipk ./artifact/package
-          tar -czvf packages.tar.gz ./artifact/package/*.ipk
-          rm -rf ./artifact/package/
-          mv packages.tar.gz ./artifact/
-          md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
           echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Upload Artifact
