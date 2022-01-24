@@ -106,13 +106,16 @@ jobs:
           cd ../
           #rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
-          rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-          rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
-          rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-                    
+          
+          ## perl error ？
+          #rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
+          #rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
+          #rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
+          #rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
+          #rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
+          #rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
+          ## perl error test
+          
           #rm -rf feeds/packages/utils/docker && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker
           #rm -rf feeds/packages/utils/dockerd && svn co https://github.com/coolsnowwolf/packages/trunk/utils/dockerd feeds/packages/utils/dockerd
           #rm -rf feeds/packages/utils/docker-compose && svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker feeds/packages/utils/docker-compose
