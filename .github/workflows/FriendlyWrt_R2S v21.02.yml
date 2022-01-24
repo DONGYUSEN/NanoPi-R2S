@@ -257,6 +257,10 @@ jobs:
 
       - name: Build OpenWrt
         run: |
+          
+          echo "Free space:"
+          df -h
+          #########
           cd code
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
