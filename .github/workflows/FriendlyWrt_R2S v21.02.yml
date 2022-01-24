@@ -249,7 +249,7 @@ jobs:
           #patch -p0 <  002patch-cpuinfo.patch
 
           ## test
-          #make defconfig
+          make defconfig
       
       - name: Install UPX
         run: |
