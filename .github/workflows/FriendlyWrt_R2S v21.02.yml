@@ -238,6 +238,11 @@ jobs:
           
           lodev=$(sudo losetup -f)
           echo "found unused loop dev $lodev"
+          
+          sudo fdisk -lu code/out/*.img
+          sudo losetup --show -f -P code/out/*.img
+          
+          
           sudo losetup -o 100663296 $lodev code/out/*.img
           #sudo mkfs -t ext4 $lodev
           sudo rm -rf /mnt/friendlywrt-tmp
@@ -276,6 +281,13 @@ jobs:
           cp code/friendlywrt/.config ./artifact/config.txt
           
           #mkdir ./artifact/package
+          
+          ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk
+          ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk
+          ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk
+          ls -l ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-21.02-rockchip-rk3328.Linux-x86_64/packages/*.ipk 
+                    
+          
           #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk ./artifact/package
           #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk  ./artifact/package
           #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk  ./artifact/package
