@@ -242,18 +242,8 @@ jobs:
           echo "found unused loop dev $lodev"
           
           #sudo fdisk -lu code/out/*.img
-          #[RAW. 0]:      100 KB | ./friendlywrt/idbloader.img .
-          #[RAW. 1]:     4096 KB | ./friendlywrt/uboot.img  .
-          #[RAW. 2]:     4096 KB | ./friendlywrt/trust.img .
-          #[RAW. 3]:       48 KB | ./friendlywrt/misc.img  .
-          #[RAW. 4]:        1 KB | ./friendlywrt/dtbo.img .
-          #[RAW. 5]:     2763 KB | ./friendlywrt/resource.img.
-          #[RAW. 6]:    31830 KB | ./friendlywrt/kernel.img 
-          #[RAW. 7]:     7308 KB | ./friendlywrt/boot.img  
-          #[RAW. 8]:   519126 KB | ./friendlywrt/rootfs.img 
-          
-          
           #sudo losetup --show -f -P code/out/*.img
+          
           #Device                                                   Start     End Sectors   Size Type
           #code/out/FriendlyWrt_20220125_NanoPi-R2S_arm64_sd.img1   16384   24575    8192     4M unknown
           #code/out/FriendlyWrt_20220125_NanoPi-R2S_arm64_sd.img2   24576   32767    8192     4M unknown
@@ -265,8 +255,7 @@ jobs:
           #code/out/FriendlyWrt_20220125_NanoPi-R2S_arm64_sd.img8  262144 1417215 1155072   564M unknown
           #code/out/FriendlyWrt_20220125_NanoPi-R2S_arm64_sd.img9 1417216 1953090  535875 261.7M unknown
           
-          sudo losetup -o 100663296 $lodev code/out/*.img
-          #sudo losetup -o 725614592 $lodev code/out/*.img
+          sudo losetup -o 134217728 $lodev code/out/*.img
           
           #sudo mkfs -t ext4 $lodev
           sudo rm -rf /mnt/friendlywrt-tmp
