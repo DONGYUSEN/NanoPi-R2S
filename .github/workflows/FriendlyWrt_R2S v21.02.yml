@@ -215,6 +215,7 @@ jobs:
           sed -i 's/timezone='UTC'/timezone='CST-8'/' package/base-files/files/bin/config_generate
 
           make defconfig
+          make download -j$(($(nproc)+1))
       
       - name: Install UPX
         run: |
@@ -265,7 +266,7 @@ jobs:
           #code/out/FriendlyWrt_20220125_NanoPi-R2S_arm64_sd.img9 1417216 1953090  535875 261.7M unknown
           
           #sudo losetup -o 100663296 $lodev code/out/*.img
-          sudo losetup -o 134217728 $lodev code/out/*.img
+          sudo losetup -o 725614592 $lodev code/out/*.img
           
           #sudo mkfs -t ext4 $lodev
           sudo rm -rf /mnt/friendlywrt-tmp
