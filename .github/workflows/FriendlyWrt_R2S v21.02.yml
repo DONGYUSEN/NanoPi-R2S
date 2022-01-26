@@ -193,8 +193,7 @@ jobs:
       - name: Custom Configure Files
         run: |
           rm -f code/friendlywrt/.config*
-          cat feeds-1907.conf > code/friendlywrt/.config
-          # cp feeds-1907.conf code/configs/config_rk3328
+          cat feeds-2102.config > code/friendlywrt/.config
           
       - name: Install Clash Binaries
         run: |
