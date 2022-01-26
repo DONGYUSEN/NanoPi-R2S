@@ -274,16 +274,14 @@ jobs:
           
           cd code/out
           tar -czvf FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          
           cd ../../
-          
           cp code/friendlywrt/.config ./artifact/config.txt
-          
           cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
+          cp code/friendlywrt/bin/targets/rockchip/armv8/openwrt-21.*.img.gz ./artifact/ 
+          md5sum ./artifact/*.gz > ./artifact/md5.txt
           
-          md5sum code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz > ./artifact/md5.txt
-          
-          
-          
+
           # 只保留tar.gz
           # cp code/out/*.zip ./artifact/
 
@@ -291,15 +289,15 @@ jobs:
           find ./ -name *.ipk > ./artifact/ipkfiles.txt
           
           # keep the *.ipk files:
-          #mkdir ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_generic/base/*.ipk ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_generic/packages/*.ipk  ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_generic/luci/*.ipk  ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_generic/routing/*.ipk  ./artifact/package
-          #tar -czvf packages.tar.gz ./artifact/package/*.ipk
-          #rm -rf ./artifact/package/
-          #mv packages.tar.gz ./artifact/
-          #md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
+          mkdir ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/packages/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/luci/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/base/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/routing/*.ipk  ./artifact/package
+          tar -czvf packages.tar.gz ./artifact/package/*.ipk
+          rm -rf ./artifact/package/
+          mv packages.tar.gz ./artifact/
+          md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
           
           echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
 
