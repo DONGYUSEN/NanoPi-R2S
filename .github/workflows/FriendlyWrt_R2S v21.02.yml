@@ -1,7 +1,7 @@
 name: NanoPi-R2S OpenWrt 21.02 Build
 
 env:
-  SSH_ACTIONS:  true
+  SSH_ACTIONS:  false
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 on:
@@ -98,21 +98,6 @@ jobs:
           git clone --depth=1 https://github.com/garypang13/smartdns-le custom/smartdns-le    
           
           cd ../
-          #rm -rf feeds/packages/utils/docker-ce
-          #rm -rf feeds/luci/applications/luci-app-docker
-          
-          ## perl error ？
-          #rm -rf feeds/packages/libs/libcap/ && svn co https://github.com/openwrt/openwrt/trunk/package/libs/libcap feeds/packages/libs/libcap
-          #rm -rf feeds/packages/lang/golang/ && svn co https://github.com/coolsnowwolf/packages/trunk/lang/golang feeds/packages/lang/golang
-          #rm -rf feeds/packages/lang/luasec && svn co https://github.com/coolsnowwolf/packages/trunk/lang/luasec feeds/packages/lang/luasec
-          #rm -rf feeds/packages/utils/runc && svn export https://github.com/coolsnowwolf/packages/trunk/utils/runc feeds/packages/utils/runc
-          #rm -rf feeds/packages/utils/containerd && svn export https://github.com/coolsnowwolf/packages/trunk/utils/containerd feeds/packages/utils/containerd
-          #rm -rf feeds/packages/utils/libnetwork && svn co https://github.com/coolsnowwolf/packages/trunk/utils/libnetwork feeds/packages/utils/libnetwork
-          ## perl error test
-          
-          #rm -rf feeds/packages/utils/docker 
-          #rm -rf feeds/packages/utils/dockerd
-          #rm -rf feeds/packages/utils/docker-compose
           
           sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
@@ -230,7 +215,6 @@ jobs:
           cd code
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
-          # sed -i 's/make -j$(nproc) V=s/make -j3/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
           ./build.sh nanopi_r2s.mk
           
@@ -279,8 +263,7 @@ jobs:
           
           #sudo cp ./scripts/FCN_V3.9_Linux.zip /mnt/friendlywrt-tmp/root
           #sudo cp ./scripts/luci-app-dnsfilter_1.0-8_all.ipk /mnt/friendlywrt-tmp/root
-          # sed -i  "s/_('Architecture'),boardinfo.system/'_('Architecture'),ARMv8 Cortex-A53,64-bit'/"  /mnt/friendlywrt-tmp/www/luci-static/resources/view/status/include/10_system.js
-
+          
           sudo umount /mnt/friendlywrt-tmp
           sudo losetup -d $lodev
           
@@ -294,6 +277,7 @@ jobs:
           cd ../../
           cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
           md5sum code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz > ./artifact/md5.txt
+          
           find ./ -name *.ipk > ./artifact/ipkfiles.txt
           
           # 只保留tar.gz
@@ -301,24 +285,17 @@ jobs:
 
           cp code/friendlywrt/.config ./artifact/config.txt
           
-          #mkdir ./artifact/package
+          mkdir ./artifact/package
           
-          find ./code/friendlywrt/bin/packages/ -name "*.ipk"
-          
-          #ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk
-          #ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk
-          #ls -l ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk
-          #ls -l ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-21.02-rockchip-rk3328.Linux-x86_64/packages/*.ipk 
-                    
-          
-          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/base/*.ipk ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/packages/*.ipk  ./artifact/package
-          #cp ./code/friendlywrt/bin/packages/aarch64_cortex-a53/luci/*.ipk  ./artifact/package
-          #cp ./code/friendlywrt/build_dir/target-aarch64_cortex-a53_musl/openwrt-imagebuilder-21.02-rockchip-rk3328.Linux-x86_64/packages/*.ipk ./artifact/package
-          #tar -czvf packages.tar.gz ./artifact/package/*.ipk
-          #rm -rf ./artifact/package/
-          #mv packages.tar.gz ./artifact/
-          #md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/base/*.ipk ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/packages/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/luci/*.ipk  ./artifact/package
+          cp ./code/friendlywrt/bin/packages/aarch64_generic/routing/*.ipk  ./artifact/package
+
+          tar -czvf packages.tar.gz ./artifact/package/*.ipk
+          rm -rf ./artifact/package/
+          mv packages.tar.gz ./artifact/
+          md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
           
           echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
 
