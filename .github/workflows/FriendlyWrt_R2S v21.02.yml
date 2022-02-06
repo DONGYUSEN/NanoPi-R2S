@@ -144,7 +144,7 @@ jobs:
 
           #关闭一些不必要的软件
           rm -rf custom/luci-app-ssr-plus
-          rm -rf custom/openwrt-passwall/luci-app-passwall
+          #rm -rf custom/openwrt-passwall/luci-app-passwall
           #rm -rf custom/luci-app-vssr
           #rm -rf custom/luci-app-open
           #rm -rf custom/luci-app-bypass
