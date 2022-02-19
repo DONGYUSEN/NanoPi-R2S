@@ -75,8 +75,8 @@ jobs:
           #越过长城
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           
-          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
+          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
           
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-n2n_v2 custom/luci-app-n2n_v2
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n_v2 custom/n2n_v2
