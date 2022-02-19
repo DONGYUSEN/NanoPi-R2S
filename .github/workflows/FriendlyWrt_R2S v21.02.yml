@@ -75,8 +75,9 @@ jobs:
           #越过长城
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           
-          #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
+          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 custom/redsocks2
           
           svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n_v2 custom/luci-app-n2n_v2
           svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n_v2 custom/n2n_v2
@@ -144,7 +145,7 @@ jobs:
           svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl88x2bu custom/rtl88x2bu
 
           #关闭一些不必要的软件
-          rm -rf custom/luci-app-ssr-plus
+          #rm -rf custom/luci-app-ssr-plus
           #rm -rf custom/openwrt-passwall/luci-app-passwall
           #rm -rf custom/luci-app-vssr
           #rm -rf custom/luci-app-open
