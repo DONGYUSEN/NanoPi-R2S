@@ -134,8 +134,8 @@ jobs:
           
           ## 网络驱动
           #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8125 custom/r8125
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 custom/r8152
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 custom/r8168
+          #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 custom/r8152
+          #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 custom/r8168
           svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8188eu custom/rtl8188eu
           svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8189es custom/rtl8189es
           svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8192eu custom/rtl8192eu
