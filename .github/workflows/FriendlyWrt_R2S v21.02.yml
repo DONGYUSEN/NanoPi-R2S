@@ -133,16 +133,16 @@ jobs:
           svn co https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs custom/luci-lib-fs
           
           ## 网络驱动
-          #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8125 custom/r8125
-          #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8152 custom/r8152
-          #svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 custom/r8168
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8188eu custom/rtl8188eu
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8189es custom/rtl8189es
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8192eu custom/rtl8192eu
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8812au-ct custom/rtl8812au-ct 
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8821cu custom/rtl8821cu
-          svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl88x2bu custom/rtl88x2bu
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8125 custom/r8125
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 custom/r8152
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 custom/r8168
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu custom/rtl8188eu
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8189es custom/rtl8189es
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8192eu custom/rtl8192eu
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ac custom/rtl8812au-ac 
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ct custom/rtl8812au-ct 
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu custom/rtl8821cu
+          svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu custom/rtl88x2bu
 
           #关闭一些不必要的软件
           #rm -rf custom/luci-app-ssr-plus
