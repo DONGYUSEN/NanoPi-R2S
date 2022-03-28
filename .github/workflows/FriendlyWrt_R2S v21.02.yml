@@ -133,7 +133,7 @@ jobs:
           svn co https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs custom/luci-lib-fs
           
           ## 网络驱动
-          git clone git clone https://github.com/immortalwrt/immortalwrt.git test
+          git clone https://github.com/immortalwrt/immortalwrt.git test
           cp -r test/package/kernel/r8* custom/
           cp -r test/package/kernel/rtl* custom/
           rm -rf test
