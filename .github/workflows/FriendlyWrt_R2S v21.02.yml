@@ -79,8 +79,8 @@ jobs:
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
           svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 custom/redsocks2
           
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n_v2 custom/luci-app-n2n_v2
-          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n_v2 custom/n2n_v2
+          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
+          svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n custom/n2n
           
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           mv custom/openwrt-passwall/v2ray-core custom/
