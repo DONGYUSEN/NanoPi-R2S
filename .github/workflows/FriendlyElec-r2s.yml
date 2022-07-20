@@ -40,7 +40,9 @@ jobs:
           sudo apt-get -y install unzip upx-ucl subversion
           sudo apt-get -y purge dotnet* ghc* google* llvm* mysql* php* zulu* firefox hhvm
           sudo apt-get -y autoremove --purge          
-          wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
+          # wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
+          sudo apt install build-essential ccache ecj fastjar file g++ gawk gettext git java-propose-classpath libelf-dev libncurses5-dev libncursesw5-dev libssl-dev python python2.7-dev python3 unzip wget python-distutils-extra python3-setuptools python3-dev quilt rsync subversion swig time xsltproc zlib1g-dev 
+
           
       - name: Install Repo
         run: |
@@ -52,8 +54,8 @@ jobs:
           rm -rf code
           mkdir code
           cd code
-          # repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v21.02 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
-          repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
+          repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
+          # repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.5 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle
           repo sync -c --no-clone-bundle
           
       - name: Clone Feeds
