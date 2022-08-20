@@ -8,8 +8,8 @@ on:
   push:
     #paths:
     #  - 'CHANGELOG.md'
-  watch:
-    types: started
+  #watch:
+  #  types: started
   schedule:
     - cron: '00 10 * * 5'
 
