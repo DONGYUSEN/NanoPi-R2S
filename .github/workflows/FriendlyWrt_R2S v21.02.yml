@@ -57,8 +57,8 @@ jobs:
           rm -rf code
           mkdir code
           cd code
-          repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
-          repo sync -c --no-clone-bundle 
+          repo iinit -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
+          repo sync -c  --no-clone-bundle
           
       - name: Update Feeds		
         run: |		
@@ -226,8 +226,9 @@ jobs:
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
-          ./build.sh nanopi_r2s.mk
-          
+          # ./build.sh rk3328.mk
+          ./build.sh sd-img
+          ./build.sh emmc-img
 
       #- name: SSH连接
       #  uses: DONGYUSEN/debugger-action@master
