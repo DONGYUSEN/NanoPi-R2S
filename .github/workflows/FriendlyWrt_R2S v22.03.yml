@@ -227,8 +227,8 @@ jobs:
           sed -i '/feeds/d' scripts/mk-friendlywrt.sh          
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
-          # ./build.sh rk3328.mk
-          ./build.sh nanopi_r2s.mk
+          ./build.sh rk3328.mk
+          # ./build.sh nanopi_r2s.mk
 
       #- name: SSH连接
       #  uses: DONGYUSEN/debugger-action@master
