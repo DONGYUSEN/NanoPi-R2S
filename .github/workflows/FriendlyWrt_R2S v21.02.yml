@@ -1,4 +1,4 @@
-name: NanoPi-R2S OpenWrt 21.02 Build
+name: NanoPi-R2S OpenWrt 22.03 Build
 
 env:
   SSH_ACTIONS: false
@@ -96,6 +96,7 @@ jobs:
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
+          svn co https://github.com/kenzok8/openwrt-packages/trunk/lua-neturl custom/lua-neturl
           git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           # git clone --depth=1 https://github.com/garypang13/luci-app-bypass custom/luci-app-bypass
           svn co https://github.com/kiddin9/openwrt-bypass/trunk/luci-app-bypass custom/luci-app-bypass
@@ -319,7 +320,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
-          name: FriendlyWrt_NanoPi-R2S RK3328 v21.02
+          name: FriendlyWrt_NanoPi-R2S RK3328 v22.03
           path: ./artifact/
  
       - name: set NOW
@@ -330,7 +331,7 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.8.6
         with:
-          name: "Friendlywrt R2s v21.02"
+          name: "Friendlywrt R2s v22.03"
           #allowUpdates: true
           tag: ${{ env.NOW }}
           #tag_name: ${{env.strDate}} 
@@ -351,4 +352,4 @@ jobs:
         uses: geekyeggo/delete-artifact@v1
         with:
           name: |
-            FriendlyWrt_NanoPi-R2S RK3328 v21.02
+            FriendlyWrt_NanoPi-R2S RK3328 v22.03
