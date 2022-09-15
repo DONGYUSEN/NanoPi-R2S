@@ -46,6 +46,10 @@ jobs:
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo apt-get autoclean
+          
+          git config --global user.email "dongyusen@gmail.com"
+          git config --global user.name ""
+          
           echo "Free space:"
           df -h
       - name: Install Repo
