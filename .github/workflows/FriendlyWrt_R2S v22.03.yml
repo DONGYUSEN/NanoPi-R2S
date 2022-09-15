@@ -48,7 +48,7 @@ jobs:
           sudo apt-get autoclean
           
           git config --global user.email "dongyusen@gmail.com"
-          git config --global user.name ""
+          git config --global user.name "dongyusen"
           
           echo "Free space:"
           df -h
