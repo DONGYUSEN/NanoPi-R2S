@@ -83,6 +83,9 @@ jobs:
         
       - name: Build OpenWrt
         run: |
+          git config --global user.email "dongyusen@gmail.com"
+          git config --global user.name "dongyusen"
+          
           cd code/
           # sed -i '/feeds/d' scripts/mk-friendlywrt.sh
           # sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
