@@ -245,8 +245,23 @@ jobs:
           sed -i 's/set -eu/set -u/' scripts/mk-friendlywrt.sh
           #sed -i 's/make -j$(nproc) V=s/make -j3 V=s/' scripts/mk-friendlywrt.sh
           sed -i 's/make -j$(nproc) V=s/make -j8 V=s/' scripts/mk-friendlywrt.sh
+          # ./build.sh rk3328.mk
+          ./build.sh uboot
+          
+      - name: Build OpenWrt2
+        run: |
+          cd code
+          ./build.sh kernel
+      - name: Build OpenWrt3
+        run: |
+          cd code
+          ./build.sh friendlywrt
+      - name: Build OpenWrt4
+        run: |
+          cd code
           ./build.sh rk3328.mk
-          # ./build.sh nanopi_r2s.mk
+          
+        
 
       #- name: SSH连接
       #  uses: DONGYUSEN/debugger-action@master
