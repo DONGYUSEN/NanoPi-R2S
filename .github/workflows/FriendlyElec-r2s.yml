@@ -112,7 +112,8 @@ jobs:
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
-          cp code/out/*.img.zip ./artifact/
+          #cp code/out/*.img.zip ./artifact/
+          zip ./artifact/FriendlyWrt_NanoPi-R2S.img.zip code/out/*.img
           
           ls -lh code/out/*
           cp code/friendlywrt/.config ./artifact/config.seed.txt
