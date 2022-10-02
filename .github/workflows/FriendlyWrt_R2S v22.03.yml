@@ -313,7 +313,8 @@ jobs:
           cd ../../
           cp code/friendlywrt/.config ./artifact/config.txt
           cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
-          cp code/friendlywrt/bin/targets/rockchip/armv8/openwrt-21.*.img.gz ./artifact/ 
+          ls -l code/friendlywrt/bin/targets/rockchip/armv8/*.img*
+          #cp code/friendlywrt/bin/targets/rockchip/armv8/*.img.gz ./artifact/ 
           md5sum ./artifact/*.gz > ./artifact/md5.txt
           
 
