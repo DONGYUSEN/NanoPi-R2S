@@ -308,12 +308,12 @@ jobs:
           mkdir -p ./artifact/
           
           cd code/out
-          tar -czvf FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          tar -czvf ../../artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
           
           cd ../../
           cp code/friendlywrt/.config ./artifact/config.txt
-          cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
-          ls -l code/friendlywrt/bin/targets/rockchip/armv8/*.img*
+          # cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
+          # ls -l code/friendlywrt/bin/targets/rockchip/armv8/*.img*
           #cp code/friendlywrt/bin/targets/rockchip/armv8/*.img.gz ./artifact/ 
           md5sum ./artifact/*.gz > ./artifact/md5.txt
           
