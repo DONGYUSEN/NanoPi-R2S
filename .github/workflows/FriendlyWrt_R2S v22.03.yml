@@ -307,11 +307,12 @@ jobs:
           rm -rf ./artifact/
           mkdir -p ./artifact/
           
-          cd code/out
-          tar -czvf ../../artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
+          #cd code/out
+          #tar -czvf ../../artifact/FriendlyWrt_NanoPi-R2S.img.tar.gz *.img
           
-          cd ../../
+          #cd ../../
           cp code/friendlywrt/.config ./artifact/config.txt
+          mv code/out/*.gz ./artifact/
           # cp code/out/FriendlyWrt_NanoPi-R2S.img.tar.gz ./artifact/
           # ls -l code/friendlywrt/bin/targets/rockchip/armv8/*.img*
           #cp code/friendlywrt/bin/targets/rockchip/armv8/*.img.gz ./artifact/ 
@@ -322,18 +323,19 @@ jobs:
           # cp code/out/*.zip ./artifact/
 
           
-          find ./ -name *.ipk > ./artifact/ipkfiles.txt
           
-          # keep the *.ipk files:
-          mkdir ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_generic/packages/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_generic/luci/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_generic/base/*.ipk  ./artifact/package
-          cp ./code/friendlywrt/bin/packages/aarch64_generic/routing/*.ipk  ./artifact/package
-          tar -czvf packages.tar.gz ./artifact/package/*.ipk
-          rm -rf ./artifact/package/
-          mv packages.tar.gz ./artifact/
-          md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
+          3find ./ -name *.ipk > ./artifact/ipkfiles.txt
+          
+          ## keep the *.ipk files:
+          #mkdir ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_generic/packages/*.ipk  ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_generic/luci/*.ipk  ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_generic/base/*.ipk  ./artifact/package
+          #cp ./code/friendlywrt/bin/packages/aarch64_generic/routing/*.ipk  ./artifact/package
+          #tar -czvf packages.tar.gz ./artifact/package/*.ipk
+          #rm -rf ./artifact/package/
+          #mv packages.tar.gz ./artifact/
+          #md5sum ./artifact/packages.tar.gz >> ./artifact/md5.txt
           
           echo "strDate=$(TZ=UTC-8 date '+%Y-%m-%d')" >> $GITHUB_ENV
 
