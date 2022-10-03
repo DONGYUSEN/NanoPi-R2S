@@ -324,7 +324,7 @@ jobs:
 
           
           
-          3find ./ -name *.ipk > ./artifact/ipkfiles.txt
+          #find ./ -name *.ipk > ./artifact/ipkfiles.txt
           
           ## keep the *.ipk files:
           #mkdir ./artifact/package
