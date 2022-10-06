@@ -61,5 +61,5 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          keep_minimum_runs: 18
+          keep_minimum_runs: 1
           workflow_name: Clean Old Release
