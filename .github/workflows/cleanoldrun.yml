@@ -59,7 +59,7 @@ jobs:
       - name: Delete workflow runs
         uses: mwigginsdev/delete-oldest-workflow-runs@main
         with:
-          token: ${{ secrets.AUTH_PAT }}
+          token: ${{ github.token }}
           repository: ${{ github.repository }}
           keep_minimum_runs: 18
           workflow_name: Clean Old Release
