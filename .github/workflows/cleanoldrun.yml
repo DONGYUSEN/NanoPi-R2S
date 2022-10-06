@@ -62,4 +62,4 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           keep_minimum_runs: 1
-          workflow_name: Clean Old Release
+          workflow_name: NanoPi-R2S OpenWrt 21.02 Build
