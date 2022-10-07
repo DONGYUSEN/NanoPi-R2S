@@ -28,7 +28,7 @@ jobs:
           root-reserve-mb: 128
           swap-size-mb: 1024
           remove-dotnet: 'true'
-          emove-android: 'true'
+          remove-android: 'true'
 
       - name: Checkout
         uses: actions/checkout@master
