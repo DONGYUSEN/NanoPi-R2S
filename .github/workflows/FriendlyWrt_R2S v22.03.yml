@@ -191,6 +191,9 @@ jobs:
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
+          ./scripts/feeds update -a -f
+          ./scripts/feeds install -a -f
+          ./scripts/feeds update -a
           ./scripts/feeds install -a
           #rm -rf feeds/packages/utils/docker-ce
           #rm -rf feeds/luci/applications/luci-app-docker
