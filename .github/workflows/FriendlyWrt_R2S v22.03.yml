@@ -146,7 +146,7 @@ jobs:
           git clone https://github.com/immortalwrt/immortalwrt.git test
           cp -r test/package/kernel/r8* custom/
           cp -r test/package/kernel/rtl* custom/
-          cp -r test/package/kernel/exfat custom/
+          # cp -r test/package/kernel/exfat custom/
           rm -rf test
           rm -rf custom/r8101
           
