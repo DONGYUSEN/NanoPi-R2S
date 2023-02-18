@@ -134,8 +134,8 @@ jobs:
           name: "FriendlyElec R2s v22.03 官方原版重新编译"
           tag: ${{ env.NOW }}
           #tag_name: ${{env.strDate}} 
-          #commit: main
-          #replacesArtifacts: true
+          commit: main
+          replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: ./artifact/*.zip,./artifact/*.gz,./artifact/*.txt
           
