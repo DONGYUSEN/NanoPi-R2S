@@ -34,3 +34,4 @@ Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 * [soffchen/NanoPi-R2S](https://github.com/soffchen/NanoPi-R2S)
 * [biliwala/nanopi-openwrt](https://github.com/biliwala/nanopi-openwrt)
 * [SuLingGG/OpenWrt-Rpi](https://github.com/SuLingGG/OpenWrt-Rpi)
+* 系统自动重启方法： touch /etc/banner && reboot   参考：https://github.com/coolsnowwolf/lede/issues/6184#issuecomment-758348276
