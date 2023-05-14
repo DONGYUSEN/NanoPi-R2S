@@ -23,7 +23,9 @@ Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 
 ## 注意
 产品发布初期，官方代码每天都在变，遇到无法编译时，请过来查看 `.yml` 与 `config` 最新异动。
-部分luci编译时无法处理，原因未知， 可以从https://op.supes.top/packages/arm_cortex-a7/中下载最新版luci-app包安装
+
+部分luci编译时无法处理，原因未知， 可以从https://op.supes.top/packages/arm_cortex-a7/ 中下载最新版luci-app包安装
+  
   已知包：luci-app-zerotier luci-app-n2n 
 
 
