@@ -3,6 +3,7 @@ name: NanoPi-R2S OpenWrt 22.03 Build
 env:
   SSH_ACTIONS: false
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  
 
 on:
   push:
@@ -124,6 +125,7 @@ jobs:
           
           #VPN，虚拟局域网
           ### zerotier
+          #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier custom/luci-app-zerotier
           svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier custom/luci-app-zerotier
           svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-zerotier/Makefile
