@@ -34,12 +34,22 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update       
-          wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | /bin/bash
+          sudo rm -rf /etc/apt/sources.list.d
+          wget https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh
+          sed -i -e 's/^apt-get -y install openjdk-8-jdk/# apt-get -y install openjdk-8-jdk/g' install.sh
+          sed -i -e 's/^\[ -d fa-toolchain \]/# [ -d fa-toolchain ]/g' install.sh
+          sed -i -e 's/^(cat fa-toolchain/# (cat fa-toolchain/g' install.sh
+          sed -i -e 's/^(tar xf fa-toolchain/# (tar xf fa-toolchain/g' install.sh
+          sudo -E bash ./install.sh
+          sudo -E update-alternatives --install $(which python) python /usr/bin/python2.7 20
+
           sudo -E apt-get install clang llvm quilt
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo apt-get autoclean
+          
+          sudo swapoff -a
+          
           
       - name: Install Repo
         run: |
@@ -54,7 +64,14 @@ jobs:
           cp ../repo/repo ./repo
           python2 repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03   -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
           python2 repo sync -c  --no-clone-bundle
-          
+          python2 repo sync -c friendlywrt --no-clone-bundle
+          python2 repo sync -c configs --no-clone-bundle
+          python2 repo sync -c device/common --no-clone-bundle
+          python2 repo sync -c device/friendlyelec --no-clone-bundle
+          python2 repo sync -c scripts --no-clone-bundle
+          python2 repo sync -c scripts/sd-fuse  --no-clone-bundle
+          python2 repo sync -c toolchain  --no-clone-bundle
+
       - name: Clone Feeds
         run: |
           cd code/friendlywrt/
