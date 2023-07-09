@@ -49,8 +49,6 @@ jobs:
           sudo -E bash ./install.sh
           sudo -E update-alternatives --install $(which python) python /usr/bin/python2.7 20
 
-          #sudo apt-get update       
-          #wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | /bin/bash
           sudo -E apt-get install clang llvm quilt
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
@@ -227,8 +225,8 @@ jobs:
           mkdir -p etc/openclash/core
           # for updates, go to: https://github.com/Dreamacro/clash/releases
           # https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g'       
-          #wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.12.0/clash-linux-armv8-v1.12.0.gz | gunzip -c > etc/openclash/core/clash
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
+          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.17.0/clash-linux-arm64-v1.17.0.gz | gunzip -c > etc/openclash/core/clash
+          # wget -qO- https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
           # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
           # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g' 
           wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2022.06.19-13-ga45638d.gz | gunzip -c > etc/openclash/core/clash_tun
@@ -264,9 +262,10 @@ jobs:
           sed -i 's/make -j$(nproc) V=s/make -j1 V=sc/' scripts/mk-friendlywrt.sh
           # sed -i 's/make -j$(nproc) V=s/make -j8 V=s/' scripts/mk-friendlywrt.sh
          
-          git clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
-          cd prebuilts/gcc-x64
-          sudo tar xvf toolchain-11.3-aarch64.tar.xz -C /
+          
+          #git clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
+          #cd prebuilts/gcc-x64
+          #sudo tar xvf toolchain-11.3-aarch64.tar.xz -C /
           
 
       - name: Build OpenWrt2
