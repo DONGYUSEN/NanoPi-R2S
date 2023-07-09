@@ -24,9 +24,8 @@ Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 ## 注意
 产品发布初期，官方代码每天都在变，遇到无法编译时，请过来查看 `.yml` 与 `config` 最新异动。
 
-部分luci编译时无法处理，原因未知， 可以从https://op.supes.top/packages/arm_cortex-a7/ 中下载最新版luci-app包安装
-  
-  已知包：luci-app-zerotier luci-app-n2n 
+已经修复：(部分luci编译时无法处理，原因未知， 可以从https://op.supes.top/packages/arm_cortex-a7/ 中下载最新版luci-app包安装)
+         已知包：luci-app-zerotier luci-app-n2n 
 
 
 ## 参考
@@ -39,4 +38,5 @@ Fork 到自己的账号下，将 `.github/workflows` 下修改编译。
 * [soffchen/NanoPi-R2S](https://github.com/soffchen/NanoPi-R2S)
 * [biliwala/nanopi-openwrt](https://github.com/biliwala/nanopi-openwrt)
 * [SuLingGG/OpenWrt-Rpi](https://github.com/SuLingGG/OpenWrt-Rpi)
+* https://github.com/friendlyarm/Actions-FriendlyWrt/tree/master 
 * 系统自动重启方法： touch /etc/banner && reboot   参考：https://github.com/coolsnowwolf/lede/issues/6184#issuecomment-758348276
