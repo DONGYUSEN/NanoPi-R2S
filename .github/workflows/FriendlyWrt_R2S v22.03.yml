@@ -40,13 +40,20 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          # sudo rm -rf /etc/apt/sources.list.d
+          sudo rm -rf /etc/apt/sources.list.d
+          wget https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh
+          sed -i -e 's/^apt-get -y install openjdk-8-jdk/# apt-get -y install openjdk-8-jdk/g' install.sh
+          sed -i -e 's/^\[ -d fa-toolchain \]/# [ -d fa-toolchain ]/g' install.sh
+          sed -i -e 's/^(cat fa-toolchain/# (cat fa-toolchain/g' install.sh
+          sed -i -e 's/^(tar xf fa-toolchain/# (tar xf fa-toolchain/g' install.sh
+          sudo -E bash ./install.sh
+          sudo -E update-alternatives --install $(which python) python /usr/bin/python2.7 20
 
-          sudo apt-get update       
-          wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | /bin/bash
+          #sudo apt-get update       
+          #wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | /bin/bash
           sudo -E apt-get install clang llvm quilt
-          #sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
-          #sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /usr/local/share/boost /opt/ghc
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo apt-get autoclean
                     
           # for git error
