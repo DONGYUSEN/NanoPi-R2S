@@ -41,6 +41,9 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           # sudo rm -rf /etc/apt/sources.list.d
+          sudo swapoff /swapfile
+          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+
           sudo apt-get update       
           wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | /bin/bash
           sudo -E apt-get install clang llvm quilt
