@@ -23,13 +23,13 @@ jobs:
     
     steps:
    
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 1024
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
+ #     - name: Maximize build space
+ #       uses: easimon/maximize-build-space@master
+ #       with:
+ #         root-reserve-mb: 1024
+ #         swap-size-mb: 1024
+ #         remove-dotnet: 'true'
+ #         remove-android: 'true'
 
       - name: Checkout
         uses: actions/checkout@master
@@ -54,6 +54,9 @@ jobs:
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo apt-get autoclean -y
           sudo apt-get autoremove -y
+          sudo apt-get autoclean
+          
+          sudo swapoff -a
                     
           # for git error
           git config --global user.email "dongyusen@gmail.com"
