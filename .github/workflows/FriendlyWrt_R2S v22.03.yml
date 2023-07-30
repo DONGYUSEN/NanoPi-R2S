@@ -104,6 +104,7 @@ jobs:
           svn co https://github.com/coolsnowwolf/packages/trunk/net/n2n custom/n2n
           
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           mv custom/openwrt-passwall/v2ray-core custom/
           mv custom/openwrt-passwall/v2ray-plugin custom/
           mv custom/openwrt-passwall/xray-core custom/
