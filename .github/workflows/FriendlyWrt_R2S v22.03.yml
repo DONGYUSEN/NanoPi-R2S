@@ -92,9 +92,11 @@ jobs:
           git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config  custom/luci-app-argon-config
 
           #越过长城
-          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           
-          svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
+          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          git clone --depth=1 https://github.com/fw876/helloworld.git custom/helloworld
+          
+          # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
           svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 custom/redsocks2
           
@@ -105,10 +107,10 @@ jobs:
           
           git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
-          mv custom/openwrt-passwall/v2ray-core custom/
-          mv custom/openwrt-passwall/v2ray-plugin custom/
-          mv custom/openwrt-passwall/xray-core custom/
-          mv custom/openwrt-passwall/xray-plugin custom/
+          mv custom/helloworld/v2ray-core custom/
+          mv custom/helloworld/v2ray-plugin custom/
+          mv custom/helloworld/xray-core custom/
+          mv custom/helloworld/xray-plugin custom/
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
           sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
@@ -230,7 +232,7 @@ jobs:
           mkdir -p etc/openclash/core
           # for updates, go to: https://github.com/Dreamacro/clash/releases
           # https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g'       
-          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.17.0/clash-linux-arm64-v1.17.0.gz | gunzip -c > etc/openclash/core/clash
+          wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-arm64-v1.18.0.gz | gunzip -c > etc/openclash/core/clash
           # wget -qO- https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
           # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
           # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g' 
