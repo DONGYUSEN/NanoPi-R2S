@@ -119,7 +119,8 @@ jobs:
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
           svn co https://github.com/kenzok8/small/trunk/lua-neturl custom/lua-neturl
-          git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          # git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
+          git clone https://github.com/leiliang75/luci-app-vssr.git custom/luci-app-vssr
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vssr/Makefile
           # git clone --depth=1 https://github.com/garypang13/luci-app-bypass custom/luci-app-bypass
           # svn co https://github.com/kiddin9/openwrt-bypass/trunk/luci-app-bypass custom/luci-app-bypass
