@@ -94,7 +94,7 @@ jobs:
           #越过长城
           
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          git clone --depth=1 https://github.com/fw876/helloworld.git custom/helloworld
+          git clone https://github.com/fw876/helloworld.git custom/helloworld
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
