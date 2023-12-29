@@ -95,6 +95,9 @@ jobs:
           
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
+
+          # 临时性的，因为mosdns无法编译
+          rm -rf custom/helloworld/mosdns
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
