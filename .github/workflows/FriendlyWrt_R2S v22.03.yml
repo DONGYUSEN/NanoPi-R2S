@@ -82,7 +82,10 @@ jobs:
           cd code/friendlywrt
           ./scripts/feeds update -a
           rm -rf feeds/packages/net/zerotier
-  
+          
+          rm -rf feeds/packages/lang/golang
+          svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
+ 
       - name: Processing drivers
         run: |
           cd code/friendlywrt/package
@@ -96,8 +99,6 @@ jobs:
           svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
 
-          # 临时性的，因为mosdns无法编译
-          rm -rf custom/helloworld/mosdns
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
@@ -215,6 +216,10 @@ jobs:
           ./scripts/feeds install -a -f
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+
+          rm -rf feeds/packages/lang/golang
+          svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
+
           #rm -rf feeds/packages/utils/docker-ce
           #rm -rf feeds/luci/applications/luci-app-docker
           #rm -rf feeds/luci/applications/luci-app-dockerman
