@@ -96,7 +96,8 @@ jobs:
 
           #越过长城
 
-          git clone https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          # git clone https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+          git clone git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
 
           
