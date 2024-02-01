@@ -95,8 +95,8 @@ jobs:
           git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config  custom/luci-app-argon-config
 
           #越过长城
-          
-          svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
+
+          git clone https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
 
           
