@@ -92,7 +92,7 @@ jobs:
           
           #漂亮的主题
           git clone https://github.com/jerrykuku/luci-theme-argon.git custom/luci-theme-argon
-          git clone https://github.com/jerrykuku/luci-app-argon-config  custom/luci-app-argon-config
+          git clone https://github.com/jerrykuku/luci-app-argon-config.git  custom/luci-app-argon-config
 
           #越过长城
 
@@ -110,7 +110,7 @@ jobs:
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n custom/n2n
           svn co https://github.com/coolsnowwolf/packages/trunk/net/n2n custom/n2n
           
-          git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
+          # git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           mv custom/helloworld/v2ray-core custom/
           mv custom/helloworld/v2ray-plugin custom/
