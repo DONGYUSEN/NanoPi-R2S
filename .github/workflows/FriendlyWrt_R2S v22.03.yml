@@ -103,7 +103,7 @@ jobs:
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
-          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 custom/redsocks2
+          svn co https://github.com/immortalwrt/packages/trunk/net/redsocks2 custom/redsocks2
           
           svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
