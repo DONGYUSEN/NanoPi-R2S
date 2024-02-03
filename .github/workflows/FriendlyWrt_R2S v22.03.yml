@@ -97,13 +97,13 @@ jobs:
           #越过长城
 
           # git clone https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
+          # git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
 
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
           #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 custom/redsocks2
-          svn co https://github.com/immortalwrt/packages/trunk/net/redsocks2 custom/redsocks2
+          # svn co https://github.com/immortalwrt/packages/trunk/net/redsocks2 custom/redsocks2
           
           svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
@@ -112,14 +112,14 @@ jobs:
           
           # git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
-          mv custom/helloworld/v2ray-core custom/
-          mv custom/helloworld/v2ray-plugin custom/
-          mv custom/helloworld/xray-core custom/
-          mv custom/helloworld/xray-plugin custom/
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
-          sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
+          #mv custom/helloworld/v2ray-core custom/
+          #mv custom/helloworld/v2ray-plugin custom/
+          #mv custom/helloworld/xray-core custom/
+          #mv custom/helloworld/xray-plugin custom/
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-core/Makefile
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/xray-plugin/Makefile
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-core/Makefile
+          #sed -i 's/GO111MODULE=on/GO111MODULE=off/' custom/v2ray-plugin/Makefile
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
