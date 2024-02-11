@@ -97,7 +97,7 @@ jobs:
           #越过长城
 
           # git clone https://github.com/vernesong/OpenClash/trunk/luci-app-openclash custom/luci-app-openclash
-          # git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
+          git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
 
           
@@ -106,11 +106,17 @@ jobs:
           # svn co https://github.com/immortalwrt/packages/trunk/net/redsocks2 custom/redsocks2
           
           # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
+          # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-n2n custom/luci-app-n2n
+          # git clone https://github.com/username/project.git --depth 1 --branch master --single-branch folder
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-n2n
+          mv applications/luci-app-n2n custom/
+
+          # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n custom/n2n
-          svn co https://github.com/coolsnowwolf/packages/trunk/net/n2n custom/n2n
-          
+          # svn co https://github.com/coolsnowwolf/packages/trunk/net/n2n custom/n2n
+          git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch ./net/n2n
+          mv net/n2n custom/
+
           # git clone https://github.com/xiaorouji/openwrt-passwall.git custom/openwrt-passwall
           git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           #mv custom/helloworld/v2ray-core custom/
@@ -124,7 +130,7 @@ jobs:
           
           #####
           git clone https://github.com/jerrykuku/lua-maxminddb.git custom/lua-maxminddb
-          svn co https://github.com/kenzok8/small/trunk/lua-neturl custom/lua-neturl
+          # svn co https://github.com/kenzok8/small/trunk/lua-neturl custom/lua-neturl
           # git clone https://github.com/jerrykuku/luci-app-vssr.git custom/luci-app-vssr
           git clone https://github.com/leiliang75/luci-app-vssr.git custom/luci-app-vssr
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vssr/Makefile
@@ -139,35 +145,51 @@ jobs:
           cd package/
 
           #广告过滤
-          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
-          svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-dnsfilter/Makefile
+          #git clone https://github.com/rufengsuixing/luci-app-adguardhome.git custom/luci-app-adguardhome
+          #svn co https://github.com/ykxVK8yL5L/packages/trunk/openwrt-packages/luci-app-dnsfilter custom/luci-app-dnsfilter
+          #sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-dnsfilter/Makefile
           
           #VPN，虚拟局域网
           ### zerotier
           #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier custom/luci-app-zerotier
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier custom/luci-app-zerotier
-          svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-zerotier/Makefile
+          # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-zerotier custom/luci-app-zerotier
+          #svn co https://github.com/coolsnowwolf/packages/trunk/net/zerotier custom/zerotier
+          #sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-zerotier/Makefile
         
           
           #系统工具
-          svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-netdata custom/luci-app-netdata
+          #svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher custom/luci-app-r2sflasher
+          #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-netdata custom/luci-app-netdata
           
           # kms服务器
-          svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd  custom/vlmcsd
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-vlmcsd custom/luci-app-vlmcsd
+          # svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd  custom/vlmcsd
+          git clone https://github.com/immortalwrt/packages.git --depth 1 --branch master --single-branch net/vlmcsd
+          mv net/vlmcsd custom/
+
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-vlmcsd
+          mv applications/luci-app-vlmcsd custom/
+          
+          # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-vlmcsd custom/luci-app-vlmcsd
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vlmcsd/Makefile
           ## autoreboot 
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-autoreboot custom/luci-app-autoreboot
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-autoreboot
+          mv applications/luci-app-autoreboot custom/
+          #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-autoreboot custom/luci-app-autoreboot
           
           ## luci-app-usb-printer && filetransfer
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer custom/luci-app-usb-printer
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-usb-printer
+          mv applications/luci-app-usb-printer custom/
+          # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer custom/luci-app-usb-printer
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-usb-printer/Makefile
-          svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-filetransfer custom/luci-app-filetransfer
+          
+          #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-filetransfer custom/luci-app-filetransfer
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-filetransfer
+          mv applications/luci-app-filetransfer custom/
           sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-filetransfer/Makefile
-          svn co https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs custom/luci-lib-fs
+          
+          #svn co https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs custom/luci-lib-fs
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch libs/luci-lib-fs
+          mv libs/luci-lib-fs custom/
           
           ## 网络驱动
           git clone https://github.com/immortalwrt/immortalwrt.git test
@@ -247,11 +269,11 @@ jobs:
           # wget -qO- https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
           # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
           # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g' 
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2022.06.19-13-ga45638d.gz | gunzip -c > etc/openclash/core/clash_tun
+          #  wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2022.06.19-13-ga45638d.gz | gunzip -c > etc/openclash/core/clash_tun
           # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN
           # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g'     
-          wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv8.tar.gz | tar xOvz > etc/openclash/core/clash_game
-          chmod +x etc/openclash/core/clash*
+          # wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv8.tar.gz | tar xOvz > etc/openclash/core/clash_game
+          # chmod +x etc/openclash/core/clash*
         
       - name: Set Default Values
         run: |
