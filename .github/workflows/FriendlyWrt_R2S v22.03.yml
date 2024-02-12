@@ -100,6 +100,7 @@ jobs:
           # git clone https://github.com/vernesong/OpenClash.git  custom/luci-app-openclash
           git clone https://github.com/fw876/helloworld.git custom/helloworld
           sed -i 's/ +libopenssl-legacy//g' custom/helloworld/shadowsocksr-libev/Makefile
+          rm -rf custom/helloworld/mosdns
 
           
           # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus custom/luci-app-ssr-plus
