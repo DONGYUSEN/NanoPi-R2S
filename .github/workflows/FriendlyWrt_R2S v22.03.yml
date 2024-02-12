@@ -111,7 +111,7 @@ jobs:
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-n2n
           mv applications/luci-app-n2n custom/
 
-          # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
+          ## sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-n2n/Makefile
           # svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/n2n custom/n2n
           # svn co https://github.com/coolsnowwolf/packages/trunk/net/n2n custom/n2n
           git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch ./net/n2n
