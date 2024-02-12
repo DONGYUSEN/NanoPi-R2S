@@ -140,7 +140,7 @@ jobs:
           
           cd ../
           
-          sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
+          # sed -i '/enable-jsonc/i\\t--disable-cloud \\' feeds/packages/admin/netdata/Makefile
 
           cd package/
 
@@ -170,7 +170,7 @@ jobs:
           mv applications/luci-app-vlmcsd custom/
           
           # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-vlmcsd custom/luci-app-vlmcsd
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vlmcsd/Makefile
+          # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vlmcsd/Makefile
           ## autoreboot 
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-autoreboot
           mv applications/luci-app-autoreboot custom/
