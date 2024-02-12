@@ -180,12 +180,12 @@ jobs:
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-usb-printer
           mv applications/luci-app-usb-printer custom/
           # svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer custom/luci-app-usb-printer
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-usb-printer/Makefile
+          # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-usb-printer/Makefile
           
           #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-filetransfer custom/luci-app-filetransfer
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-filetransfer
           mv applications/luci-app-filetransfer custom/
-          sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-filetransfer/Makefile
+          # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-filetransfer/Makefile
           
           #svn co https://github.com/coolsnowwolf/luci/trunk/libs/luci-lib-fs custom/luci-lib-fs
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch libs/luci-lib-fs
