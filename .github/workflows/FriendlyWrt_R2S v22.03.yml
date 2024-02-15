@@ -184,7 +184,6 @@ jobs:
           ./scripts/feeds install -a -f
 
           mkdir test
-          cd test
           rm -rf feeds/packages/lang/golang
           git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch test
           mv test/packages/lang/golang feeds/packages/lang/golang
@@ -192,7 +191,6 @@ jobs:
           rm -rf feeds/packages/libs/openssl
           git clone https://github.com/coolsnowwolf/openwrt.git  --depth 1 --branch master --single-branch test
           mv test/openwrt/package/libs/openssl  feeds/packages/libs/
-          cd ../
           
           rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
