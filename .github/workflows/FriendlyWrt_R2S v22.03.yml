@@ -96,8 +96,9 @@ jobs:
 
           #越过长城
           # disable for test!
-          #git clone https://github.com/fw876/helloworld.git custom/helloworld
-          #sed -i 's/ +libopenssl-legacy//g' custom/helloworld/shadowsocksr-libev/Makefile
+
+          git clone https://github.com/fw876/helloworld.git custom/helloworld
+          sed -i 's/ +libopenssl-legacy//g' custom/helloworld/shadowsocksr-libev/Makefile
           #git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           #git clone https://github.com/leiliang75/luci-app-vssr.git custom/luci-app-vssr
           #sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-vssr/Makefile
@@ -148,7 +149,9 @@ jobs:
           git clone https://github.com/immortalwrt/immortalwrt.git test
           cp -r test/package/kernel/r8* custom/
           cp -r test/package/kernel/rtl* custom/
-          # cp -r test/package/kernel/exfat custom/
+          cp -r test/package/kernel/exfat custom/
+          mv test/tools/ucl custom/
+          mv test/tools/upx custom/
           rm -rf test
           rm -rf custom/r8101
           rm -rf custom/rtl8812au-ct
@@ -181,12 +184,18 @@ jobs:
           cd code/friendlywrt		
           ./scripts/feeds update -a -f
           ./scripts/feeds install -a -f
-          #./scripts/feeds update -a
-          #./scripts/feeds install -a
 
-          #rm -rf feeds/packages/lang/golang
-          #svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
-
+          mkdir test
+          cd test
+          rm -rf feeds/packages/lang/golang
+          git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch test
+          mv test/packages/lang/golang feeds/packages/lang/golang
+          rm -rf *
+          rm -rf feeds/packages/libs/openssl
+          git clone https://github.com/coolsnowwolf/openwrt.git  --depth 1 --branch master --single-branch test
+          mv test/openwrt/package/libs/openssl  feeds/packages/libs/
+          cd ../
+          
           rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
           rm -rf feeds/luci/applications/luci-app-dockerman
@@ -202,22 +211,15 @@ jobs:
         uses: DONGYUSEN/debugger-action@master
         if: env.SSH_ACTIONS == 'true'
         
-      - name: Install Clash Binaries
+      - name: Install ShellClash
         run: |
           cd code/friendlywrt/package/base-files/files
-          mkdir -p etc/openclash/core
-          # for updates, go to: https://github.com/Dreamacro/clash/releases
-          # https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g'       
-          # wget -qO- https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-arm64-v1.18.0.gz | gunzip -c > etc/openclash/core/clash
-          # wget -qO- https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | gunzip -c > etc/openclash/core/clash
-          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN-Premium
-          # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g' 
-          #  wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-armv8-2022.06.19-13-ga45638d.gz | gunzip -c > etc/openclash/core/clash_tun
-          # for updates, go to: https://github.com/vernesong/OpenClash/releases/tag/TUN
-          # curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g'     
-          # wget -qO- https://github.com/vernesong/OpenClash/releases/download/TUN/clash-linux-armv8.tar.gz | tar xOvz > etc/openclash/core/clash_game
-          # chmod +x etc/openclash/core/clash*
-        
+          mkdir -p etc/shellclash
+          cd etc/shellclash
+          wget -c https://github.com/juewuy/ShellCrash/blob/dev/install.sh
+          chmod +x install.sh 
+          mv install.sh Crash_install.sh
+
       - name: Set Default Values
         run: |
           cd code/friendlywrt
