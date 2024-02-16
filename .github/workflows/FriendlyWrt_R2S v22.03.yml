@@ -192,8 +192,10 @@ jobs:
           ./scripts/feeds install -a -f
 
           rm -rf feeds/packages/lang/golang
+          rm -rf feeds/packages/lang/rust
           git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch test
           mv test/lang/golang feeds/packages/lang/golang
+          mv test/lang/rust feeds/packages/lang/rust
           rm -rf test
           
           rm -rf feeds/packages/libs/openssl
