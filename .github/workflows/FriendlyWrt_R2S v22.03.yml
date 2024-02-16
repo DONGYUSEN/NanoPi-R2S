@@ -82,9 +82,7 @@ jobs:
           cd code/friendlywrt
           ./scripts/feeds update -a
           rm -rf feeds/packages/net/zerotier
-          
-          #rm -rf feeds/packages/lang/golang
-          #svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
+ 
  
       - name: Processing drivers
         run: |
@@ -101,7 +99,7 @@ jobs:
           sed -i 's/ +libopenssl-legacy//g' custom/helloworld/shadowsocksr-libev/Makefile
 
           # compiler error! so disable it.
-          rm  -rf custom/helloworld/shadowsocks-rust 
+          # rm  -rf custom/helloworld/shadowsocks-rust 
           
           #git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           git clone https://github.com/leiliang75/luci-app-vssr.git custom/luci-app-vssr
