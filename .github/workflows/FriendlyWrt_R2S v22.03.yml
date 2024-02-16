@@ -101,7 +101,7 @@ jobs:
           sed -i 's/ +libopenssl-legacy//g' custom/helloworld/shadowsocksr-libev/Makefile
 
           # compiler error! so disable it.
-          rm  -rf package/custom/helloworld/shadowsocks-rust 
+          rm  -rf custom/helloworld/shadowsocks-rust 
           
           #git clone https://github.com/xiaorouji/openwrt-passwall2.git custom/openwrt-passwall2
           git clone https://github.com/leiliang75/luci-app-vssr.git custom/luci-app-vssr
