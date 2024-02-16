@@ -113,12 +113,12 @@ jobs:
           #广告过滤
           
           #VPN，虚拟局域网
-          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-n2n
-          mv applications/luci-app-n2n/applications/luci-app-n2n custom/
-          rm -rf applications/luci-app-n2n
-          git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch net/n2n
-          mv net/n2n/net/n2n custom/
-          rm -rf net/n2n
+          git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch test
+          mv test/applications/luci-app-n2n custom/
+          rm -rf test
+          git clone https://github.com/coolsnowwolf/packages.git --depth 1 --branch master --single-branch test
+          mv test/net/n2n custom/
+          rm -rf test
           
           #系统工具
 
