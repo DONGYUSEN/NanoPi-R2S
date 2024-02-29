@@ -204,6 +204,7 @@ jobs:
           rm -rf feeds/packages/utils/docker-ce
           rm -rf feeds/luci/applications/luci-app-docker
           rm -rf feeds/luci/applications/luci-app-dockerman
+          rm -rf feeds/packages/net/xray-core
           chmod +x ./target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
           chmod +x ./target/linux/rockchip/armv8/base-files/etc/board.d/02_network
           
