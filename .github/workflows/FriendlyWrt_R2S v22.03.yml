@@ -126,7 +126,8 @@ jobs:
           # kms服务器
           git clone https://github.com/immortalwrt/packages.git --depth 1 --branch master --single-branch net/vlmcsd
           mv net/vlmcsd/net/vlmcsd custom/
-          rm -rf net/vlmcsd
+          # rm -rf net/vlmcsd
+          rm -rf net
 
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-vlmcsd
           mv applications/luci-app-vlmcsd/applications/luci-app-vlmcsd custom/
@@ -145,6 +146,7 @@ jobs:
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch applications/luci-app-filetransfer
           mv applications/luci-app-filetransfer/applications/luci-app-filetransfer custom/
           rm -rf applications/luci-app-filetransfer
+          rm -rf applications
           # sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/' custom/luci-app-filetransfer/Makefile
           
           git clone https://github.com/coolsnowwolf/luci.git --depth 1 --branch master --single-branch libs/luci-lib-fs
