@@ -214,7 +214,7 @@ jobs:
           chmod +x ./target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 
 
-          rm -rf feeds/packages/feeds
+          rm -rf feeds
           
       - name: Custom Configure Files
         run: |
