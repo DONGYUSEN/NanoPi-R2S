@@ -1,7 +1,7 @@
 name: NanoPi-R2S OpenWrt 22.03 Build
 
 env:
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   
 
@@ -191,6 +191,7 @@ jobs:
       - name: Install Feeds		
         run: |		
           cd code/friendlywrt		
+          rm -rf ./package/feeds/packages/frp
           ./scripts/feeds update -a -f
           ./scripts/feeds install -a -f
 
