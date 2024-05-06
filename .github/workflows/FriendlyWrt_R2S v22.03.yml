@@ -1,7 +1,7 @@
 name: NanoPi-R2S OpenWrt 22.03 Build
 
 env:
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   
 
@@ -222,9 +222,9 @@ jobs:
           rm -f code/friendlywrt/.config*
           cat feeds-1907.conf > code/friendlywrt/.config
 
-      - name: SSH连接
-        uses: DONGYUSEN/debugger-action@master
-        if: env.SSH_ACTIONS == 'true'
+      #- name: SSH连接
+       # uses: DONGYUSEN/debugger-action@master
+       # if: env.SSH_ACTIONS == 'true'
         
       - name: Install ShellClash
         run: |
