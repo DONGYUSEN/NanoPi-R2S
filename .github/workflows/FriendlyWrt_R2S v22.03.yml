@@ -171,6 +171,8 @@ jobs:
           #rm -rf custom/luci-app-vssr
           #rm -rf custom/luci-app-open
           #rm -rf custom/luci-app-bypass
+
+          rm -rf feeds/packages
           
           
           # UPX 可执行软件压缩
