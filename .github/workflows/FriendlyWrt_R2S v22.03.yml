@@ -126,7 +126,7 @@ jobs:
           # kms服务器
           git clone https://github.com/immortalwrt/packages.git --depth 1 --branch master --single-branch net/vlmcsd
           mv net/vlmcsd/net/vlmcsd custom/
-          mv net/vlmcsd/net/pdnsd custom/
+          mv net/vlmcsd/net/pdns custom/
           # rm -rf net/vlmcsd
           rm -rf net
 
