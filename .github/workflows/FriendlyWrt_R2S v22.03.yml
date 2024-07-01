@@ -74,7 +74,8 @@ jobs:
           mkdir code
           cd code
           cp /usr/bin/repo ./repo
-          python2 repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
+          # python2 repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v22.03 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
+          python2 repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v23.05 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo  --no-clone-bundle
           python2 repo sync -c  --no-clone-bundle
           
       - name: Update Feeds		
