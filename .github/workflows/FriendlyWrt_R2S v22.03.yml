@@ -187,7 +187,10 @@ jobs:
         run: |
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
-          
+
+          cd ../
+          rm -rf feeds/packages/lang/golang
+          git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
           
       - name: Install Feeds		
         run: |		
