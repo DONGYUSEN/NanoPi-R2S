@@ -188,9 +188,7 @@ jobs:
           cd code/friendlywrt/include
           sed -i 's/dnsmasq /dnsmasq-full default-settings luci /' target.mk
 
-          cd ../
-          rm -rf feeds/packages/lang/golang
-          git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+
           
       - name: Install Feeds		
         run: |		
@@ -205,6 +203,9 @@ jobs:
           mv test/lang/golang feeds/packages/lang/golang
           mv test/lang/rust feeds/packages/lang/rust
           rm -rf test
+
+          rm -rf feeds/packages/lang/golang
+          git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
           
           rm -rf feeds/packages/libs/openssl
           git clone https://github.com/coolsnowwolf/openwrt.git  --depth 1 --branch master --single-branch test
